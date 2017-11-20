@@ -1,0 +1,112 @@
+<!--pages/goods_details/index.wxml-->
+<swiper indicator-dots="{{swiperCofing.indicatorDots}}"
+        autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circula="{{swiperCofing.circular}}">
+    <block wx:for="{{imgUrls}}">
+        <swiper-item>
+            <image src="{{item}}" class="slide-image"/>
+        </swiper-item>
+    </block>
+</swiper>
+
+<view class="pd-10">
+    <view class="flex" style="justify-content: space-between">
+
+        <view class="flex" style="align-items: flex-end">
+            <view class="price co_red">
+                ￥0.01
+            </view>
+            <view class="old-price co_ash">
+                ￥4999
+            </view>
+        </view>
+        <!--<view class="icon">-->
+            <!--<image src="../../img/share.svg"></image>-->
+            <!--<view>分享</view>-->
+        <!--</view>-->
+        <view style="font-size: 14px">
+            已拼单22375件·2人拼单
+        </view>
+    </view>
+
+</view>
+<view class="pd-10">【新品发售】iPhoneX26GB手机5.8英寸显示屏银色/深空灰色2色可选</view>
+<view class="flex tag">
+    <view>
+        <image class="icon" src="../../img/icon.svg"></image>
+        全场包邮
+    </view>
+    <view>
+        <image class="icon" src="../../img/icon.svg"></image>
+        7天退货
+    </view>
+    <view>
+        <image class="icon" src="../../img/icon.svg"></image>
+        当日达
+    </view>
+    <view>
+        <image class="icon" src="../../img/icon.svg"></image>
+        假一赔十
+    </view>
+</view>
+<view class="pd-10 pin">
+    <view class="title flex">
+        <view>2人正在拼单</view>
+        <view class="more">查看更多</view>
+    </view>
+    <view class="item flex">
+        <view class="flex left">
+            <image></image>
+            <view class="name">永恒</view>
+        </view>
+        <view class="flex right">
+            <view class="flex prompt">
+                <view class="number">还差1人拼成</view>
+                <view class="time">剩余19:59:24.3</view>
+            </view>
+            <view class="btn bc_red">去拼单</view>
+        </view>
+    </view>
+    <view class="item flex">
+        <view class="flex left">
+            <image></image>
+            <view class="name">永恒</view>
+        </view>
+        <view class="flex right">
+            <view class="flex prompt">
+                <view class="number">还差1人拼成</view>
+                <view class="time">剩余19:59:24.3</view>
+            </view>
+            <view class="btn bc_red">去拼单</view>
+        </view>
+    </view>
+    <view class="item flex">
+        <view class="flex left">
+            <image></image>
+            <view class="name">永恒</view>
+        </view>
+        <view class="flex right">
+            <view class="flex prompt">
+                <view class="number">还差1人拼成</view>
+                <view class="time">剩余19:59:24.3</view>
+            </view>
+            <view class="btn bc_red">去拼单</view>
+        </view>
+    </view>
+
+</view>
+<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>
+
+<view style="height: 50px">
+
+</view>
+
+<view class="buy flex">
+    <view class="alone">
+        <view>¥198</view>
+        <view>单独购买</view>
+    </view>
+    <view class="group">
+        <view>¥111</view>
+        <view>一键参团</view>
+    </view>
+</view>

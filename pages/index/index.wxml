@@ -1,13 +1,95 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+<swiper indicator-dots="{{swiperCofing.indicatorDots}}"
+        autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circula="{{swiperCofing.circular}}">
+    <block wx:for="{{imgUrls}}">
+        <swiper-item>
+            <image src="{{item}}" class="slide-image"/>
+        </swiper-item>
     </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+</swiper>
+
+<view class="nav">
+    <view class="item">
+        <image src="{{item}}" class="slide-image"/>
+        <view>导航</view>
+    </view>
+    <view class="item">
+        <image src="{{item}}" class="slide-image"/>
+        <view>导航</view>
+    </view>
+    <view class="item">
+        <image src="{{item}}" class="slide-image"/>
+        <view>导航</view>
+    </view>
+    <view class="item">
+        <image src="{{item}}" class="slide-image"/>
+        <view>导航</view>
+    </view>
+    <view class="item">
+        <image src="{{item}}" class="slide-image"/>
+        <view>导航</view>
+    </view>
+</view>
+
+<view class="goods-list">
+    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="height: 150px"></image>
+    <view class="pd-10">
+        <view>【新品发售】iPhoneX26GB手机5.8英寸显示屏银色/深空灰色2色可选</view>
+        <view class="flex" style="justify-content: space-between">
+
+            <view class="flex" style="align-items: flex-end">
+                <view class="price co_red">
+                    ￥0.01
+                </view>
+                <view class="dec co_ash">
+                    10人团·单买价9600元
+                </view>
+            </view>
+            <view class="btn bc_red">
+                去开团
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="goods-list">
+    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="height: 150px"></image>
+    <view class="pd-10">
+        <view>【新品发售】iPhoneX26GB手机5.8英寸显示屏银色/深空灰色2色可选</view>
+        <view class="flex" style="justify-content: space-between">
+
+            <view class="flex" style="align-items: flex-end">
+                <view class="price co_red">
+                    ￥0.01
+                </view>
+                <view class="dec co_ash">
+                    10人团·单买价9600元
+                </view>
+            </view>
+            <view class="btn bc_red">
+                去开团
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="goods-list">
+    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="height: 150px"></image>
+    <view class="pd-10">
+        <view>【新品发售】iPhoneX26GB手机5.8英寸显示屏银色/深空灰色2色可选</view>
+        <view class="flex" style="justify-content: space-between">
+
+            <view class="flex" style="align-items: flex-end">
+                <view class="price co_red">
+                    ￥0.01
+                </view>
+                <view class="dec co_ash">
+                    10人团·单买价9600元
+                </view>
+            </view>
+            <view class="btn bc_red">
+                去开团
+            </view>
+        </view>
+    </view>
 </view>

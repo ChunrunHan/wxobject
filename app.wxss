@@ -1,10 +1,43 @@
 /**app.wxss**/
-.container {
-  height: 100%;
+page {
+  font-size: 16px;
+}
+.pd-10 {
+  padding: 10px;
+}
+
+.pd-20 {
+  padding: 20px;
+}
+
+image {
+  width: 100vw;
+}
+
+.flex {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+}
+
+
+.bc_green {
+  background: green;
+}
+
+.bc_red {
+  background: red;
+}
+
+.co_red {
+  color: red;
+}
+
+.co_ash {
+  color: #bbb;
+}
+
+.btn {
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
