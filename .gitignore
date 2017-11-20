@@ -1,0 +1,8 @@
+.idea/
+unpackage
+.project
+manifest.json
+node_modules/
+*.iml
+dist/
+*.zip
