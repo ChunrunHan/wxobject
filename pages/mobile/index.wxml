@@ -3,20 +3,20 @@
     <view class="flex input" style="justify-content: space-between;">
         <view class="flex left">
             <image class="icon" src="../../img/mobile.svg"></image>
-            <input type="text" placeholder="请输入手机号"/>
+            <input type="number" bindinput="inputMobile" maxlength="11" placeholder="请输入手机号"/>
         </view>
-        <view class="btn bc_red">
-            获取验证码
+        <view class="btn bc_red" bindtap="getSmsCode">
+            {{getSmsCodeText}}
         </view>
 
     </view>
 
     <view class="flex input" style="padding: 10px 5px">
         <image class="icon" src="../../img/code.svg"></image>
-        <input type="text" placeholder="请输入验证码"/>
+        <input type="number" bindinput="inputSmsCode" placeholder="请输入验证码"/>
     </view>
 
-    <view class="btn bc_red" style="margin-top: 20px;">
+    <view class="btn bc_red" style="margin-top: 20px; padding: 10px" bindtap="login">
         登录
     </view>
 

@@ -1,12 +1,14 @@
-function wxPromis(fn) {
+function wxPromisify(fn) {
 
     return function (obj) {
-        return new Promise(function(resolve, reject) {
+        obj = obj || {}
+        return new Promise(function (resolve, reject) {
             obj.success = function (res) {
                 resolve(res)
             }
 
             obj.fail = function (res) {
+                wx.hideLoading()
                 reject(res)
             }
 
@@ -15,4 +17,6 @@ function wxPromis(fn) {
     }
 }
 
-module.exports = wxPromis
+module.exports = {
+    wxPromisify: wxPromisify
+}

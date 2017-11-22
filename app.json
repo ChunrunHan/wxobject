@@ -2,8 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/goods_details/index",
-    "pages/mobile/index",
-    "pages/logs/logs"
+    "pages/mobile/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

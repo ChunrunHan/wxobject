@@ -1,66 +1,98 @@
 // pages/mobile/index.js
+const $ = require('../../utils/utils');
+const api = require('../../utils/api');
+const app = getApp()
 Page({
+    data: {
+        getSmsCodeText: '获取验证码',
+        mobile: ''
+    },
+    onLoad: function (options) {
+        $.setTitle('绑定手机号')
+    },
+    getSmsCode: function () {
+        var _this = this
+        var mobile = _this.data.mobile
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
+        if(!$.isMobile(mobile)){
+            $.alert('请输入正确的手机号')
+            return false
+        }
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+        if(_this.data.getSmsCodeText === '获取验证码'){
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+            $.showLoading('正在获取验证码')
+            var count = 59
+            console.log(`getSmsCode`)
+            this.setData({
+                getSmsCodeText: '60秒后重置'
+            })
+            var time = setInterval(function () {
+                if(count == 1){
+                    _this.setData({
+                        getSmsCodeText: `获取验证码`
+                    })
+                    clearInterval(time)
+                }else {
+                    _this.setData({
+                        getSmsCodeText: `${count--}秒后重置`
+                    })
+                }
+            }, 1000)
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+            $.get(api.getSms(mobile)).then(function () {
+                $.hideLoading()
+                wx.showToast({
+                    title: '验证码已发送',
+                    icon: 'success',
+                    duration: 1000
+                })
+            })
+        }
+    },
+    inputMobile: function (e) {
+        this.setData({
+            mobile: e.detail.value
+        })
+    },
+    inputSmsCode: function (e) {
+        this.setData({
+            smsValidateCode : e.detail.value
+        })
+    },
+    login: function () {
+        var _this = this
+        var mobile = _this.data.mobile
+        var smsValidateCode = _this.data.smsValidateCode
+        var jsCode = wx.getStorageSync('code')
+        if(!smsValidateCode){
+            $.alert('请输入短信验证码')
+            return false
+        }
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+        if(!$.isMobile(mobile)){
+            $.alert('请输入正确的手机号')
+            return false
+        }
+        $.showLoading('正在登陆')
+        $.get(api.login({
+            mobile,
+            smsValidateCode,
+            jsCode
+        })).then(function (res) {
+            $.hideLoading()
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+            if(res.data.errCode == 0){
+                wx.setStorageSync('unionId', res.data.data.unionId)
+                wx.reLaunch({
+                    url: '../index/index'
+                })
+            }else {
+                $.alert(res.data.errMsg || '登陆失败')
+            }
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+            console.log(res.data.data.unionId)
+        })
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+    }
 })
