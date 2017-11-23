@@ -45,9 +45,9 @@
                     10人团·单买价9600元
                 </view>
             </view>
-            <view class="btn bc_red">
+            <navigator url="../goods_details/index" class="btn bc_red">
                 去开团
-            </view>
+            </navigator>
         </view>
     </view>
 </view>

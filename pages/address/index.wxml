@@ -1,0 +1,95 @@
+<!--pages/address/index.wxml-->
+<view class="address-list">
+    <view class="item">
+        <view class="details">
+            <view>
+                <text class="name">寇超</text>, <text class="mobile">13206366611</text>
+            </view>
+            <view>
+                <text class="">山东</text> <text>青岛</text> <text>崂山区</text> <text>双福大厦A1702</text>
+            </view>
+        </view>
+        <view class="handle">
+            <view class="flex" style="align-items: center;">
+                <icon type="success" size="14" color="{{'#9c9c9c'}}"/>
+                <view style="padding-left: 3px;">
+                    设为默认
+                </view>
+            </view>
+            <view class="flex">
+                <view class="flex edit" style="align-items: center;">
+                    <image src="../../../img/edit.svg" style="width: 14px;height: 14px"></image>
+                    <view style="padding-left: 3px;">
+                        编辑
+                    </view>
+                </view>
+                <view class="flex" style="align-items: center;">
+                    <image src="../../../img/delete.svg" style="width: 14px;height: 14px"></image>
+                    <view style="padding-left: 3px;">
+                        删除
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="item">
+        <view class="details">
+            <view>
+                <text class="name">寇超</text>, <text class="mobile">13206366611</text>
+            </view>
+            <view>
+                <text class="">山东</text> <text>青岛</text> <text>崂山区</text> <text>双福大厦A1702</text>
+            </view>
+        </view>
+        <view class="handle">
+            <view class="flex" style="align-items: center;">
+                <icon type="success" size="14" color="{{'#e02e24'}}"/>
+                <view style="padding-left: 3px;" class="selected">
+                    设为默认
+                </view>
+            </view>
+            <view class="flex">
+                <view class="flex edit" style="align-items: center;">
+                    <image src="../../../img/edit.svg" style="width: 14px;height: 14px"></image>
+                    <view style="padding-left: 3px;">
+                        编辑
+                    </view>
+                </view>
+                <view class="flex" style="align-items: center;">
+                    <image src="../../../img/delete.svg" style="width: 14px;height: 14px"></image>
+                    <view style="padding-left: 3px;">
+                        删除
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</view>
+
+<view class="btn bc_red">
+    新增地址
+</view>
+
+
+<view class="mask">
+    <view class="alert">
+        <view class="title">
+            添加收货地址
+        </view>
+        <view class="flex item">
+            <input class="name" type="text" placeholder="名字"/>
+            <input type="text" placeholder="电话"/>
+        </view>
+        <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding: 15px 10px">
+            <view>选择地区</view>
+            <image src="../../../img/right.svg" style="width: 14px;height: 14px"></image>
+        </view>
+        <textarea placeholder="详细地址（可填写街道、小区、大厦）"/>
+        <view class="delete">
+            <image src="../../../img/close.svg"></image>
+        </view>
+    </view>
+
+</view>

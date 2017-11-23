@@ -1,9 +1,17 @@
 /**app.wxss**/
+
+color {
+  color: #d2d2d2;
+}
 page {
-  font-size: 16px;
+  font-size: 14px;
 }
 .pd-10 {
   padding: 10px;
+}
+
+.pd-15 {
+  padding: 15px;
 }
 
 .pd-20 {
@@ -24,15 +32,15 @@ image {
 }
 
 .bc_red {
-  background: red;
+  background: #e02e24;
 }
 
 .co_red {
-  color: red;
+  color: #e02e24;
 }
 
 .co_ash {
-  color: #bbb;
+  color: #ddd;
 }
 
 .btn {

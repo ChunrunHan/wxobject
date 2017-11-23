@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/goods_details/index",
-    "pages/mobile/index"
+    "pages/mobile/index",
+    "pages/address/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
