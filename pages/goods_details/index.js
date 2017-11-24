@@ -1,4 +1,8 @@
 // pages/goods_details/index.js
+const $ = require('../../utils/utils');
+const api = require('../../utils/api');
+const app = getApp()
+
 const swiperCofing = {
     indicatorDots: false,
     indicatorColor: 'rgba(0, 0, 0, .3)',
@@ -12,14 +16,30 @@ const swiperCofing = {
 }
 Page({
     data: {
-        imgUrls: [
-            'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-            'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-            'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-        ],
-        swiperCofing: swiperCofing
+        swiperCofing: swiperCofing,
+        goodsDetails: {},
+        imgUrl: $.imgUrl
     },
-    onLoad: function () {
+    onLoad: function (e) {
+        console.log(e.id)
+        this.getGoodsDetails(e.id)
+    },
+    getGoodsDetails: function (id) {
+        let _this = this
+        let url = api.getGoodsDetails(id)
+        $.get(url).then(function (res) {
+            if(res.data.errCode === 0){
+                let goodsDetails = res.data.data
+                goodsDetails.images = goodsDetails.images.split(':')
+                goodsDetails.description = goodsDetails.description.split(':')
+                _this.setData({
+                    goodsDetails
+                })
+                console.log(goodsDetails)
+            }
 
+        }).catch(function (err) {
+            console.log(err)
+        })
     }
 })

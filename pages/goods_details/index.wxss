@@ -67,7 +67,7 @@ swiper image {
     justify-content: space-between;
 }
 
-.pin .title .more {
+.pin .title .showMore {
     font-size: 14px;
 }
 

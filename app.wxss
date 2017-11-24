@@ -1,51 +1,58 @@
 /**app.wxss**/
 
 color {
-  color: #d2d2d2;
+    color: #d2d2d2;
 }
+
 page {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 .pd-10 {
-  padding: 10px;
+    padding: 10px;
 }
 
 .pd-15 {
-  padding: 15px;
+    padding: 15px;
 }
 
 .pd-20 {
-  padding: 20px;
+    padding: 20px;
 }
 
 image {
-  width: 100vw;
+    width: 100vw;
 }
 
 .flex {
-  display: flex;
+    display: flex;
 }
 
-
 .bc_green {
-  background: green;
+    background: green;
 }
 
 .bc_red {
-  background: #e02e24;
+    background: #e02e24;
 }
 
 .co_red {
-  color: #e02e24;
+    color: #e02e24;
 }
 
 .co_ash {
-  color: #ddd;
+    color: #ddd;
 }
 
 .btn {
-  padding: 5px 10px;
-  color: #fff;
-  border-radius: 5px;
-  text-align: center;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.more {
+    background: #e8e8e8;
+    text-align: center;
+    padding: 15px;
 }

@@ -4,8 +4,7 @@ var md5 = require('md5');
 
 var ajax = promise.wxPromisify(wx.request);
 
-var app = getApp();
-
+var app = getApp()
 
 var source = 'wx_lpqd';
 var ver = '0.3';
@@ -24,7 +23,7 @@ function getHeader() {
         return;
     }
 
-    var url = arguments[0];
+    var url = encodeURI( arguments[0]);
     var json = "";
     if (argNum == 2) {
         if (typeof arguments[1] == "string") {

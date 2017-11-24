@@ -1,13 +1,18 @@
 /**
  *  kouchao 创建于 2017/11/20
  */
-const promise = require('promise');
+const imgUrl = `https://dev.yezhubao.net/oss_mall`
+const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
+var QQMapWX = require('qqmap-wx-jssdk.min');
+var qqmapsdk = new QQMapWX({
+    key: 'WHGBZ-5JZKO-4PMWR-SEXNN-4O54Z-SNFO5'
+})
 module.exports = {
     get: ajax.get,
     post: ajax.post,
     put: ajax.put,
-    wxLogin: promise.wxPromisify(wx.login),
+    wxLogin: promise(wx.login),
     setTitle: function (title) {
         wx.setNavigationBarTitle({
             title: title
@@ -29,5 +34,9 @@ module.exports = {
     },
     hideLoading: function () {
         wx.hideLoading()
-    }
+    },
+    getLocation: promise(wx.getLocation),
+    qqmapsdk: qqmapsdk,
+    imgUrl: imgUrl
+
 }

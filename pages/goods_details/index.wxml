@@ -1,9 +1,9 @@
 <!--pages/goods_details/index.wxml-->
 <swiper indicator-dots="{{swiperCofing.indicatorDots}}"
         autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circula="{{swiperCofing.circular}}">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{goodsDetails.images}}">
         <swiper-item>
-            <image src="{{item}}" class="slide-image"/>
+            <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" class="slide-image"/>
         </swiper-item>
     </block>
 </swiper>
@@ -13,10 +13,10 @@
 
         <view class="flex" style="align-items: flex-end">
             <view class="price co_red">
-                ￥0.01
+                ￥{{goodsDetails.price}}
             </view>
             <view class="old-price co_ash">
-                ￥4999
+                ￥{{goodsDetails.oldPrice}}
             </view>
         </view>
         <!--<view class="icon">-->
@@ -24,22 +24,22 @@
             <!--<view>分享</view>-->
         <!--</view>-->
         <view style="font-size: 14px">
-            已拼单22375件·2人拼单
+            已团{{goodsDetails.monthSell || 0}}件·{{goodsDetails.buyerLimit}}人团
         </view>
     </view>
 
 </view>
-<view class="pd-10">【新品发售】iPhoneX26GB手机5.8英寸显示屏银色/深空灰色2色可选</view>
+<view class="pd-10">{{goodsDetails.name}}</view>
 <view class="flex tag">
     <view>
         <image class="icon" src="../../img/icon.svg"></image>
         全场包邮
     </view>
-    <view>
+    <view wx:if="{{goodsDetails.supportSevenDaysRefund}}">
         <image class="icon" src="../../img/icon.svg"></image>
         7天退货
     </view>
-    <view>
+    <view wx:if="{{goodsDetails.supportOneDayArrive}}">
         <image class="icon" src="../../img/icon.svg"></image>
         当日达
     </view>
@@ -51,7 +51,7 @@
 <view class="pd-10 pin">
     <view class="title flex">
         <view>2人正在拼单</view>
-        <view class="more">查看更多</view>
+        <view class="showMore">查看更多</view>
     </view>
     <view class="item flex">
         <view class="flex left">
@@ -94,19 +94,21 @@
     </view>
 
 </view>
-<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>
-
-<view style="height: 50px">
-
+<!--<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>-->
+<view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
+    商品详情
+</view>
+<view  class="pd-10">
+    <image wx:for="{{goodsDetails.description}}" src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" mode="widthFix"/>
 </view>
 
 <view class="buy flex">
     <view class="alone">
-        <view>¥198</view>
+        <view>¥{{goodsDetails.singlePrice}}</view>
         <view>单独购买</view>
     </view>
     <view class="group">
-        <view>¥111</view>
-        <view>一键参团</view>
+        <view>¥{{goodsDetails.leaderPrice}}</view>
+        <view>一键开团</view>
     </view>
 </view>
