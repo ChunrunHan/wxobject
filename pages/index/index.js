@@ -33,21 +33,6 @@ Page({
     },
     onLoad: function () {
         this.login()
-
-        var latitude = wx.getStorageSync('latitude')
-        var longitude = wx.getStorageSync('longitude')
-        var zone = wx.getStorageSync('zone')
-        var district = wx.getStorageSync('district')
-
-        if (latitude && longitude && zone && district) {
-            this.setData({
-                zone
-            })
-            this.getRecommendList()
-        } else {
-            this.setLocal()
-        }
-
     },
     login: function () {
         var _this = this
@@ -55,10 +40,12 @@ Page({
             wx.setStorageSync('code', res.code)
 
             var unionId = wx.getStorageSync('unionId')
-            if (unionId) {
+            var openId = wx.getStorageSync('openId')
+            if (unionId && openId) {
                 $.showLoading('正在登陆')
                 $.get(api.login({
-                    unionId
+                    unionId,
+                    openId
                 })).then(function (res) {
                     $.hideLoading()
 
@@ -69,6 +56,7 @@ Page({
                     } else {
                         console.log(res.data.data.token)
                         app.token = res.data.data.token
+                        _this.init()
                     }
                 })
             } else {
@@ -157,6 +145,19 @@ Page({
         this.setData({
             recommendList: [],
         })
+        var latitude = wx.getStorageSync('latitude')
+        var longitude = wx.getStorageSync('longitude')
+        var zone = wx.getStorageSync('zone')
+        var district = wx.getStorageSync('district')
+
+        if (latitude && longitude && zone && district) {
+            this.setData({
+                zone
+            })
+            this.getRecommendList()
+        } else {
+            this.setLocal()
+        }
     },
     onPullDownRefresh: function () {
         this.init()
