@@ -16,6 +16,10 @@ page {
     padding: 15px;
 }
 
+.ml-10 {
+    margin-left: 10px;
+}
+
 .pd-20 {
     padding: 20px;
 }
@@ -49,6 +53,12 @@ image {
     color: #fff;
     border-radius: 5px;
     text-align: center;
+}
+
+.btn-fff {
+    border: 1px solid #999999;
+    padding: 3px 8px;
+    color: #000;
 }
 
 .more {

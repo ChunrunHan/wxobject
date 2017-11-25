@@ -98,12 +98,12 @@
 <view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
     商品详情
 </view>
-<view  class="pd-10">
+<view>
     <image wx:for="{{goodsDetails.description}}" src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" mode="widthFix"/>
 </view>
 
 <view class="buy flex">
-    <view class="alone">
+    <view class="alone" bindtap="postOrder">
         <view>¥{{goodsDetails.singlePrice}}</view>
         <view>单独购买</view>
     </view>

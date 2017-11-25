@@ -1,0 +1,59 @@
+/* pages/order/index.wxss */
+.nav {
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #d2d2d2;
+}
+.nav view{
+    padding: 10px 0 8px;
+    border-bottom: 2px solid #fff;
+}
+
+.nav view.selected {
+    border-bottom: 2px solid #e02e24;
+    color: #e02e24;
+}
+
+.order-list {
+    position: absolute;
+    top: 40px;
+    width: 100vw;
+    bottom: 0px;
+    background: #f2f2f2;
+    overflow: auto;
+}
+
+.order-list .item {
+    margin-bottom: 8px;
+}
+
+.order-list .item .title {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+.order-list .item .goods {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goods-number {
+    color: #9c9c9c;
+    font-size: 12px;
+}
+
+.price {
+    font-size: 18px;
+}
+
+.pay-price {
+    text-align: right;
+    padding: 10px;
+    background: #fff;
+    border-bottom: 1px dotted #d2d2d2;
+}

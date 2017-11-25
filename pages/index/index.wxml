@@ -14,29 +14,29 @@
 
 <view class="nav">
     <view class="item">
-        <image src="{{item}}" class="slide-image"/>
+        <image src="../../img/nav1.svg"/>
         <view>导航</view>
     </view>
     <view class="item">
-        <image src="{{item}}" class="slide-image"/>
+        <image src="../../img/nav2.svg"/>
         <view>导航</view>
     </view>
     <view class="item">
-        <image src="{{item}}" class="slide-image"/>
+        <image src="../../img/nav3.svg"/>
         <view>导航</view>
     </view>
     <view class="item">
-        <image src="{{item}}" class="slide-image"/>
+        <image src="../../img/nav4.svg"/>
         <view>导航</view>
     </view>
     <view class="item">
-        <image src="{{item}}" class="slide-image"/>
+        <image src="../../img/nav0.svg"/>
         <view>导航</view>
     </view>
 </view>
 
 <view class="goods-list">
-    <view class="item" wx:for="{{recommendList}}">
+    <navigator url="../goods_details/index?id={{item.id}}" class="item" wx:for="{{recommendList}}">
         <view class="img">
             <image src="{{imgUrl + '/' + item.sellerId + '/' + item.images}}"></image>
         </view>
@@ -49,16 +49,16 @@
                     <view class="price co_red">
                         ￥{{item.price}}
                     </view>
-                    <view class="dec co_ash">
+                    <view class="dec co_ash" style="padding-left: 3px;">
                         {{item.buyerLimit}}人团·单买价{{item.singlePrice}}元
                     </view>
                 </view>
-                <navigator url="../goods_details/index?id={{item.id}}" class="btn bc_red">
+                <view class="btn bc_red">
                     去开团
-                </navigator>
+                </view>
             </view>
         </view>
-    </view>
+    </navigator>
 
 </view>
 <view class="more">

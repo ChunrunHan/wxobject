@@ -1,0 +1,7 @@
+/* pages/pay/index.wxss */
+
+.line {
+    height: 2px;
+    width: 100vw;
+    background: repeating-linear-gradient(-45deg, #0da7d6, #0da7d6 15px, #fff 15px, #fff 30px, #e02242 30px, #e02242 45px, #fff 45px, #fff 60px);
+}

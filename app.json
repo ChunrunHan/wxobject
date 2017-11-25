@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/goods_details/index",
     "pages/mobile/index",
-    "pages/address/index"
+    "pages/address/index",
+    "pages/order/index",
+    "pages/pay/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

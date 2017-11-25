@@ -13,5 +13,6 @@ module.exports = {
         let url = `${mallUrl}/recommend/group/${obj.province}/${obj.city}/${obj.district}/${obj.zone}/${obj.longitude || 120.33}/${obj.latitude || 36.07}/${obj.page || 0}/${obj.size || 10}`
         return url
     },
-    getGoodsDetails: goodsId => `${mallUrl}/goods/group/${goodsId}`
+    getGoodsDetails: goodsId => `${mallUrl}/goods/group/${goodsId}`,
+    postOrder: () => `${mallUrl}/order/add/group`
 }
