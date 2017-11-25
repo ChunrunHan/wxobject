@@ -1,7 +1,81 @@
 /* pages/pay/index.wxss */
 
+page {
+    background: #f2f2f2;
+}
 .line {
     height: 2px;
     width: 100vw;
-    background: repeating-linear-gradient(-45deg, #0da7d6, #0da7d6 15px, #fff 15px, #fff 30px, #e02242 30px, #e02242 45px, #fff 45px, #fff 60px);
+    background: repeating-linear-gradient(135deg, #0da7d6, #0da7d6 15px, #fff 15px, #fff 30px, #e02242 30px, #e02242 45px, #fff 45px, #fff 60px);
+}
+
+.address {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+}
+
+.address .details {
+    padding-left: 15px;
+}
+
+.address .details .name {
+    font-weight: bold;
+}
+
+.address .details text {
+    padding-right: 10px;
+}
+
+.order .item {
+    margin-top: 8px;
+}
+
+.order .item .title {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+.order .item .goods {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goods-number {
+    color: #9c9c9c;
+    font-size: 12px;
+}
+
+.price {
+    font-size: 16px;
+    text-align: right;
+    padding: 10px;
+    background: #fff;
+}
+
+
+.buy {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    background: #fff;
+    font-size: 14px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.buy .pay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    height: 50px;
+    color: #fff;
 }
