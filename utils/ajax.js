@@ -10,7 +10,7 @@ var source = 'wx_lpqd';
 var ver = '0.3';
 
 function getToken() {
-    return '7969a2624a2d4b12a2c48eee0d95b087'
+    // return '7969a2624a2d4b12a2c48eee0d95b087'
     return app.token;
 }
 
@@ -82,18 +82,33 @@ function post(url, data) {
 }
 
 //  put方法
-function put(url) {
-    var header = getHeader(url);
+function put(url, data) {
+    var header = getHeader(url, data);
     return ajax({
         method: 'PUT',
+        url: url,
+        dataType: 'json',
+        data: data,
+        header: header
+    })
+}
+
+//  delete方法
+function del(url) {
+    var header = getHeader(url);
+    return ajax({
+        method: 'DELETE',
         url: url,
         dataType: 'json',
         header: header
     })
 }
 
+
+
 module.exports = {
     get: get,
     post: post,
-    put: put
+    put: put,
+    del: del
 }

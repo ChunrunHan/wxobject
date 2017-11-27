@@ -41,7 +41,7 @@ Page({
 
             var unionId = wx.getStorageSync('unionId')
             var openId = wx.getStorageSync('openId')
-            if (unionId && openId) {
+            if (openId) {
                 $.showLoading('正在登陆')
                 $.get(api.login({
                     unionId,

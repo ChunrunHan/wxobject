@@ -12,6 +12,7 @@ module.exports = {
     get: ajax.get,
     post: ajax.post,
     put: ajax.put,
+    del: ajax.del,
     wxLogin: promise(wx.login),
     setTitle: function (title) {
         wx.setNavigationBarTitle({
@@ -27,6 +28,23 @@ module.exports = {
             content: content
         })
     },
+    confirm: function(content, fn1, fn2){
+        wx.showModal({
+            title: '提示',
+            content: content,
+            success: function(res) {
+                if (res.confirm) {
+                    fn1()
+                } else if (res.cancel) {
+                    if(fn2){
+                        fn2()
+                    }
+
+                }
+            }
+        })
+    }
+,
     showLoading: function (title) {
         wx.showLoading({
             title: title || '加载中',
