@@ -12,8 +12,9 @@ module.exports = {
     },
     getGoodsDetails: goodsId => `${mallUrl}/goods/group/${goodsId}`,
     postOrder: () => `${mallUrl}/order/add/group`,
-    getOrderList: obj => `${mallUrl}/order/list/customer/${obj.userId}/${obj.status}/${obj.page || 0}/${obj.size || 10}`
-
-
+    getOrderList: obj => `${mallUrl}/order/list/customer/${obj.userId}/${obj.status}/${obj.page || 0}/${obj.size || 10}`,
+    getAddressList: obj => `${mallUrl}/address/list/${obj.page || 0}/${obj.size || 10}`,
+    putAddressDefault: addressId => `${mallUrl}/address/default/${addressId}`,
+    deleteAddressDefault: addressId => `${mallUrl}/address/${addressId}`,
 
 }

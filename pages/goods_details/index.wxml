@@ -35,11 +35,11 @@
         <image class="icon" src="../../img/icon.svg"></image>
         全场包邮
     </view>
-    <view wx:if="{{goodsDetails.supportSevenDaysRefund}}">
+    <view wx:if="{{goodsDetails.seventDaysRefund}}">
         <image class="icon" src="../../img/icon.svg"></image>
         7天退货
     </view>
-    <view wx:if="{{goodsDetails.supportOneDayArrive}}">
+    <view wx:if="{{goodsDetails.oneDayArrive}}">
         <image class="icon" src="../../img/icon.svg"></image>
         当日达
     </view>

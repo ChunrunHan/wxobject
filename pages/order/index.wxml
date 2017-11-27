@@ -40,9 +40,9 @@
             实付: <text style="font-size: 16px">¥ 20.00</text>
         </view>
         <view class="flex pd-10" style="justify-content: flex-end; background: #fff">
-            <view class="btn btn-fff">
-                取消订单
-            </view>
+            <!--<view class="btn btn-fff">-->
+                <!--取消订单-->
+            <!--</view>-->
             <view class="btn bc_red ml-10">
                 去支付
             </view>

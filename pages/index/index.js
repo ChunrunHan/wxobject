@@ -103,7 +103,7 @@ Page({
 
 
         }).catch(function (err) {
-            console.log(err)
+            console.log(err).
             _this.setData({
                 more: '没有更多数据'
             })

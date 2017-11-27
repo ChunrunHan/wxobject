@@ -10,7 +10,8 @@ var source = 'wx_lpqd';
 var ver = '0.3';
 
 function getToken() {
-  return app.token;
+    return '7969a2624a2d4b12a2c48eee0d95b087'
+    return app.token;
 }
 
 
@@ -23,7 +24,7 @@ function getHeader() {
         return;
     }
 
-    var url = encodeURI( arguments[0]);
+    var url = encodeURI(arguments[0]);
     var json = "";
     if (argNum == 2) {
         if (typeof arguments[1] == "string") {
@@ -33,14 +34,13 @@ function getHeader() {
         }
     }
 
-    
-    if(url.split('/')[3] == 'sso'){
+
+    if (url.split('/')[3] == 'sso') {
         var key = '2d7fce9f-cea5-11e7-ad62-00163e068d8f';
-    }else {
+    } else {
         var key = token || '2d7fce9f-cea5-11e7-ad62-00163e068d8f';
     }
 
-    
 
     var timestamp = Date.parse(new Date());
 
@@ -82,14 +82,14 @@ function post(url, data) {
 }
 
 //  put方法
-function put(url){
-  var header = getHeader(url);
-  return ajax({
-    method: 'PUT',
-    url: url,
-    dataType: 'json',
-    header: header
-  })
+function put(url) {
+    var header = getHeader(url);
+    return ajax({
+        method: 'PUT',
+        url: url,
+        dataType: 'json',
+        header: header
+    })
 }
 
 module.exports = {

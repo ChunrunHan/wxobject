@@ -79,7 +79,7 @@ textarea {
     padding: 10px;
 }
 
-.alert .delete{
+.alert .close{
     width: 30px;
     height: 30px;
     border-radius: 30px;
@@ -92,7 +92,7 @@ textarea {
     align-items: center;
 }
 
-.alert .delete image{
+.alert .close image{
     width: 20px;
     height: 20px;
 }

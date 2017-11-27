@@ -1,62 +1,29 @@
 <!--pages/address/index.wxml-->
 <view class="address-list">
-    <view class="item">
+    <view class="item" wx:for="{{addressList}}" wx:for-index="index">
         <view class="details">
             <view>
-                <text class="name">寇超</text>, <text class="mobile">13206366611</text>
+                <text class="name">{{item.receiver}}</text>, <text class="mobile">{{item.mobile}}</text>
             </view>
             <view>
-                <text class="">山东</text> <text>青岛</text> <text>崂山区</text> <text>双福大厦A1702</text>
+                <text class="">{{item.province}}</text> <text>{{item.city}}</text> <text>{{item.district}}</text> <text>{{item.address}}</text>
             </view>
         </view>
         <view class="handle">
-            <view class="flex" style="align-items: center;">
-                <icon type="success" size="14" color="{{'#9c9c9c'}}"/>
-                <view style="padding-left: 3px;">
+            <view class="flex" style="align-items: center;" bindtap="setDefault">
+                <icon type="success" size="14" color="{{item.default ? '#e02e24' : '#9c9c9c'}}"/>
+                <view style="padding-left: 3px;" class="{{item.default ? 'selected' : ''}}" data-index="{{index}}">
                     设为默认
                 </view>
             </view>
             <view class="flex">
                 <view class="flex edit" style="align-items: center;">
                     <image src="../../../img/edit.svg" style="width: 14px;height: 14px"></image>
-                    <view style="padding-left: 3px;">
+                    <view style="padding-left: 3px;" bindtap="setAddOrEdit" data-addoretdit="{{0}}" data-index="{{index}}">
                         编辑
                     </view>
                 </view>
-                <view class="flex" style="align-items: center;">
-                    <image src="../../../img/delete.svg" style="width: 14px;height: 14px"></image>
-                    <view style="padding-left: 3px;">
-                        删除
-                    </view>
-                </view>
-            </view>
-        </view>
-    </view>
-
-    <view class="item">
-        <view class="details">
-            <view>
-                <text class="name">寇超</text>, <text class="mobile">13206366611</text>
-            </view>
-            <view>
-                <text class="">山东</text> <text>青岛</text> <text>崂山区</text> <text>双福大厦A1702</text>
-            </view>
-        </view>
-        <view class="handle">
-            <view class="flex" style="align-items: center;">
-                <icon type="success" size="14" color="{{'#e02e24'}}"/>
-                <view style="padding-left: 3px;" class="selected">
-                    设为默认
-                </view>
-            </view>
-            <view class="flex">
-                <view class="flex edit" style="align-items: center;">
-                    <image src="../../../img/edit.svg" style="width: 14px;height: 14px"></image>
-                    <view style="padding-left: 3px;">
-                        编辑
-                    </view>
-                </view>
-                <view class="flex" style="align-items: center;">
+                <view class="flex" style="align-items: center;" data-index="{{index}}">
                     <image src="../../../img/delete.svg" style="width: 14px;height: 14px"></image>
                     <view style="padding-left: 3px;">
                         删除
@@ -68,27 +35,35 @@
 
 </view>
 
-<view class="btn bc_red">
+<view class="btn bc_red" bindtap="setAddOrEdit" data-addoretdit="{{1}}">
     新增地址
 </view>
 
 
-<view class="mask">
+<view class="mask" wx:if="{{box}}">
     <view class="alert">
         <view class="title">
-            添加收货地址
+            {{addOrEdit ? '添加' : '编辑'}}收货地址
         </view>
         <view class="flex item">
             <input class="name" type="text" placeholder="名字"/>
             <input type="text" placeholder="电话"/>
         </view>
-        <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding: 15px 10px">
-            <view>选择地区</view>
+        <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding: 15px 10px" bindtap="chooseLocation">
+            <view>{{(province || '') + (city || '') + (district || '选择地区')}}</view>
             <image src="../../../img/right.svg" style="width: 14px;height: 14px"></image>
         </view>
-        <textarea placeholder="详细地址（可填写街道、小区、大厦）"/>
-        <view class="delete">
+        <view wx:if="{{zone}}" style="border-bottom: 1px dotted #d2d2d2;padding: 15px 10px">
+            {{zone}}
+        </view>
+        <textarea bindinput="inputAddress" style="border-bottom: 1px dotted #d2d2d2" placeholder="详细地址（可填写楼号、单元、门牌号）"/>
+        <view class="close"  bindtap="hideBox">
             <image src="../../../img/close.svg"></image>
+        </view>
+        <view>
+            <view class="btn bc_red" bindtap="hideBox">
+                保存
+            </view>
         </view>
     </view>
 
