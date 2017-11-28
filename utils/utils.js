@@ -73,6 +73,7 @@ module.exports = {
         }
 
         return h + ':' + m + ':' + s + '.' + ms
-    }
+    },
+    wxRequestPayment: promise(wx.requestPayment)
 
 }

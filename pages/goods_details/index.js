@@ -67,6 +67,10 @@ Page({
         }
         console.log(obj)
         $.post(url, obj).then(function (res) {
+            console.log(JSON.parse(res.data.additional))
+            let payObj = JSON.parse(res.data.additional)
+            return $.wxRequestPayment(payObj)
+        }).then(function (res) {
             console.log(res)
         }).catch(function (err) {
             console.log(err)
@@ -91,7 +95,6 @@ Page({
                         groupList
                     })
                 }, 100)
-                console.log(goodsDetails)
             }else {
                 let groupList = [{
                     id: 12345,
