@@ -16,5 +16,6 @@ module.exports = {
     getAddressList: obj => `${mallUrl}/address/list/${obj.page || 0}/${obj.size || 10}`,
     putAddressDefault: addressId => `${mallUrl}/address/default/${addressId}`,
     deleteAddress: addressId => `${mallUrl}/address/${addressId}`,
-    addOrEditAddress: () => `${mallUrl}/address`
+    addOrEditAddress: () => `${mallUrl}/address`,
+    getGroups: goodsId => `${mallUrl}/goods/groups/${goodsId}`
 }

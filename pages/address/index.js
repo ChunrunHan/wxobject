@@ -265,7 +265,6 @@ Page({
         }
 
         if(!this.data.addOrEdit){
-            $.alert('请输入详细地址')
             $.post(url, obj).then(function (res) {
                 $.hideLoading()
                 if (res.data.code == 0) {

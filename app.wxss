@@ -66,3 +66,55 @@ image {
     text-align: center;
     padding: 15px;
 }
+
+
+
+
+.mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .3);
+    z-index: 10;
+}
+
+.alert {
+    background: #fff;
+    border-radius: 10px;
+    width: calc(100vw - 60px);
+    position: relative;
+    max-height: calc(100vh - 200px);
+}
+
+.alert .title {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px dotted #d2d2d2;
+}
+
+.alert .close{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert .close image{
+    width: 20px;
+    height: 20px;
+}
+
+.alert .item {
+    border-bottom: 1px dotted #d2d2d2;
+}

@@ -112,3 +112,33 @@ swiper image {
 .pin .item .name {
     margin-left: 10px;
 }
+
+
+.alert .item {
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert .item image {
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.alert .footer {
+    padding: 5px;
+    text-align: center;
+}
+
+
+.alert .remaining {
+   color: #58595b;
+    margin-left: 3px;
+    font-size: 12px;
+}
+
+.alert .name {
+    font-weight: bold;
+}

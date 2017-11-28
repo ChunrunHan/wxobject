@@ -48,57 +48,30 @@
         假一赔十
     </view>
 </view>
-<view class="pd-10 pin">
+<view class="pd-10 pin" wx:if="{{groupList}}">
     <view class="title flex">
-        <view>2人正在拼单</view>
-        <view class="showMore">查看更多</view>
+        <view>{{groupList.length}}人正在拼单</view>
+        <view class="showMore" bindtap="showBox">查看更多</view>
     </view>
-    <view class="item flex">
+    <view class="item flex" wx:for="{{groupList}}" wx:for-index="index" wx:if="{{index < 3}}">
         <view class="flex left">
-            <image></image>
-            <view class="name">永恒</view>
+            <image src="{{item.avatar}}"></image>
+            <view class="name">{{item.name}}</view>
         </view>
         <view class="flex right">
             <view class="flex prompt">
-                <view class="number">还差1人拼成</view>
-                <view class="time">剩余19:59:24.3</view>
+                <view class="number">还差{{item.remaining}}人拼成</view>
+                <view class="time">剩余{{item.endTime}}</view>
             </view>
             <view class="btn bc_red">去拼单</view>
         </view>
     </view>
-    <view class="item flex">
-        <view class="flex left">
-            <image></image>
-            <view class="name">永恒</view>
-        </view>
-        <view class="flex right">
-            <view class="flex prompt">
-                <view class="number">还差1人拼成</view>
-                <view class="time">剩余19:59:24.3</view>
-            </view>
-            <view class="btn bc_red">去拼单</view>
-        </view>
-    </view>
-    <view class="item flex">
-        <view class="flex left">
-            <image></image>
-            <view class="name">永恒</view>
-        </view>
-        <view class="flex right">
-            <view class="flex prompt">
-                <view class="number">还差1人拼成</view>
-                <view class="time">剩余19:59:24.3</view>
-            </view>
-            <view class="btn bc_red">去拼单</view>
-        </view>
-    </view>
-
 </view>
 <!--<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>-->
 <view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
     商品详情
 </view>
-<view>
+<view style="display: flex;flex-direction: column">
     <image wx:for="{{goodsDetails.description}}" src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" mode="widthFix"/>
 </view>
 
@@ -111,4 +84,41 @@
         <view>¥{{goodsDetails.leaderPrice}}</view>
         <view>一键开团</view>
     </view>
+</view>
+
+
+
+<view class="mask" wx:if="{{box}}">
+    <view class="alert">
+        <view class="title">
+            正在拼团
+        </view>
+        <view style="height: calc(100vh - 250px); overflow: auto">
+            <view class="item flex" wx:for="{{groupList}}" wx:for-index="index">
+                <view class="flex left">
+                    <image src="{{item.avatar}}"></image>
+                    <view class="flex" style="justify-content: space-around; flex-direction: column">
+                        <view class="flex">
+                            <view class="name">{{item.name}}</view>
+                            <view class="remaining">还差{{item.remaining}}人</view>
+                        </view>
+
+                        <view class="time">剩余{{item.endTime}}</view>
+                    </view>
+
+                </view>
+                <view class="flex right">
+                    <view class="btn bc_red">去拼团</view>
+                </view>
+            </view>
+            <view class="footer">
+                仅显示10个正在拼单的人
+            </view>
+        </view>
+
+        <view class="close"  bindtap="hideBox">
+            <image src="../../img/close.svg"></image>
+        </view>
+    </view>
+
 </view>

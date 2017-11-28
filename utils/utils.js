@@ -28,23 +28,22 @@ module.exports = {
             content: content
         })
     },
-    confirm: function(content, fn1, fn2){
+    confirm: function (content, fn1, fn2) {
         wx.showModal({
             title: '提示',
             content: content,
-            success: function(res) {
+            success: function (res) {
                 if (res.confirm) {
                     fn1()
                 } else if (res.cancel) {
-                    if(fn2){
+                    if (fn2) {
                         fn2()
                     }
 
                 }
             }
         })
-    }
-,
+    },
     showLoading: function (title) {
         wx.showLoading({
             title: title || '加载中',
@@ -55,6 +54,25 @@ module.exports = {
     },
     getLocation: promise(wx.getLocation),
     qqmapsdk: qqmapsdk,
-    imgUrl: imgUrl
+    imgUrl: imgUrl,
+    getTime: function (number) {
+        var time = parseInt((number - new Date().getTime()) / 1000)
+        var ms = parseInt((number - new Date().getTime()) % 1000 / 100)
+        var h = parseInt(time / 3600)
+        var m = parseInt(time / 60 % 60)
+        var s = parseInt(time % 60)
+
+        h = h < 0 ? '0' : h
+        m = m < 0 ? '0' : m
+        s = s < 0 ? '0' : s
+
+        if (!((h + ':' + m + ':' + s) == '00:00:00')) {
+            h = h < 10 ? '0' + h : h
+            m = m < 10 ? '0' + m : m
+            s = s < 10 ? '0' + s : s
+        }
+
+        return h + ':' + m + ':' + s + '.' + ms
+    }
 
 }

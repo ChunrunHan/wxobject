@@ -13,10 +13,10 @@
 </swiper>
 
 <view class="nav">
-    <view class="item">
+    <navigator url="../address/index" class="item">
         <image src="../../img/nav1.svg"/>
-        <view>导航</view>
-    </view>
+        <view>地址</view>
+    </navigator>
     <view class="item">
         <image src="../../img/nav2.svg"/>
         <view>导航</view>
