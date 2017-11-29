@@ -75,43 +75,19 @@ Page({
     },
     onShareAppMessage: function (res) {
         return {
-            title: this.data.goodsDetails.name
+            title: this.data.goodsDetails.name,
+            path: `/pages/share/index?goodsId=${this.data.goodsId}&groupId=${this.data.groupId}`
         }
     },
-    postOrder: function (e) {
-        let _this = this
-        $.login().then(function () {
-            let url = api.postOrder()
-            let obj = {
-                goodsId: _this.data.goodsDetails.id,
-                singleBuy: false,
-                groupId: _this.data.groupId,
-                count: 1,
-                memo: "备注",
-                address: {
-                    province: "山东省",
-                    city: "青岛市",
-                    district: "district",
-                    zone: "东城国际",
-                    address: "A区31号楼4单元1101",
-                    mobile: "13045049759",
-                    receiver: "隔壁王叔叔",
-                    lng: 123.1111,
-                    lat: 111.1233
-                }
-            }
-            console.log(obj)
-            $.post(url, obj).then(function (res) {
-                console.log(JSON.parse(res.data.additional))
-                let payObj = JSON.parse(res.data.additional)
-                return $.wxRequestPayment(payObj)
-            }).then(function (res) {
-                console.log(res)
-            }).catch(function (err) {
-                console.log(err)
-            })
+    pay: function (e) {
+        var _this = this
+        $.login().then(function (res) {
+            console.log(e.currentTarget.dataset.type)
+            let singleBuy = e.currentTarget.dataset.type
+            let goodsId = _this.data.goodsDetails.id
+            let groupId = e.currentTarget.dataset.groupid || ''
+            $.jump(`../pay/index?singleBuy=${singleBuy}&goodsId=${goodsId}&groupId=${groupId}`)
         })
-
 
     }
 })

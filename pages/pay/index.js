@@ -55,6 +55,7 @@ Page({
         })
     },
     postOrder: function () {
+        $.showLoading('支付中')
         let _this = this
         let url = api.postOrder()
         let obj = {
@@ -77,14 +78,27 @@ Page({
         }
         console.log(obj)
         $.post(url, obj).then(function (res) {
-            console.log(JSON.parse(res.data.additional))
-            let payObj = JSON.parse(res.data.additional)
-            return $.wxRequestPayment(payObj)
+            if(res.data.code == 0){
+                if(res.data.additional){
+                    console.log(JSON.parse(res.data.additional))
+                    let payObj = JSON.parse(res.data.additional)
+                    return $.wxRequestPayment(payObj)
+                }else {
+                    $.alert(res.data.message || '支付失败')
+                    throw res
+                }
+            }else {
+                $.alert(res.data.message || '支付失败')
+                throw res
+            }
         }).then(function (res) {
-            console.log(res)
-            this.getGroupId('f2579df55c252acc015c348d14060066')
+            console.log('支付成功')
+            _this.getGroupId(_this.data.goodsId)
+            $.hideLoading()
         }).catch(function (err) {
+            console.log('支付失败')
             console.log(err)
+            $.hideLoading()
         })
     },
     getGroupId: function () {

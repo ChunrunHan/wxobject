@@ -78,7 +78,7 @@ module.exports = {
     wxRequestPayment: promise(wx.requestPayment),
     jump: function (url, close) {
         if(close){
-            wx.reLaunch({
+            wx.redirectTo({
                 url: url
             })
         }else {

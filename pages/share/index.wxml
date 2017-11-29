@@ -24,9 +24,13 @@
 <button open-type="share" wx:if="{{isMe}}">
     邀请好友参团 {{goodsDetails.endTime}} 后结束
 </button>
-<button bindtap="postOrder" wx:if="{{!isMe}}">
-    立即参团
-</button>
+
+<view wx:if="{{!isMe}}" bindtap="pay" data-type="{{false}}" data-groupid="{{groupId}}">
+    <button >
+        立即参团
+    </button>
+</view>
+
 <view class="detail">
     <view class="item">
         <view>商品名称</view>
