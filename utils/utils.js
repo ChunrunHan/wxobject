@@ -76,10 +76,17 @@ module.exports = {
         return h + ':' + m + ':' + s
     },
     wxRequestPayment: promise(wx.requestPayment),
-    jump: function (url) {
-        wx.navigateTo({
-            url: url
-        })
+    jump: function (url, close) {
+        if(close){
+            wx.reLaunch({
+                url: url
+            })
+        }else {
+            wx.navigateTo({
+                url: url
+            })
+        }
+
     },
     login: function () {
         var _this = this

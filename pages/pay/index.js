@@ -21,7 +21,7 @@ Page({
         })
         this.getGoodsDetails()
     },
-    getGoodsDetails: function (id) {
+    getGoodsDetails: function () {
         let _this = this
         let url = api.getGoodsDetails(this.data.goodsId)
         $.get(url).then(function (res) {
@@ -52,6 +52,48 @@ Page({
 
         }).catch(function (err) {
             console.log(err)
+        })
+    },
+    postOrder: function () {
+        let _this = this
+        let url = api.postOrder()
+        let obj = {
+            goodsId: this.data.goodsId,
+            singleBuy: this.data.singleBuy,
+            groupId: this.data.groupId,
+            count: 1,
+            memo: "备注",
+            address: {
+                province: "山东省",
+                city: "青岛市",
+                district: "district",
+                zone: "东城国际",
+                address: "A区31号楼4单元1101",
+                mobile: "13045049759",
+                receiver: "隔壁王叔叔",
+                lng: 123.1111,
+                lat: 111.1233
+            }
+        }
+        console.log(obj)
+        $.post(url, obj).then(function (res) {
+            console.log(JSON.parse(res.data.additional))
+            let payObj = JSON.parse(res.data.additional)
+            return $.wxRequestPayment(payObj)
+        }).then(function (res) {
+            console.log(res)
+            this.getGroupId('f2579df55c252acc015c348d14060066')
+        }).catch(function (err) {
+            console.log(err)
+        })
+    },
+    getGroupId: function () {
+        let _this = this
+        let url = api.getGroupId(this.data.goodsId)
+        $.get(url).then(function (res) {
+            $.jump(`../share/index?goodsId=${_this.data.goodsId}&groupId=${res.data.additional}`, true)
+        }).then(function (res) {
+            console.log(res)
         })
     }
 })

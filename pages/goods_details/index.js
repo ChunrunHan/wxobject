@@ -54,42 +54,6 @@ Page({
         })
 
     },
-    postOrder: function (e) {
-        // console.log(e.currentTarget.dataset.type)
-        // let singleBuy = e.currentTarget.dataset.type
-        // let _this = this
-        //
-        //
-        // let url = api.postOrder()
-        // let obj = {
-        //     goodsId: this.data.goodsDetails.id,
-        //     singleBuy,
-        //     groupId: '',
-        //     count: 1,
-        //     memo: "备注",
-        //     address: {
-        //         province: "山东省",
-        //         city: "青岛市",
-        //         district: "district",
-        //         zone: "东城国际",
-        //         address: "A区31号楼4单元1101",
-        //         mobile: "13045049759",
-        //         receiver: "隔壁王叔叔",
-        //         lng: 123.1111,
-        //         lat: 111.1233
-        //     }
-        // }
-        // console.log(obj)
-        // $.post(url, obj).then(function (res) {
-        //     console.log(JSON.parse(res.data.additional))
-        //     let payObj = JSON.parse(res.data.additional)
-        //     return $.wxRequestPayment(payObj)
-        // }).then(function (res) {
-        //     console.log(res)
-        // }).catch(function (err) {
-        //     console.log(err)
-        // })
-    },
     getGroupList: function (id) {
         let _this = this
         let url = api.getGroups(id)
