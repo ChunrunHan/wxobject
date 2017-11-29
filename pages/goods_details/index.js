@@ -176,5 +176,8 @@ Page({
         this.setData({
             box: false
         })
+    },
+    onShareAppMessage: function () {
+        $.alert('test share')
     }
 })

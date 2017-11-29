@@ -9,7 +9,7 @@
 </swiper>
 
 <view class="pd-10">
-    <view class="flex" style="justify-content: space-between">
+    <view class="flex" style="justify-content: space-between; align-items: center">
 
         <view class="flex" style="align-items: flex-end">
             <view class="price co_red">
@@ -19,13 +19,15 @@
                 ￥{{goodsDetails.oldPrice}}
             </view>
         </view>
-        <!--<view class="icon">-->
-            <!--<image src="../../img/share.svg"></image>-->
-            <!--<view>分享</view>-->
-        <!--</view>-->
-        <view style="font-size: 14px">
-            已团{{goodsDetails.monthSell || 0}}件·{{goodsDetails.buyerLimit}}人团
+        <view class="share">
+            <button open-type="share">
+                <image src="../../img/share.svg"></image>
+            </button>
+
         </view>
+        <!--<view style="font-size: 14px">-->
+            <!--已团{{goodsDetails.monthSell || 0}}件·{{goodsDetails.buyerLimit}}人团-->
+        <!--</view>-->
     </view>
 
 </view>

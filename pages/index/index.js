@@ -89,6 +89,10 @@ Page({
                 recommendList.forEach(function (obj) {
                     obj.images = obj.images.split(':')[0]
                 })
+                if(_this.page > 0){
+                    recommendList = [..._this.data.recommendList, ...recommendList]
+                }
+
                 _this.setData({
                     recommendList
                 })
@@ -145,6 +149,7 @@ Page({
     init: function () {
         this.setData({
             recommendList: [],
+            page: 0
         })
         var latitude = wx.getStorageSync('latitude')
         var longitude = wx.getStorageSync('longitude')
