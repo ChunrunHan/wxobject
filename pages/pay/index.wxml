@@ -29,16 +29,16 @@
         <view class="goods">
 
             <view class="flex">
-                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 60px; height: 60px;"></image>
+                <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[0]}}" style="width: 60px; height: 60px;"></image>
                 <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
-                    <view class="goods-name">阿斯达四大苹果</view>
-                    <view class="goods-number" >x2</view>
+                    <view class="goods-name">{{goodsDetails.name}}</view>
+                    <view class="goods-number" >x1</view>
                 </view>
             </view>
         </view>
 
         <view class="price">
-            单价: ¥ 10.00
+            单价: ¥ {{price}}
         </view>
     </view>
 </view>
@@ -47,7 +47,7 @@
 <view class="buy flex">
     <view style="padding-right: 10px;">
         <text>实付款：</text>
-        <text style="font-size: 18px; color: #e02e24">¥ 20.00 </text>
+        <text style="font-size: 18px; color: #e02e24">¥ {{price}} </text>
     </view>
     <view class="pay bc_red">
         <view>立即支付</view>

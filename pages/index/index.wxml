@@ -16,28 +16,28 @@
     </block>
 </swiper>
 
-<view class="nav">
-    <navigator url="../address/index" class="item">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav1.svg"/>
-        <view>地址</view>
-    </navigator>
-    <view class="item">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav2.svg"/>
-        <view>导航</view>
-    </view>
-    <view class="item">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav3.svg"/>
-        <view>导航</view>
-    </view>
-    <view class="item">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav4.svg"/>
-        <view>导航</view>
-    </view>
-    <view class="item">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav0.svg"/>
-        <view>导航</view>
-    </view>
-</view>
+<!--<view class="nav">-->
+    <!--<view class="item">-->
+        <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav1.svg"/>-->
+        <!--<view>导航</view>-->
+    <!--</view>-->
+    <!--<view class="item">-->
+        <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav2.svg"/>-->
+        <!--<view>导航</view>-->
+    <!--</view>-->
+    <!--<view class="item">-->
+        <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav3.svg"/>-->
+        <!--<view>导航</view>-->
+    <!--</view>-->
+    <!--<view class="item">-->
+        <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav4.svg"/>-->
+        <!--<view>导航</view>-->
+    <!--</view>-->
+    <!--<view class="item">-->
+        <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav0.svg"/>-->
+        <!--<view>导航</view>-->
+    <!--</view>-->
+<!--</view>-->
 
 <view class="goods-list">
     <navigator url="../goods_details/index?id={{item.id}}" class="item" wx:for="{{recommendList}}">

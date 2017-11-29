@@ -76,6 +76,11 @@ module.exports = {
         return h + ':' + m + ':' + s
     },
     wxRequestPayment: promise(wx.requestPayment),
+    jump: function (url) {
+        wx.navigateTo({
+            url: url
+        })
+    },
     login: function () {
         var _this = this
         return new Promise(function (resolve, reject) {
@@ -90,26 +95,20 @@ module.exports = {
                         openId
                     })).then(function (res) {
                         if (res.data.errCode !== 0) {
-                            wx.navigateTo({
-                                url: '../mobile/index'
-                            })
+                            _this.jump('../mobile/index')
                         } else {
                             wx.setStorageSync('token', res.data.data.token)
                             resolve(res)
                         }
                     })
                 } else {
-                    wx.navigateTo({
-                        url: '../mobile/index'
-                    })
+                    _this.jump('../mobile/index')
                 }
 
             }).catch(function (err) {
                 reject(err)
             })
         })
-
-
     }
 
 }

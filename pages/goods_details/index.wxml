@@ -65,7 +65,10 @@
                 <view class="number">还差{{item.remaining}}人拼成</view>
                 <view class="time">剩余{{item.endTime}}</view>
             </view>
-            <view class="btn bc_red">去拼单</view>
+            <view bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
+                <view class="btn bc_red">去拼单</view>
+            </view>
+
         </view>
     </view>
 </view>
@@ -78,11 +81,11 @@
 </view>
 
 <view class="buy flex">
-    <view class="alone" bindtap="postOrder" data-type="{{true}}">
+    <view class="alone" bindtap="pay" data-type="{{true}}">
         <view>¥{{goodsDetails.singlePrice}}</view>
         <view>单独购买</view>
     </view>
-    <view class="group"  bindtap="postOrder" data-type="{{false}}">
+    <view class="group"  bindtap="pay" data-type="{{false}}">
         <view>¥{{goodsDetails.leaderPrice}}</view>
         <view>一键开团</view>
     </view>

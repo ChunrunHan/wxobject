@@ -6,8 +6,24 @@
     "pages/address/index",
     "pages/order/index",
     "pages/pay/index",
-    "pages/share/index"
+    "pages/share/index",
+    "pages/my/index"
   ],
+  "tabBar": {
+    "color": "#d2d2d2",
+    "selectedColor": "#e02e24",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "selectedIconPath": "img/index.png",
+      "iconPath": "img/index_.png",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/my/index",
+      "selectedIconPath": "img/my.png",
+      "iconPath": "img/my_.png",
+      "text": "我的"
+    }]
+  },
   "window":{
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
