@@ -91,7 +91,7 @@ swiper image {
 }
 
 .pin .item .right .prompt {
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     flex-direction: column;
     font-size: 14px;
@@ -132,7 +132,6 @@ swiper image {
     text-align: center;
 }
 
-
 .alert .remaining {
    color: #58595b;
     margin-left: 3px;
@@ -157,6 +156,15 @@ swiper image {
 
 button {
     background: transparent;
-    border: 0px solid transparent;
-    position: static;
+}
+button::after{
+    display:none;
+}
+
+.button-hover {
+    background: transparent;
+}
+
+.other-button-hover {
+    background: transparent;
 }

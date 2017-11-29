@@ -45,11 +45,13 @@ Page({
         })
     },
     postOrder: function (e) {
+        console.log(e.currentTarget.dataset.type)
+        let singleBuy = e.currentTarget.dataset.type
         let _this = this
         let url = api.postOrder()
         let obj = {
             goodsId: this.data.goodsDetails.id,
-            singleBuy: true,
+            singleBuy,
             groupId: '',
             count: 1,
             memo: "备注",
@@ -81,7 +83,7 @@ Page({
         let url = api.getGroups(id)
         $.get(url).then(function (res) {
             if (res.data.errCode === 0) {
-                let groupList =  res.data.dataList
+                let groupList = res.data.dataList
                 let _groupList = JSON.stringify(groupList);
 
 
@@ -95,7 +97,7 @@ Page({
                         groupList
                     })
                 }, 100)
-            }else {
+            } else {
                 let groupList = [{
                     id: 12345,
                     endTime: new Date(`2017/11/29`).getTime(),
@@ -159,8 +161,6 @@ Page({
                 }]
 
 
-
-
             }
 
         }).catch(function (err) {
@@ -178,6 +178,8 @@ Page({
         })
     },
     onShareAppMessage: function () {
-        $.alert('test share')
+        return {
+            title: this.data.goodsDetails.name
+        }
     }
 })

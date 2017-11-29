@@ -1,0 +1,44 @@
+<!--pages/share/index.wxml-->
+<view class="goods">
+    <view style="width: calc(70vw - 42px); height: calc(70vw - 42px); display: flex; justify-content: center; align-items: center">
+        <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[0]}}"></image>
+    </view>
+
+    <view style="display: flex;justify-content: center;flex-direction: column;align-items: center; width: calc(30vw + 42px);">
+        <view class="surplus">仅剩 <text style="color: #e02e24">{{goodsDetails.buyerLimit - (groupNumber || 0)}}</text>个名额</view>
+        <view>
+            <text style="font-size: 20px; color: #e02e24; font-weight: bold;">¥{{goodsDetails.memberPrice}}</text>
+            <text style="font-size: 12px; color: #999; text-decoration: line-through; margin-left: 5px;">¥{{goodsDetails.oldPrice}}</text>
+        </view>
+        <view style="padding: 5px 10px; border: 1px solid #e02e24; color: #e02e24; margin-top: 5px;">
+            立即抢购
+        </view>
+    </view>
+</view>
+<view class="group">
+    <view class="image" wx:for="{{groupsUserList}}" wx:for-index="index" wx:if="{{index < goodsDetails.buyerLimit}}">
+        <image src="{{item.openId ? imgUrl + '/' + goodsDetails.sellerId + '/' + item.avatar : 'http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/null.svg'}}"></image>
+    </view>
+</view>
+
+<button open-type="share" wx:if="{{isMe}}">
+    邀请好友参团 {{goodsDetails.endTime}} 后结束
+</button>
+<button bindtap="postOrder" wx:if="{{!isMe}}">
+    立即参团
+</button>
+<view class="detail">
+    <view class="item">
+        <view>商品名称</view>
+        <view style="display: flex; align-items: center; color: #9c9c9c">
+            <view>
+                {{goodsDetails.name}}
+            </view>
+            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>
+        </view>
+    </view>
+    <view class="item">
+        <view>参团时间</view>
+        <view style="color: #9c9c9c">{{goodsDetails.startTime}}</view>
+    </view>
+</view>

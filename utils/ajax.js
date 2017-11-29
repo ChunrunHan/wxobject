@@ -10,9 +10,7 @@ var source = 'wx_lpqd';
 var ver = '0.3';
 
 function getToken() {
-    // return '7969a2624a2d4b12a2c48eee0d95b087'
-    console.log(app.token)
-    return app.token;
+    return wx.getStorageSync('token');
 }
 
 

@@ -1,6 +1,8 @@
 /**
  *  kouchao 创建于 2017/11/20
  */
+const api = require('api');
+
 const imgUrl = `https://dev.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
@@ -57,7 +59,6 @@ module.exports = {
     imgUrl: imgUrl,
     getTime: function (number) {
         var time = parseInt((number - new Date().getTime()) / 1000)
-        var ms = parseInt((number - new Date().getTime()) % 1000 / 100)
         var h = parseInt(time / 3600)
         var m = parseInt(time / 60 % 60)
         var s = parseInt(time % 60)
@@ -72,8 +73,43 @@ module.exports = {
             s = s < 10 ? '0' + s : s
         }
 
-        return h + ':' + m + ':' + s + '.' + ms
+        return h + ':' + m + ':' + s
     },
-    wxRequestPayment: promise(wx.requestPayment)
+    wxRequestPayment: promise(wx.requestPayment),
+    login: function () {
+        var _this = this
+        return new Promise(function (resolve, reject) {
+            _this.wxLogin().then(function (res) {
+                wx.setStorageSync('code', res.code)
+
+                var unionId = wx.getStorageSync('unionId')
+                var openId = wx.getStorageSync('openId')
+                if (openId) {
+                    _this.get(api.login({
+                        unionId,
+                        openId
+                    })).then(function (res) {
+                        if (res.data.errCode !== 0) {
+                            wx.navigateTo({
+                                url: '../mobile/index'
+                            })
+                        } else {
+                            wx.setStorageSync('token', res.data.data.token)
+                            resolve(res)
+                        }
+                    })
+                } else {
+                    wx.navigateTo({
+                        url: '../mobile/index'
+                    })
+                }
+
+            }).catch(function (err) {
+                reject(err)
+            })
+        })
+
+
+    }
 
 }

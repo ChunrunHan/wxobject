@@ -1,7 +1,11 @@
 <!--index.wxml-->
 <view class="zone" bindtap="chooseLocation">
-    <view>{{zone}}</view>
-    <image src="../../img/down.svg" class="slide-image"/>
+    <view class="flex">
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/gps.svg" class="slide-image" style="margin-right: 3px;"/>
+        <view>{{zone}}</view>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/down.svg" class="slide-image"/>
+    </view>
+
 </view>
 <swiper indicator-dots="{{swiperCofing.indicatorDots}}"
         autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circula="{{swiperCofing.circular}}">
@@ -14,23 +18,23 @@
 
 <view class="nav">
     <navigator url="../address/index" class="item">
-        <image src="../../img/nav1.svg"/>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav1.svg"/>
         <view>地址</view>
     </navigator>
     <view class="item">
-        <image src="../../img/nav2.svg"/>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav2.svg"/>
         <view>导航</view>
     </view>
     <view class="item">
-        <image src="../../img/nav3.svg"/>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav3.svg"/>
         <view>导航</view>
     </view>
     <view class="item">
-        <image src="../../img/nav4.svg"/>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav4.svg"/>
         <view>导航</view>
     </view>
     <view class="item">
-        <image src="../../img/nav0.svg"/>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav0.svg"/>
         <view>导航</view>
     </view>
 </view>

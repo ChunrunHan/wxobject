@@ -2,7 +2,7 @@
 <view class="pd-20">
     <view class="flex input" style="justify-content: space-between;">
         <view class="flex left">
-            <image class="icon" src="../../img/mobile.svg"></image>
+            <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/mobile.svg"></image>
             <input type="number" bindinput="inputMobile" maxlength="11" placeholder="请输入手机号"/>
         </view>
         <view class="btn bc_red" bindtap="getSmsCode">
@@ -12,7 +12,7 @@
     </view>
 
     <view class="flex input" style="padding: 10px 5px">
-        <image class="icon" src="../../img/code.svg"></image>
+        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/code.svg"></image>
         <input type="number" bindinput="inputSmsCode" placeholder="请输入验证码"/>
     </view>
 

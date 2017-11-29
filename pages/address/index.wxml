@@ -21,13 +21,13 @@
             </view>
             <view class="flex">
                 <view class="flex edit" style="align-items: center;" bindtap="addOrEdit" data-addoredit="{{1}}" data-index="{{index}}">
-                    <image src="../../img/edit.svg" style="width: 14px;height: 14px"></image>
+                    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/edit.svg" style="width: 14px;height: 14px"></image>
                     <view style="padding-left: 3px;">
                         编辑
                     </view>
                 </view>
                 <view class="flex" style="align-items: center;" bindtap="deleteAddress" data-index="{{index}}">
-                    <image src="../../img/delete.svg" style="width: 14px;height: 14px"></image>
+                    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/delete.svg" style="width: 14px;height: 14px"></image>
                     <view style="padding-left: 3px;">
                         删除
                     </view>
@@ -54,14 +54,14 @@
         </view>
         <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding: 15px 10px" bindtap="chooseLocation">
             <view>{{(province || '') + (city || '') + (district || '选择地区')}}</view>
-            <image src="../../img/right.svg" style="width: 14px;height: 14px"></image>
+            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px;height: 14px"></image>
         </view>
         <view wx:if="{{zone}}" style="border-bottom: 1px dotted #d2d2d2;padding: 15px 10px">
             {{zone}}
         </view>
         <textarea bindinput="inputAddress" style="border-bottom: 1px dotted #d2d2d2" placeholder="详细地址（可填写楼号、单元、门牌号）" value="{{address}}"/>
         <view class="close"  bindtap="hideBox">
-            <image src="../../img/close.svg"></image>
+            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
         </view>
         <view>
             <view class="btn bc_red" bindtap="save">

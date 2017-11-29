@@ -1,0 +1,56 @@
+/* pages/share/index.wxss */
+
+.goods {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.goods image {
+    height: 50vw;
+    width: 50vw;
+}
+
+.group {
+    display: flex;
+    padding: 8px 10px;
+    border-top: 8px solid #f2f2f2;
+    justify-content: space-around;
+}
+
+.group image {
+    width: calc(10vw - 6px);
+    height: calc(10vw - 6px);
+}
+
+.group .image {
+    background: url("http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/noAvatar.svg");
+    background-size: 100% 100%;
+    border-radius: 30px;
+    margin: 2px;
+    width: calc(10vw - 6px);
+    height: calc(10vw - 6px)
+}
+
+.surplus {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+button {
+    background: #e02e24;
+    margin: 10px 20px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.detail {
+    border-top: 1px solid #f2f2f2;
+}
+.detail .item{
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+   border-bottom: 1px solid #f2f2f2;
+}

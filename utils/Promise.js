@@ -1,6 +1,4 @@
 function wxPromisify(fn) {
-    console.log(fn)
-
     return function (obj) {
         obj = obj || {}
         return new Promise(function (resolve, reject) {

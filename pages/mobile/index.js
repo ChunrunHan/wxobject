@@ -85,8 +85,8 @@ Page({
             if(res.data.errCode == 0){
                 wx.setStorageSync('unionId', res.data.data.wxUnionId)
                 wx.setStorageSync('openId', res.data.data.wxOpenId)
-                wx.reLaunch({
-                    url: '../index/index'
+                wx.navigateBack({
+                    delta: 1
                 })
             }else {
                 $.alert(res.data.errMsg || '登陆失败')

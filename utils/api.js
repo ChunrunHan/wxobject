@@ -17,5 +17,6 @@ module.exports = {
     putAddressDefault: addressId => `${mallUrl}/address/default/${addressId}`,
     deleteAddress: addressId => `${mallUrl}/address/${addressId}`,
     addOrEditAddress: () => `${mallUrl}/address`,
-    getGroups: goodsId => `${mallUrl}/goods/groups/${goodsId}`
+    getGroups: goodsId => `${mallUrl}/goods/groups/${goodsId}`,
+    getGroupsUser: groupId => `${mallUrl}/goods/groups_user_info/${groupId}`
 }

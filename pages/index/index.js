@@ -32,41 +32,8 @@ Page({
         page: 0
     },
     onLoad: function () {
-        this.login()
+        this.init()
         this.getSetting()
-    },
-    login: function () {
-        var _this = this
-        $.wxLogin().then(function (res) {
-            wx.setStorageSync('code', res.code)
-
-            var unionId = wx.getStorageSync('unionId')
-            var openId = wx.getStorageSync('openId')
-            if (openId) {
-                $.showLoading('正在登陆')
-                $.get(api.login({
-                    unionId,
-                    openId
-                })).then(function (res) {
-                    $.hideLoading()
-
-                    if (res.data.errCode !== 0) {
-                        wx.reLaunch({
-                            url: '../mobile/index'
-                        })
-                    } else {
-                        console.log(res.data.data.token)
-                        app.token = res.data.data.token
-                        _this.init()
-                    }
-                })
-            } else {
-                wx.reLaunch({
-                    url: '../mobile/index'
-                })
-            }
-
-        })
     },
     getRecommendList: function () {
         var _this = this

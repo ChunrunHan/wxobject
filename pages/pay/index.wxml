@@ -1,7 +1,7 @@
 <!--pages/pay/index.wxml-->
 <navigator url="../address/index" class="address">
     <view class="flex">
-        <image src="../../img/address.svg" style="width: 30px; height: 30px"></image>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height: 30px"></image>
         <view class="details">
             <view>
                 <text class="name">寇超</text> <text class="mobile">13206366611</text>
@@ -11,7 +11,7 @@
             </view>
         </view>
     </view>
-    <image src="../../img/right.svg" style="width: 14px; height: 14px"></image>
+    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>
 
 </navigator>
 <view class="line"></view>

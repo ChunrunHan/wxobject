@@ -21,7 +21,7 @@
         </view>
         <view class="share">
             <button open-type="share">
-                <image src="../../img/share.svg"></image>
+                <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/share.svg"></image>
             </button>
 
         </view>
@@ -34,19 +34,19 @@
 <view class="pd-10">{{goodsDetails.name}}</view>
 <view class="flex tag">
     <view>
-        <image class="icon" src="../../img/icon.svg"></image>
+        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
         全场包邮
     </view>
-    <view wx:if="{{goodsDetails.seventDaysRefund}}">
-        <image class="icon" src="../../img/icon.svg"></image>
+    <view wx:if="{{goodsDetails.sevenDaysRefund}}">
+        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
         7天退货
     </view>
     <view wx:if="{{goodsDetails.oneDayArrive}}">
-        <image class="icon" src="../../img/icon.svg"></image>
+        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
         当日达
     </view>
     <view>
-        <image class="icon" src="../../img/icon.svg"></image>
+        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
         假一赔十
     </view>
 </view>
@@ -78,11 +78,11 @@
 </view>
 
 <view class="buy flex">
-    <view class="alone" bindtap="postOrder">
+    <view class="alone" bindtap="postOrder" data-type="{{true}}">
         <view>¥{{goodsDetails.singlePrice}}</view>
         <view>单独购买</view>
     </view>
-    <view class="group">
+    <view class="group"  bindtap="postOrder" data-type="{{false}}">
         <view>¥{{goodsDetails.leaderPrice}}</view>
         <view>一键开团</view>
     </view>
@@ -119,7 +119,7 @@
         </view>
 
         <view class="close"  bindtap="hideBox">
-            <image src="../../img/close.svg"></image>
+            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
         </view>
     </view>
 
