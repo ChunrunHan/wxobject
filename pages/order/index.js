@@ -21,7 +21,7 @@ Page({
             name: '已完成',
             status: '4'
         }],
-        status: '',
+        status: '1',
         imgUrl: $.imgUrl,
         more: '上拉加载更多'
     },
@@ -166,5 +166,13 @@ Page({
         wx.makePhoneCall({
             phoneNumber: e.target.dataset.number
         })
+    },
+    goRating: function (e) {
+        let index = e.target.dataset.index
+        let orderInfo = JSON.stringify(this.data.orderList[index])
+        wx.setStorageSync('orderInfo', orderInfo)
+        let url = `../rating/index`
+
+        $.jump(url)
     }
 })

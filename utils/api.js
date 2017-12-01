@@ -3,7 +3,8 @@ const mallUrl = `https://dev.yezhubao.net/mall`
 module.exports = {
     getSms: mobile => `${baseUrl}/user/sms/${mobile}/login`,
     login: obj => `${baseUrl}/user/micro_app/login/${obj.mobile || ''}/${obj.smsValidateCode || ''}/${obj.jsCode || ''}/${obj.unionId || ''}/${obj.openId || ''}`,
-    getRecommendList: obj => `${mallUrl}/recommend/group/${obj.province}/${obj.city}/${obj.district}/${obj.zone}/${obj.longitude || 120.33}/${obj.latitude || 36.07}/${obj.page || 0}/${obj.size || 10}`,
+    // getRecommendList: obj => `${mallUrl}/recommend/group/${obj.province}/${obj.city}/${obj.district}/${obj.zone}/${obj.longitude || 120.33}/${obj.latitude || 36.07}/${obj.page || 0}/${obj.size || 10}`,
+    getRecommendList: obj => `${mallUrl}/recommend/group/${obj.page || 0}/${obj.size || 10}`,
     getGoodsDetails: goodsId => `${mallUrl}/goods/group/${goodsId}`,
     postOrder: () => `${mallUrl}/order/add/group`,
     getOrderList: obj => `${mallUrl}/order/list/group//${obj.status}/${obj.page || 0}/${obj.size || 10}`,
@@ -15,5 +16,6 @@ module.exports = {
     getGroupsUser: groupId => `${mallUrl}/goods/groups_user_info/${groupId}`,
     getGroupId: goodsId => `${mallUrl}/goods/user_group/${goodsId}`,
     putOrderWatitingevalaute: orderId => `${mallUrl}/order/watitingevalaute/${orderId}`,
-    payOrder: orderId => `${mallUrl}/payment/group/${orderId}`
+    payOrder: orderId => `${mallUrl}/payment/group/${orderId}`,
+    postRating: () => `${mallUrl}/rating`,
 }

@@ -4,7 +4,7 @@
 </view>
 
 <scroll-view scroll-y class="order-list" bindscrolltolower="getMore" scroll-top="{{scrollTop}}">
-    <view class="item" wx:for="{{orderList}}">
+    <view class="item" wx:for="{{orderList}}" wx:for-index="index">
         <view class="title">
             <view class="flex" style="align-items: center">
                 <image src="http://yzb-mall.oss-cn-qingdao.aliyuncs.com/{{item.seller.id}}/{{item.seller.logo}}" style="width: 20px; height: 20px;padding-right: 10px;"></image>
@@ -44,18 +44,12 @@
             <view wx:if="{{item.status == '待发货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
                 确认收货
             </view>
-            <view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">
-                查看
-            </view>
-            <view wx:if="{{item.status == '待评价'}}" class="btn bc_red ml-10">
-                评价
-            </view>
-            <!--<view class="btn bc_red ml-10">-->
-                <!--去支付-->
+            <!--<view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">-->
+                <!--查看-->
             <!--</view>-->
-            <!--<view class="btn bc_red ml-10">-->
-                <!--去支付-->
-            <!--</view>-->
+            <view wx:if="{{item.status == '待评价'}}" class="btn bc_red ml-10" data-index="{{index}}" bindtap="goRating">
+                去评价
+            </view>
         </view>
     </view>
     <view class="more">

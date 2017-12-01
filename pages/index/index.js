@@ -37,18 +37,28 @@ Page({
     },
     getRecommendList: function () {
         var _this = this
+        // var obj = {
+        //     province: '山东省',
+        //     city: '青岛市',
+        //     district: wx.getStorageSync('district'),
+        //     zone: wx.getStorageSync('zone'),
+        //     longitude: wx.getStorageSync('longitude'),
+        //     latitude: wx.getStorageSync('latitude'),
+        //     page: _this.data.page
+        // }
         var obj = {
             province: '山东省',
             city: '青岛市',
             district: wx.getStorageSync('district'),
             zone: wx.getStorageSync('zone'),
-            longitude: wx.getStorageSync('longitude'),
-            latitude: wx.getStorageSync('latitude'),
-            page: _this.data.page
+            lng: parseFloat(wx.getStorageSync('longitude')),
+            lat: parseFloat(wx.getStorageSync('latitude')),
         }
-        var url = api.getRecommendList(obj)
+        var url = api.getRecommendList({
+            page: _this.data.page
+        })
         $.showLoading()
-        $.get(url).then(function (res) {
+        $.post(url, obj).then(function (res) {
             wx.stopPullDownRefresh()
             $.hideLoading()
             if (res.data.errCode == 0) {

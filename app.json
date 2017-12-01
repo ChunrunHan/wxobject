@@ -7,7 +7,8 @@
     "pages/order/index",
     "pages/pay/index",
     "pages/share/index",
-    "pages/my/index"
+    "pages/my/index",
+    "pages/rating/index"
   ],
   "tabBar": {
     "color": "#d2d2d2",
