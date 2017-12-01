@@ -34,7 +34,6 @@ Page({
     onLoad: function () {
         $.setTitle('乐拼青岛')
         this.init()
-        this.getSetting()
     },
     getRecommendList: function () {
         var _this = this
@@ -86,7 +85,7 @@ Page({
 
 
         }).catch(function (err) {
-            console.log(err).
+            console.log(err)
             _this.setData({
                 more: '没有更多数据'
             })
@@ -210,19 +209,5 @@ Page({
     },
     onReachBottom: function () {
         this.getMore()
-    },
-    getSetting: function () {
-        wx.getUserInfo({
-            success: function(res) {
-                console.log(res.userInfo)
-                var userInfo = res.userInfo
-                var nickName = userInfo.nickName
-                var avatarUrl = userInfo.avatarUrl
-                var gender = userInfo.gender //性别 0：未知、1：男、2：女
-                var province = userInfo.province
-                var city = userInfo.city
-                var country = userInfo.country
-            }
-        })
     }
 })

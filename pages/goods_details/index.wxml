@@ -135,7 +135,7 @@
                     </view>
 
                 </view>
-                <view class="flex right">
+                <view class="flex right" bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
                     <view class="btn bc_red">去拼团</view>
                 </view>
             </view>

@@ -101,10 +101,38 @@ module.exports = {
                         unionId,
                         openId
                     })).then(function (res) {
+
                         if (res.data.errCode !== 0) {
                             _this.jump('../mobile/index')
                         } else {
                             wx.setStorageSync('token', res.data.data.token)
+                            wx.getUserInfo({
+                                success: function(res) {
+                                    console.log(res.userInfo)
+                                    let userInfo = res.userInfo
+                                    let nickName = userInfo.nickName
+                                    let avatarUrl = userInfo.avatarUrl
+                                    let gender = userInfo.gender //性别 0：未知、1：男、2：女
+                                    let province = userInfo.province
+                                    let city = userInfo.city
+                                    let country = userInfo.country
+                                    let url = api.putUser
+
+                                    let obj = {
+                                        nickname: nickName,
+                                        wxAvatar: avatarUrl
+                                    }
+                                    _this.put(url, obj).then(function (res) {
+                                        console.log(res)
+                                        if(res.data.errCode == 0){
+                                            console.log('上传头像成功')
+                                        }
+                                    }).catch(function (err) {
+                                        console.log('上传头像失败')
+                                        console.log(err)
+                                    })
+                                }
+                            })
                             resolve(res)
                         }
                     })

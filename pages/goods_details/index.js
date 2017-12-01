@@ -23,9 +23,15 @@ Page({
     onLoad: function (e) {
         $.setTitle('商品详情')
         console.log(e.id)
+        let goodsId = e.id
         this.getGoodsDetails(e.id)
-        this.getGroupList(e.id)
         this.getRating(e.id)
+        this.setData({
+            goodsId
+        })
+    },
+    onShow: function () {
+        this.getGroupList(this.data.goodsId)
     },
     getGoodsDetails: function (id) {
         let _this = this
@@ -92,7 +98,8 @@ Page({
     },
     onShareAppMessage: function () {
         return {
-            title: this.data.goodsDetails.name
+            title: this.data.goodsDetails.name,
+            imageUrl: this.data.imgUrl + '/' + this.data.goodsDetails.sellerId + '/' + this.data.goodsDetails.images[0]
         }
     },
     getRating: function (id) {
