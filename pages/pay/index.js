@@ -3,7 +3,9 @@ const $ = require('../../utils/utils');
 const api = require('../../utils/api');
 Page({
     data: {
-        imgUrl: $.imgUrl
+        imgUrl: $.imgUrl,
+        count: 1,
+        price: 0.00
     },
     onLoad: function (options) {
         console.log(options)
@@ -43,6 +45,7 @@ Page({
                     }
                 }
 
+                price = parseFloat(price)
                 _this.setData({
                     goodsDetails,
                     price
@@ -62,7 +65,7 @@ Page({
             goodsId: this.data.goodsId,
             singleBuy: this.data.singleBuy,
             groupId: this.data.groupId,
-            count: 1,
+            count: this.data.count,
             memo: "备注",
             address: {
                 province: this.data.address.province,
@@ -133,5 +136,48 @@ Page({
         }).catch(function (err) {
 
         })
+    },
+    reduce: function () {
+        let count = this.data.count
+        count--
+        if(!count || count < 1) {
+            count = 1
+            this.setData({
+                count
+            })
+        }else {
+            this.setData({
+                count
+            })
+        }
+    },
+    plus: function () {
+        let count = this.data.count
+        count++
+        if(!count || count < 1) {
+            count = 1
+            this.setData({
+                count
+            })
+        }else {
+            this.setData({
+                count
+            })
+        }
+    },
+    count: function (e) {
+        let count = parseInt(e.detail.value)
+
+        if(!count || count < 1) {
+            count = 1
+            this.setData({
+                count
+            })
+        }else {
+            this.setData({
+                count
+            })
+        }
+
     }
 })

@@ -32,13 +32,18 @@
                 <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[0]}}" style="width: 60px; height: 60px;"></image>
                 <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
                     <view class="goods-name">{{goodsDetails.name}}</view>
-                    <view class="goods-number" >x1</view>
+                    <view class="goods-number" >x{{count}}</view>
+                    <view>单价: ¥ {{price}}</view>
                 </view>
             </view>
         </view>
 
         <view class="price">
-            单价: ¥ {{price}}
+            <view class="reduce" bindtap="reduce">-</view>
+            <view>
+                <input type="number" bindinput="count" value="{{count}}"/>
+            </view>
+            <view class="plus" bindtap="plus">+</view>
         </view>
     </view>
 </view>
@@ -47,7 +52,7 @@
 <view class="buy flex">
     <view style="padding-right: 10px;">
         <text>实付款：</text>
-        <text style="font-size: 18px; color: #e02e24">¥ {{price}} </text>
+        <text style="font-size: 18px; color: #e02e24">¥ {{price * count}} </text>
     </view>
     <view class="pay bc_red" bindtap="postOrder">
         <view>立即支付</view>
