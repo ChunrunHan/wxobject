@@ -77,12 +77,11 @@ button[type="warn"] {
 }
 
 .more {
-    background: #e8e8e8;
+    color: #999;
+    background: transparent;
     text-align: center;
     padding: 15px;
 }
-
-
 
 
 .mask {

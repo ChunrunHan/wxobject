@@ -140,44 +140,32 @@ Page({
     reduce: function () {
         let count = this.data.count
         count--
-        if(!count || count < 1) {
-            count = 1
-            this.setData({
-                count
-            })
-        }else {
-            this.setData({
-                count
-            })
-        }
+        this.setCount()
     },
     plus: function () {
         let count = this.data.count
         count++
-        if(!count || count < 1) {
-            count = 1
-            this.setData({
-                count
-            })
-        }else {
-            this.setData({
-                count
-            })
-        }
+        this.setCount()
     },
     count: function (e) {
         let count = parseInt(e.detail.value)
-
+        this.setCount()
+    },
+    setCount: function (count) {
         if(!count || count < 1) {
             count = 1
             this.setData({
                 count
             })
-        }else {
+        }else if(count > this.data.goodsDetails.timeoutLimit){
+            count = this.data.goodsDetails.timeoutLimit
+            this.setData({
+                count
+            })
+        } else {
             this.setData({
                 count
             })
         }
-
     }
 })

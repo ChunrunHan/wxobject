@@ -1,0 +1,21 @@
+<!--pages/rating-list/index.wxml-->
+<view class="ratingList">
+    <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
+        <view class="header flex">
+            <view class="flex left">
+                <image src="{{item.avatar}}"></image>
+                <view class="name">匿名用户</view>
+            </view>
+            <view class="flex right">
+                <view>{{item.createTime}}</view>
+            </view>
+        </view>
+        <view class="body">
+            {{item.comment}}
+        </view>
+
+    </view>
+</view>
+<view class="more">
+    {{more}}
+</view>

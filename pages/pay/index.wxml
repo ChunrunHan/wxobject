@@ -33,7 +33,7 @@
                 <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
                     <view class="goods-name">{{goodsDetails.name}}</view>
                     <view class="goods-number" >x{{count}}</view>
-                    <view>单价: ¥ {{price}}</view>
+                    <view>¥ {{price}}/{{goodsDetails.unit}}</view>
                 </view>
             </view>
         </view>

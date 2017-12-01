@@ -72,7 +72,7 @@ swiper image {
     background: #c9302c;
 }
 
-.pin .title, .rating .title{
+.pin .title, .ratingList .title{
     padding: 10px;
     justify-content: space-between;
 }
@@ -81,22 +81,22 @@ swiper image {
     font-size: 14px;
 }
 
-.pin .item, .rating .item .header{
+.pin .item, .ratingList .item .header{
     padding: 5px;
     border-top: 1px solid #e8e8e8;
     justify-content: space-between;
 
 }
 
-.pin .item .left, .rating .item .header .left{
+.pin .item .left, .ratingList .item .header .left{
     align-items: center;
 }
 
-.pin .item .right, .rating .item .header .right  {
+.pin .item .right, .ratingList .item .header .right  {
      align-items: center;
  }
 
-.rating .item .header .right {
+.ratingList .item .header .right {
     color: #666;
 }
 
@@ -123,7 +123,7 @@ swiper image {
     border-radius: 40px;
 }
 
-.pin .item .name, .rating .item .name {
+.pin .item .name, .ratingList .item .name {
     margin-left: 10px;
 }
 
@@ -183,19 +183,19 @@ button::after{
     background: transparent;
 }
 
-.rating .item{
+.ratingList .item{
     padding: 10px 0;
 
 }
 
-.rating image {
+.ratingList image {
     width: 30px;
     height: 30px;
     border-radius: 30px;
     background: #000;
 }
 
-.rating .body {
+.ratingList .body {
     padding: 0 5px;
     font-size: 12px;
     color: #999999;

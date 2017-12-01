@@ -73,23 +73,23 @@
     </view>
 </view>
 
-<view class="pd-10 rating" wx:if="{{ratingList}}">
+<view class="pd-10 ratingList" wx:if="{{ratingList}}">
     <view class="title flex">
         <view>商品评价</view>
-        <view class="showMore" bindtap="showBox">查看更多</view>
+        <view class="showMore" bindtap="goRatingList">查看更多</view>
     </view>
     <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
         <view class="header flex">
             <view class="flex left">
                 <image src="{{item.avatar}}"></image>
-                <view class="name">{{item.name}}</view>
+                <view class="name">匿名用户</view>
             </view>
             <view class="flex right">
-                <view>2017.12.01</view>
+                <view>{{item.createTime}}</view>
             </view>
         </view>
         <view class="body">
-            这是一个很长的评论，然而并不长
+            {{item.comment}}
         </view>
 
     </view>

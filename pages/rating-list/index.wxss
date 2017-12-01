@@ -1,0 +1,42 @@
+/* pages/rating-list/index.wxss */
+.ratingList .item .name {
+    margin-left: 10px;
+}
+
+.ratingList .item{
+    padding: 10px;
+    border-top: 1px solid #e8e8e8;
+}
+
+.ratingList image {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #000;
+}
+
+.ratingList .body {
+    padding: 10px;
+    color: #999999;
+}
+
+.ratingList .item .header .left{
+    align-items: center;
+}
+
+.ratingList .item .header .right  {
+    align-items: center;
+}
+
+.ratingList .item .header .right {
+    color: #666;
+}
+
+.ratingList .item .header{
+    justify-content: space-between;
+}
+
+.ratingList .title{
+    padding: 10px;
+    justify-content: space-between;
+}

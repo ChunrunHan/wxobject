@@ -105,7 +105,10 @@ Page({
         let url = api.getRating(obj)
         $.get(url).then(function (res) {
             if (res.data.errCode === 0) {
-                let ratingList = res.data.data
+                let ratingList = res.data.dataList
+                ratingList.forEach(obj => {
+                    obj.createTime = new Date(obj.createTime).Format("yyyy.MM.dd")
+                })
                 _this.setData({
                     ratingList
                 })
@@ -115,5 +118,9 @@ Page({
         }).catch(function (err) {
             console.log(err)
         })
+    },
+    goRatingList: function () {
+        let url = `../rating-list/index`
+        $.jump(url)
     }
 })
