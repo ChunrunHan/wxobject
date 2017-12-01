@@ -7,6 +7,11 @@ swiper image {
     height: 100vw;
 }
 
+.alone view,
+.group view {
+    background: transparent;
+}
+
 .price {
     font-size: 20px;
 }
@@ -33,6 +38,11 @@ swiper image {
     width: 12px;
     height: 12px;
     margin-left: 5px;
+}
+
+.tag view{
+    background: transparent;
+    padding: 0 2px;
 }
 
 .buy {
@@ -62,7 +72,7 @@ swiper image {
     background: #c9302c;
 }
 
-.pin .title {
+.pin .title, .rating .title{
     padding: 10px;
     justify-content: space-between;
 }
@@ -71,20 +81,24 @@ swiper image {
     font-size: 14px;
 }
 
-.pin .item{
+.pin .item, .rating .item .header{
     padding: 5px;
     border-top: 1px solid #e8e8e8;
     justify-content: space-between;
 
 }
 
-.pin .item .left {
+.pin .item .left, .rating .item .header .left{
     align-items: center;
 }
 
-.pin .item .right {
+.pin .item .right, .rating .item .header .right  {
      align-items: center;
  }
+
+.rating .item .header .right {
+    color: #666;
+}
 
 .pin .item .right .btn {
     margin-left: 10px;
@@ -109,7 +123,7 @@ swiper image {
     border-radius: 40px;
 }
 
-.pin .item .name {
+.pin .item .name, .rating .item .name {
     margin-left: 10px;
 }
 
@@ -167,4 +181,22 @@ button::after{
 
 .other-button-hover {
     background: transparent;
+}
+
+.rating .item{
+    padding: 10px 0;
+
+}
+
+.rating image {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #000;
+}
+
+.rating .body {
+    padding: 0 5px;
+    font-size: 12px;
+    color: #999999;
 }

@@ -18,4 +18,5 @@ module.exports = {
     putOrderWatitingevalaute: orderId => `${mallUrl}/order/watitingevalaute/${orderId}`,
     payOrder: orderId => `${mallUrl}/payment/group/${orderId}`,
     postRating: () => `${mallUrl}/rating`,
+    getRating: obj => `${mallUrl}/rating/list/goods/ratings///${obj.goodsId}////${obj.page}/${obj.size}`
 }

@@ -72,6 +72,29 @@
         </view>
     </view>
 </view>
+
+<view class="pd-10 rating" wx:if="{{ratingList}}">
+    <view class="title flex">
+        <view>商品评价</view>
+        <view class="showMore" bindtap="showBox">查看更多</view>
+    </view>
+    <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
+        <view class="header flex">
+            <view class="flex left">
+                <image src="{{item.avatar}}"></image>
+                <view class="name">{{item.name}}</view>
+            </view>
+            <view class="flex right">
+                <view>2017.12.01</view>
+            </view>
+        </view>
+        <view class="body">
+            这是一个很长的评论，然而并不长
+        </view>
+
+    </view>
+</view>
+
 <!--<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>-->
 <view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
     商品详情

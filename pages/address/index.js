@@ -9,7 +9,11 @@ Page({
     data: {
     },
     onLoad: function (options) {
+        console.log(options.setAddress)
         $.setTitle('收货地址')
+        this.setData({
+            text: options.setAddress ? '使用此地址' : '设为默认'
+        })
         this.getAddressList()
     },
     chooseLocation: function () {
@@ -191,6 +195,11 @@ Page({
                 $.hideLoading()
                 if (res.data.code == 0) {
                     _this.getAddressList()
+                    if(_this.data.text == '使用此地址'){
+                        wx.navigateBack({
+                            delta: 1
+                        })
+                    }
                 } else {
                     $.alert('设为默认地址失败')
                 }

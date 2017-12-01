@@ -8,7 +8,6 @@ const app = getApp()
 Page({
     data: {},
     onLoad: function (options) {
-
     },
     logout: function () {
         $.confirm('确认注销？', function () {

@@ -80,3 +80,7 @@ page {
     height: 50px;
     color: #fff;
 }
+
+.pay view{
+    background: transparent;
+}

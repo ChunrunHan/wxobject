@@ -9,6 +9,11 @@ page {
     background: #f2f2f2;
 }
 
+view,
+swiper {
+    background: #fff;
+}
+
 .pd-10 {
     padding: 10px;
 }

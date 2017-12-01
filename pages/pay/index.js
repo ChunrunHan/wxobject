@@ -2,10 +2,6 @@
 const $ = require('../../utils/utils');
 const api = require('../../utils/api');
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
         imgUrl: $.imgUrl
     },
@@ -20,6 +16,10 @@ Page({
             groupId
         })
         this.getGoodsDetails()
+
+    },
+    onShow: function (options) {
+        this.getAddressList()
     },
     getGoodsDetails: function () {
         let _this = this
@@ -65,15 +65,15 @@ Page({
             count: 1,
             memo: "备注",
             address: {
-                province: "山东省",
-                city: "青岛市",
-                district: "district",
-                zone: "东城国际",
-                address: "A区31号楼4单元1101",
-                mobile: "13045049759",
-                receiver: "隔壁王叔叔",
-                lng: 123.1111,
-                lat: 111.1233
+                province: this.data.address.province,
+                city: this.data.address.city,
+                district: this.data.address.district,
+                zone: this.data.address.zone,
+                address: this.data.address.zone,
+                mobile: this.data.address.mobile,
+                receiver: this.data.address.receiver,
+                lng: this.data.address.longitude,
+                lat: this.data.address.latitude
             }
         }
         console.log(obj)
@@ -107,6 +107,31 @@ Page({
             $.jump(`../share/index?goodsId=${_this.data.goodsId}&groupId=${res.data.additional}`, true)
         }).then(function (res) {
             console.log(res)
+        })
+    },
+    getAddressList: function() {
+        $.showLoading()
+
+        let _this = this
+        let url = api.getAddressList({})
+        $.get(url).then(function (res) {
+            wx.stopPullDownRefresh()
+            $.hideLoading()
+            if (res.data.errCode == 0) {
+                let addressList = res.data.dataList
+                addressList.forEach(obj => {
+                  if(obj.default == true)  {
+                      _this.setData({
+                          address: obj
+                      })
+                  }
+                })
+
+            }
+
+
+        }).catch(function (err) {
+
         })
     }
 })

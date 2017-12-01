@@ -1,13 +1,13 @@
 <!--pages/pay/index.wxml-->
-<navigator url="../address/index" class="address">
+<navigator url="../address/index?setAddress=1" class="address">
     <view class="flex">
         <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height: 30px"></image>
         <view class="details">
             <view>
-                <text class="name">寇超</text> <text class="mobile">13206366611</text>
+                <text class="name">{{address.receiver}}</text> <text class="mobile">{{address.mobile}}</text>
             </view>
             <view>
-                <text class="">山东省</text> <text>青岛市</text> <text>崂山区</text> <text>双福大厦A1702</text>
+                <text class="">{{address.province}}</text> <text>{{address.city}}</text> <text>{{address.district}}</text> <text>{{address.address}}</text>
             </view>
         </view>
     </view>

@@ -24,6 +24,7 @@ Page({
         console.log(e.id)
         this.getGoodsDetails(e.id)
         this.getGroupList(e.id)
+        this.getRating(e.id)
     },
     getGoodsDetails: function (id) {
         let _this = this
@@ -92,5 +93,27 @@ Page({
         return {
             title: this.data.goodsDetails.name
         }
+    },
+    getRating: function (id) {
+        console.log('getRating')
+        let _this = this
+        let obj = {
+            goodsId: id,
+            page: 0,
+            size: 2
+        }
+        let url = api.getRating(obj)
+        $.get(url).then(function (res) {
+            if (res.data.errCode === 0) {
+                let ratingList = res.data.data
+                _this.setData({
+                    ratingList
+                })
+                console.log(ratingList)
+            }
+
+        }).catch(function (err) {
+            console.log(err)
+        })
     }
 })
