@@ -11,7 +11,7 @@ Page({
         goodsScore: 5
     },
     onLoad: function (options) {
-
+        $.setTitle('评价')
         var orderInfo = JSON.parse(wx.getStorageSync('orderInfo'))
         this.setData({
             orderInfo

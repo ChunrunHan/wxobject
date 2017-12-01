@@ -21,6 +21,7 @@ Page({
         box: false
     },
     onLoad: function (e) {
+        $.setTitle('商品详情')
         console.log(e.id)
         this.getGoodsDetails(e.id)
         this.getGroupList(e.id)

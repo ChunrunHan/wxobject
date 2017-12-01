@@ -10,6 +10,7 @@ Page({
 
     },
     onLoad: function (options) {
+        $.setTitle('评价列表')
       this.getRating(options.id)
     },
     getRating: function (id) {

@@ -8,6 +8,7 @@ Page({
         price: 0.00
     },
     onLoad: function (options) {
+        $.setTitle('确认支付')
         console.log(options)
         let singleBuy = options.singleBuy == 'true' ? true : false
         let goodsId = options.goodsId

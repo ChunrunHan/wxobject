@@ -8,6 +8,7 @@ const app = getApp()
 Page({
     data: {},
     onLoad: function (options) {
+        $.setTitle('我的')
     },
     logout: function () {
         $.confirm('确认注销？', function () {

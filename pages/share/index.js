@@ -23,6 +23,7 @@ Page({
         $.get(url).then(function (res) {
             if (res.data.errCode === 0) {
                 let goodsDetails = res.data.data
+                $.setTitle(goodsDetails.name)
                 goodsDetails.images = goodsDetails.images.split(':')
                 goodsDetails.description = goodsDetails.description.split(':')
                 goodsDetails.startTime = new Date(goodsDetails.startTime).Format("yyyy-MM-dd hh:mm:ss")

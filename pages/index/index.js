@@ -32,6 +32,7 @@ Page({
         page: 0
     },
     onLoad: function () {
+        $.setTitle('乐拼青岛')
         this.init()
         this.getSetting()
     },

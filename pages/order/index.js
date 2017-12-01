@@ -26,6 +26,7 @@ Page({
         more: '上拉加载更多'
     },
     onLoad: function (options) {
+        $.setTitle('订单列表')
         this.init()
     },
     getOrderList: function () {
