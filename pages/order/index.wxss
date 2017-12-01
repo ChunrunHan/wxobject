@@ -20,7 +20,6 @@
     width: 100vw;
     bottom: 0px;
     background: #f2f2f2;
-    overflow: auto;
 }
 
 .order-list .item {

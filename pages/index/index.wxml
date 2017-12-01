@@ -17,10 +17,10 @@
 </swiper>
 
 <!--<view class="nav">-->
-    <!--<view class="item">-->
+    <!-- <view class="item">-->
         <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav1.svg"/>-->
         <!--<view>导航</view>-->
-    <!--</view>-->
+    <!--</view> -->
     <!--<view class="item">-->
         <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/nav2.svg"/>-->
         <!--<view>导航</view>-->

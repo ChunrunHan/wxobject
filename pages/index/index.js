@@ -56,7 +56,7 @@ Page({
                 recommendList.forEach(function (obj) {
                     obj.images = obj.images.split(':')[0]
                 })
-                if(_this.page > 0){
+                if(_this.data.page > 0){
                     recommendList = [..._this.data.recommendList, ...recommendList]
                 }
 

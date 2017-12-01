@@ -1,123 +1,66 @@
 <!--pages/order/index.wxml-->
 <view class="flex nav">
-    <view>全部</view>
-    <view class="selected">待付款</view>
-    <view>待成团</view>
-    <view>待发货</view>
-    <view>待收货</view>
-    <view>待评价</view>
+    <view bindtap="selectStatus" wx:for="{{nav}}" data-status="{{item.status}}" class="{{status == item.status ? 'selected' : ''}}">{{item.name}}</view>
 </view>
 
-<view class="order-list">
-    <view class="item">
+<scroll-view scroll-y class="order-list" bindscrolltolower="getMore" scroll-top="{{scrollTop}}">
+    <view class="item" wx:for="{{orderList}}">
         <view class="title">
             <view class="flex" style="align-items: center">
-                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 20px; height: 20px;padding-right: 10px;"></image>
+                <image src="http://yzb-mall.oss-cn-qingdao.aliyuncs.com/{{item.seller.id}}/{{item.seller.logo}}" style="width: 20px; height: 20px;padding-right: 10px;"></image>
                 <view class="seller-name">
-                    乐拼青岛
+                    {{item.seller.name}}
                 </view>
             </view>
 
             <view class="state co_red">
-                待支付
+                {{item.status}}
             </view>
         </view>
 
         <view class="goods">
 
             <view class="flex">
-                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 40px; height: 40px;"></image>
+                <image src="{{imgUrl + '/' + item.seller.id + '/' + item.goodsList[0].images}}" style="width: 40px; height: 40px;"></image>
                 <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
-                    <view class="goods-name">阿斯达四大苹果</view>
-                    <view class="goods-number" >x2</view>
+                    <view class="goods-name">{{item.goods.name}}</view>
+                    <view class="goods-number" >x{{item.goods.count}}</view>
                 </view>
             </view>
             <view class="price">
-                ¥ 10.00
+                ¥ {{item.goods.price || '0.00'}}
             </view>
         </view>
         <view class="pay-price">
-            实付: <text style="font-size: 16px">¥ 20.00</text>
+            实付: <text style="font-size: 16px">¥ {{item.receiptAmount}}</text>
         </view>
         <view class="flex pd-10" style="justify-content: flex-end; background: #fff">
-            <view class="btn bc_red ml-10">
+            <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}">
+                联系客服
+            </view>
+            <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="pay">
                 去支付
             </view>
+            <view wx:if="{{item.status == '待发货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
+                确认收货
+            </view>
+            <view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">
+                查看
+            </view>
+            <view wx:if="{{item.status == '待评价'}}" class="btn bc_red ml-10">
+                评价
+            </view>
+            <!--<view class="btn bc_red ml-10">-->
+                <!--去支付-->
+            <!--</view>-->
+            <!--<view class="btn bc_red ml-10">-->
+                <!--去支付-->
+            <!--</view>-->
         </view>
     </view>
-
-    <view class="item">
-        <view class="title">
-            <view class="flex" style="align-items: center">
-                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 20px; height: 20px;padding-right: 10px;"></image>
-                <view class="seller-name">
-                    乐拼青岛
-                </view>
-            </view>
-
-            <view class="state co_red">
-                待支付
-            </view>
-        </view>
-
-        <view class="goods">
-
-            <view class="flex">
-                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 40px; height: 40px;"></image>
-                <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
-                    <view class="goods-name">阿斯达四大苹果</view>
-                    <view class="goods-number" >x2</view>
-                </view>
-            </view>
-            <view class="price">
-                ¥ 10.00
-            </view>
-        </view>
-        <view class="pay-price">
-            实付: <text style="font-size: 16px">¥ 20.00</text>
-        </view>
-        <view class="flex pd-10" style="justify-content: flex-end; background: #fff">
-            <view class="btn bc_red ml-10">
-                去支付
-            </view>
-        </view>
+    <view class="more">
+        {{more}}
     </view>
 
-    <view class="item">
-        <view class="title">
-            <view class="flex" style="align-items: center">
-                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 20px; height: 20px;padding-right: 10px;"></image>
-                <view class="seller-name">
-                    乐拼青岛
-                </view>
-            </view>
 
-            <view class="state co_red">
-                待支付
-            </view>
-        </view>
-
-        <view class="goods">
-
-            <view class="flex">
-                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 40px; height: 40px;"></image>
-                <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
-                    <view class="goods-name">阿斯达四大苹果</view>
-                    <view class="goods-number" >x2</view>
-                </view>
-            </view>
-            <view class="price">
-                ¥ 10.00
-            </view>
-        </view>
-        <view class="pay-price">
-            实付: <text style="font-size: 16px">¥ 20.00</text>
-        </view>
-        <view class="flex pd-10" style="justify-content: flex-end; background: #fff">
-            <view class="btn bc_red ml-10">
-                去支付
-            </view>
-        </view>
-    </view>
-
-</view>
+</scroll-view>

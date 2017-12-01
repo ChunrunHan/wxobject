@@ -84,8 +84,8 @@ Page({
                     let payObj = JSON.parse(res.data.additional)
                     return $.wxRequestPayment(payObj)
                 }else {
-                    $.alert(res.data.message || '支付失败')
-                    throw res
+                    _this.getGroupId(_this.data.goodsId)
+                    throw '支付金额为0'
                 }
             }else {
                 $.alert(res.data.message || '支付失败')
@@ -96,7 +96,6 @@ Page({
             _this.getGroupId(_this.data.goodsId)
             $.hideLoading()
         }).catch(function (err) {
-            console.log('支付失败')
             console.log(err)
             $.hideLoading()
         })
