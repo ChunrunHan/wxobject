@@ -38,6 +38,9 @@
             <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}">
                 联系客服
             </view>
+            <view class="btn bc_red ml-10" data-index="{{index}}" bindtap="goRating">
+                退货
+            </view>
             <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="pay">
                 去支付
             </view>

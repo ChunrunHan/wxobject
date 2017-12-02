@@ -212,6 +212,11 @@ Page({
             })
         }
     },
+    setAddress: function (e) {
+        if(this.data.text == '使用此地址') {
+          this.setDefault(e)
+        }
+    },
     deleteAddress: function (e) {
         let _this = this
         let index = e.currentTarget.dataset.index

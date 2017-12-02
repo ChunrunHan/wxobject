@@ -1,6 +1,6 @@
 /* pages/address/index.wxss */
-page {
-    background: #f2f2f2;
+.address-list {
+    background: transparent;
 }
 
 .btn {
@@ -10,10 +10,6 @@ page {
 
 .selected {
     color: #e02e24
-}
-
-.address-list .item {
-    margin-bottom: 10px;
 }
 
 .address-list .item .details {
