@@ -45,6 +45,7 @@ Page({
                 orderList.forEach(function (obj) {
                     // obj.images = obj.images.split(':')[0]
                     obj.status = _this.statusCode[obj.status]
+                    obj.orderTime = new Date(obj.orderTime).Format('yyyy-MM-dd hh:mm:ss')
                     obj.goods.images = obj.goods.images.split(':')[0]
                 })
                 if(_this.data.page > 0){

@@ -99,7 +99,7 @@ Page({
     onShareAppMessage: function () {
         return {
             title: this.data.goodsDetails.name,
-            imageUrl: this.data.imgUrl + '/' + this.data.goodsDetails.sellerId + '/' + this.data.goodsDetails.images[0]
+            // imageUrl: this.data.imgUrl + '/' + this.data.goodsDetails.sellerId + '/' + this.data.goodsDetails.images[0]
         }
     },
     getRating: function (id) {
