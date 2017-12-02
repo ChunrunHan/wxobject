@@ -31,7 +31,7 @@ Page({
 
                 setInterval(() => {
                     goodsDetails = JSON.parse(_goodsDetails)
-                    goodsDetails.endTime = $.getTime(goodsDetails.endTime)
+                    goodsDetails.timeLimit = $.getTime(goodsDetails.timeLimit)
                     _this.setData({
                         goodsDetails
                     })

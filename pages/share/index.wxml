@@ -22,7 +22,7 @@
 </view>
 
 <button open-type="share" wx:if="{{isMe}}">
-    邀请好友参团 {{goodsDetails.endTime}} 后结束
+    邀请好友参团 {{goodsDetails.timeLimit}} 后结束
 </button>
 
 <view wx:if="{{!isMe}}" bindtap="pay" data-type="{{false}}" data-groupid="{{groupId}}">

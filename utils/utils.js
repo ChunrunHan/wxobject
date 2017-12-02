@@ -6,10 +6,6 @@ const api = require('api');
 const imgUrl = `https://dev.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
-var QQMapWX = require('qqmap-wx-jssdk.min');
-var qqmapsdk = new QQMapWX({
-    key: 'WHGBZ-5JZKO-4PMWR-SEXNN-4O54Z-SNFO5'
-})
 module.exports = {
     get: ajax.get,
     post: ajax.post,
@@ -55,7 +51,14 @@ module.exports = {
         wx.hideLoading()
     },
     getLocation: promise(wx.getLocation),
-    qqmapsdk: qqmapsdk,
+    getDistrict: str => {
+        return {
+            province: str.slice(0,3),
+            city: str.slice(3,6),
+            district: str.slice(6,9)
+
+        }
+    },
     imgUrl: imgUrl,
     getTime: function (number) {
         var time = parseInt((number - new Date().getTime()) / 1000)

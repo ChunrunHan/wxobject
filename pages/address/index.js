@@ -6,8 +6,7 @@ const app = getApp()
 var loading = false
 
 Page({
-    data: {
-    },
+    data: {},
     onLoad: function (options) {
         console.log(options.setAddress)
         $.setTitle('收货地址')
@@ -15,6 +14,11 @@ Page({
             text: options.setAddress ? '使用此地址' : '设为默认'
         })
         this.getAddressList()
+    },
+    setAddress: function (e) {
+        if (this.data.text == '使用此地址') {
+            this.setDefault(e)
+        }
     },
     chooseLocation: function () {
         var _this = this
@@ -28,29 +32,12 @@ Page({
                     longitude,
                     zone
                 }
-                _this.setLocationData(obj)
 
-            }
-        })
-    },
-    setLocationData: function (obj) {
-        var _this = this
-        var latitude = obj.latitude
-        var longitude = obj.longitude
-        var zone = obj.zone
-        $.qqmapsdk.reverseGeocoder({
-            location: {
-                latitude: obj.latitude,
-                longitude: obj.longitude
-            },
-            success: function (res) {
-                console.log(res)
+                let address = $.getDistrict(res.address)
 
-                zone = zone || res.result.address_reference.landmark_l1.title
-
-                var province = res.result.address_component.province
-                var city = res.result.address_component.city
-                var district = res.result.address_component.district
+                var province = address.province
+                var city = address.city
+                var district = address.district
 
                 _this.setData({
                     latitude,
@@ -61,7 +48,7 @@ Page({
                     province
                 })
             }
-        });
+        })
     },
     inputAddress: function (e) {
         let address = e.detail.value
@@ -106,7 +93,7 @@ Page({
         let index = e.currentTarget.dataset.index || e.target.dataset.index || 0
         let addOrEdit = e.currentTarget.dataset.addoredit
 
-        if(addOrEdit){
+        if (addOrEdit) {
             let addOrEdit = this.data.addressList[index].id
 
             console.log(index)
@@ -121,7 +108,7 @@ Page({
             let mobile = this.data.addressList[index].mobile
 
 
-            if(this.data.addressList[index].address.split(' ').length == 1){
+            if (this.data.addressList[index].address.split(' ').length == 1) {
                 $.alert('地区信息已过期，重新选择地区')
             }
 
@@ -138,7 +125,7 @@ Page({
                 province,
                 addOrEdit
             })
-        }else {
+        } else {
             this.setData({
                 addOrEdit
             })
@@ -150,7 +137,7 @@ Page({
     save: function () {
         this.addOrEditAddress()
     },
-    getAddressList: function() {
+    getAddressList: function () {
         $.showLoading()
 
         let _this = this
@@ -190,12 +177,12 @@ Page({
         let addressId = this.data.addressList[index].id
         let isDfault = this.data.addressList[index].default
         let url = api.putAddressDefault(addressId)
-        if(!isDfault){
+        if (!isDfault) {
             $.put(url, {}).then(function (res) {
                 $.hideLoading()
                 if (res.data.code == 0) {
                     _this.getAddressList()
-                    if(_this.data.text == '使用此地址'){
+                    if (_this.data.text == '使用此地址') {
                         wx.navigateBack({
                             delta: 1
                         })
@@ -210,11 +197,6 @@ Page({
 
                 $.alert('设为默认地址失败')
             })
-        }
-    },
-    setAddress: function (e) {
-        if(this.data.text == '使用此地址') {
-          this.setDefault(e)
         }
     },
     deleteAddress: function (e) {
@@ -243,7 +225,7 @@ Page({
             })
         })
     },
-    addOrEditAddress: function() {
+    addOrEditAddress: function () {
         var _this = this
         var url = api.addOrEditAddress()
         var obj = {
@@ -258,27 +240,27 @@ Page({
             zone: ''
         }
 
-        if(!obj.receiver){
+        if (!obj.receiver) {
             $.alert('请输入您的名字')
             return false
         }
 
-        if(!$.isMobile(obj.mobile)){
+        if (!$.isMobile(obj.mobile)) {
             $.alert('请输入正确的手机号')
             return false
         }
 
-        if(!this.data.zone){
+        if (!this.data.zone) {
             $.alert('请选择地区')
             return false
         }
 
-        if(!this.data.address){
+        if (!this.data.address) {
             $.alert('请输入详细地址')
             return false
         }
 
-        if(!this.data.addOrEdit){
+        if (!this.data.addOrEdit) {
             $.post(url, obj).then(function (res) {
                 $.hideLoading()
                 if (res.data.code == 0) {
@@ -295,7 +277,7 @@ Page({
 
                 $.alert('添加失败')
             })
-        }else {
+        } else {
             console.log(obj)
             obj.id = this.data.addOrEdit
             $.put(url, obj).then(function (res) {

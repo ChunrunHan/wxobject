@@ -118,7 +118,32 @@ Page({
                     longitude,
                     zone
                 }
-                _this.setLocationData(obj)
+
+                if (!res.address.includes('山东省青岛市')) {
+                    $.alert('区域不在青岛市, 请重新选择')
+                    zone = "重新选择"
+
+                    _this.setData({
+                        zone,
+                    })
+                    return false
+                } else
+
+                var district = $.getDistrict(res.address).district
+
+                _this.setData({
+                    latitude,
+                    longitude,
+                    zone,
+                })
+
+                wx.setStorageSync('latitude', latitude)
+                wx.setStorageSync('longitude', longitude)
+                wx.setStorageSync('zone', zone)
+                wx.setStorageSync('district', district)
+
+
+                _this.getRecommendList()
 
             }
         })
@@ -139,59 +164,16 @@ Page({
             })
             this.getRecommendList()
         } else {
-            this.setLocal()
+            wx.setStorageSync('latitude', '36.06623')
+            wx.setStorageSync('longitude', '120.38299')
+            wx.setStorageSync('zone', '全青岛')
+            wx.setStorageSync('district', '市南区')
+            this.init()
         }
     },
     onPullDownRefresh: function () {
         this.init()
         this.getRecommendList()
-    },
-    setLocationData: function (obj) {
-        var _this = this
-        var latitude = obj.latitude
-        var longitude = obj.longitude
-        var zone = obj.zone
-        $.qqmapsdk.reverseGeocoder({
-            location: {
-                latitude: obj.latitude,
-                longitude: obj.longitude
-            },
-            success: function (res) {
-                console.log(res)
-                if (!res.result.address.includes('山东省青岛市')) {
-                    if (zone) {
-                        $.alert('区域不在青岛市, 请重新选择')
-                        zone = "重新选择"
-                    } else {
-                        $.alert('当前定位不在青岛市, 请手动定位')
-                        zone = "手动定位"
-                    }
-
-                    _this.setData({
-                        zone,
-                    })
-                    return false
-                } else
-
-                    zone = zone || res.result.address_reference.landmark_l1.title
-
-                var district = res.result.address_component.district
-
-                _this.setData({
-                    latitude,
-                    longitude,
-                    zone,
-                })
-
-                wx.setStorageSync('latitude', latitude)
-                wx.setStorageSync('longitude', longitude)
-                wx.setStorageSync('zone', zone)
-                wx.setStorageSync('district', district)
-
-
-                _this.getRecommendList()
-            }
-        });
     },
     getMore: function () {
         if (!loading) {

@@ -20,5 +20,6 @@ module.exports = {
     postRating: () => `${mallUrl}/rating`,
     getRating: obj => `${mallUrl}/rating/list/goods/ratings///${obj.goodsId}////${obj.page}/${obj.size}`,
     putUser: `${baseUrl}/user`,
-    requestRefund: orderId => `${mallUrl}/order/request_refund/${orderId}`
+    requestRefund: orderId => `${mallUrl}/order/request_refund/${orderId}`,
+    groupExpireTime: groupId => `${mallUrl}/goods/group_expire_time/{groupId}`
 }

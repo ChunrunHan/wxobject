@@ -51,6 +51,7 @@ Page({
                     goodsDetails,
                     price
                 })
+                _this.setCount(1)
                 console.log(goodsDetails)
             }
 
@@ -97,11 +98,22 @@ Page({
             }
         }).then(function (res) {
             console.log('支付成功')
-            _this.getGroupId(_this.data.goodsId)
+            _this.getGroupId()
+            _this.groupExpireTime()
             $.hideLoading()
         }).catch(function (err) {
             console.log(err)
             $.hideLoading()
+        })
+    },
+    groupExpireTime: function () {
+        let _this = this
+        let url = api.groupExpireTime(this.data.goodsId)
+        $.get(url).then(function (res) {
+            console.log('过期时间')
+            console.log(res)
+        }).then(function (res) {
+            console.log(res)
         })
     },
     getGroupId: function () {
