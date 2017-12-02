@@ -29,6 +29,9 @@ Page({
         $.setTitle('订单列表')
         this.init()
     },
+    onLoad: function (options) {
+        this.getOrderList()
+    },
     getOrderList: function () {
         var _this = this
         var obj = {

@@ -13,6 +13,8 @@ const swiperCofing = {
     circular: true,
     vertical: false
 }
+let groupList = ''
+let _groupList = ''
 Page({
     data: {
         swiperCofing: swiperCofing,
@@ -31,6 +33,7 @@ Page({
         })
     },
     onShow: function () {
+        clearInterval(this.time)
         this.getGroupList(this.data.goodsId)
     },
     getGoodsDetails: function (id) {
@@ -67,11 +70,11 @@ Page({
         let url = api.getGroups(id)
         $.get(url).then(function (res) {
             if (res.data.errCode === 0) {
-                let groupList = res.data.dataList
-                let _groupList = JSON.stringify(groupList);
+                groupList = res.data.dataList
+                _groupList = JSON.stringify(groupList);
 
 
-                setInterval(() => {
+                 this.time = setInterval(() => {
 
                     groupList = JSON.parse(_groupList)
                     Array.from(groupList, (obj) => {

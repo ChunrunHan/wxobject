@@ -10,7 +10,7 @@
     </view>
 
     <view class="goods-rating">
-        <textarea placeholder="亲，您您对这个此商品满意吗？您的评价会帮助我们选择更好的商品哦！" bindinput="goodsComment"/>
+        <textarea placeholder="亲，您对这个此商品满意吗？您的评价会帮助我们选择更好的商品哦！" bindinput="goodsComment"/>
     </view>
 
     <view class="start">
@@ -27,7 +27,7 @@
         <view class="goods-name">{{orderInfo.seller.name}}</view>
     </view>
     <view class="goods-rating mb-8">
-        <textarea placeholder="亲，您您对这个此商家满意吗？您的评价会帮助我们选择更好的商家哦！" bindinput="sellerComment"/>
+        <textarea placeholder="亲，您对这个此商家满意吗？您的评价会帮助我们选择更好的商家哦！" bindinput="sellerComment"/>
     </view>
     <view class="start">
         <image wx:for="{{sellerStart}}" wx:for-index="index" data-index="{{index}}" bindtap="setStart" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/start{{item ? '' : '_'}}.svg"></image>
