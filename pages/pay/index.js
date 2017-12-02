@@ -141,18 +141,19 @@ Page({
     reduce: function () {
         let count = this.data.count
         count--
-        this.setCount()
+        this.setCount(count)
     },
     plus: function () {
         let count = this.data.count
         count++
-        this.setCount()
+        this.setCount(count)
     },
     count: function (e) {
         let count = parseInt(e.detail.value)
-        this.setCount()
+        this.setCount(count)
     },
     setCount: function (count) {
+        console.log(count)
         if(!count || count < 1) {
             count = 1
             this.setData({
@@ -168,5 +169,10 @@ Page({
                 count
             })
         }
+        let price = parseFloat(this.data.price)
+        let payPrice = Math.mul(count, price)
+        this.setData({
+            payPrice
+        })
     }
 })

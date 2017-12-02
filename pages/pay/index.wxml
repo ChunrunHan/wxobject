@@ -52,7 +52,7 @@
 <view class="buy flex">
     <view style="padding-right: 10px;">
         <text>实付款：</text>
-        <text style="font-size: 18px; color: #e02e24">¥ {{price * count}} </text>
+        <text style="font-size: 18px; color: #e02e24">¥ {{payPrice}} </text>
     </view>
     <view class="pay bc_red" bindtap="postOrder">
         <view>立即支付</view>
