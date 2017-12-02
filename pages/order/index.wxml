@@ -34,6 +34,14 @@
         <view class="pay-price">
             实付: <text style="font-size: 16px">¥ {{item.receiptAmount}}</text>
         </view>
+        <view class="pd-10" style="border-bottom: 1px dotted #d2d2d2; color: #4c4c4c">
+            <view class="flex" style="align-items: center">
+                订单编号: {{item.id}}
+            </view>
+            <view>
+                下单时间: {{item.orderTime}}
+            </view>
+        </view>
         <view class="flex pd-10" style="justify-content: flex-end; background: #fff">
             <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}">
                 联系客服
