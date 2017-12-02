@@ -56,3 +56,10 @@
     background: #fff;
     border-bottom: 1px dotted #d2d2d2;
 }
+
+.goods-name {
+    width: calc(100vw - 170px);
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
