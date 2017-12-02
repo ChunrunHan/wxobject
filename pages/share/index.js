@@ -3,6 +3,8 @@ const $ = require('../../utils/utils');
 const api = require('../../utils/api');
 const app = getApp()
 
+let expireTime = ''
+let _expireTime = ''
 Page({
     data: {
         imgUrl: $.imgUrl
@@ -16,6 +18,7 @@ Page({
         })
         this.getGoodsDetails()
         this.getGroupsUserList()
+        this.groupExpireTime()
     },
     getGoodsDetails: function () {
         let _this = this
@@ -26,16 +29,9 @@ Page({
                 $.setTitle(goodsDetails.name)
                 goodsDetails.images = goodsDetails.images.split(':')
                 goodsDetails.description = goodsDetails.description.split(':')
-                goodsDetails.startTime = new Date(goodsDetails.startTime).Format("yyyy-MM-dd hh:mm:ss")
-                let _goodsDetails = JSON.stringify(goodsDetails)
-
-                setInterval(() => {
-                    goodsDetails = JSON.parse(_goodsDetails)
-                    goodsDetails.timeLimit = $.getTime(goodsDetails.timeLimit)
-                    _this.setData({
-                        goodsDetails
-                    })
-                }, 100)
+                _this.setData({
+                    goodsDetails
+                })
             }
 
         }).catch(function (err) {
@@ -50,7 +46,7 @@ Page({
 
                 let groupNumber = JSON.parse(JSON.stringify(res.data.dataList)).length
                 let groupsUserList = res.data.dataList
-                for (let i = groupsUserList.length; i < 10 ; i++ ) {
+                for (let i = groupsUserList.length; i < 10; i++) {
                     groupsUserList.push({
                         avatar: null
                     })
@@ -58,7 +54,7 @@ Page({
                 let openId = wx.getStorageSync('openId')
                 let isMe = false
                 groupsUserList.forEach(obj => {
-                    if(obj.openId == openId){
+                    if (obj.openId == openId) {
                         console.log(obj.openId)
                         isMe = true
                     }
@@ -88,6 +84,30 @@ Page({
             let goodsId = _this.data.goodsDetails.id
             let groupId = e.currentTarget.dataset.groupid || ''
             $.jump(`../pay/index?singleBuy=${singleBuy}&goodsId=${goodsId}&groupId=${groupId}`)
+        })
+
+    },
+    groupExpireTime: function () {
+        var _this = this;
+        var url = api.groupExpireTime(this.data.groupId)
+        $.get(url).then(function (res) {
+            if (res.data.code === 0) {
+                // expireTime = new Date(res.data.additional).Format("yyyy-MM-dd hh:mm:ss")
+                expireTime = $.getTime(res.data.additional)
+                _this.setData({
+                    expireTime
+                })
+                setInterval(() => {
+                    expireTime = $.getTime(res.data.additional)
+                    _this.setData({
+                        expireTime
+                    })
+                }, 1000)
+            }
+
+
+        }).catch(function (err) {
+            console.log(err)
         })
 
     }

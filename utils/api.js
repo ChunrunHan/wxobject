@@ -21,5 +21,6 @@ module.exports = {
     getRating: obj => `${mallUrl}/rating/list/goods/ratings///${obj.goodsId}////${obj.page}/${obj.size}`,
     putUser: `${baseUrl}/user`,
     requestRefund: orderId => `${mallUrl}/order/request_refund/${orderId}`,
-    groupExpireTime: groupId => `${mallUrl}/goods/group_expire_time/{groupId}`
+    groupExpireTime: groupId => `${mallUrl}/goods/group_expire_time/${groupId}`,
+    getAd: `${mallUrl}/ad/group/list`
 }

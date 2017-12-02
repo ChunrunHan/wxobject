@@ -22,6 +22,7 @@
 .group image {
     width: calc(10vw - 6px);
     height: calc(10vw - 6px);
+    border-radius: 100px;
 }
 
 .group .image {

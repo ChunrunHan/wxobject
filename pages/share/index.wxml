@@ -17,12 +17,12 @@
 </view>
 <view class="group">
     <view class="image" wx:for="{{groupsUserList}}" wx:for-index="index" wx:if="{{index < goodsDetails.buyerLimit}}">
-        <image src="{{item.openId ? imgUrl + '/' + goodsDetails.sellerId + '/' + item.avatar : 'http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/null.svg'}}"></image>
+        <image src="{{item.openId ? item.avatar : 'http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/null.svg'}}"></image>
     </view>
 </view>
 
 <button open-type="share" wx:if="{{isMe}}">
-    邀请好友参团 {{goodsDetails.timeLimit}} 后结束
+    邀请好友参团 {{expireTime}} 后结束
 </button>
 
 <view wx:if="{{!isMe}}" bindtap="pay" data-type="{{false}}" data-groupid="{{groupId}}">
