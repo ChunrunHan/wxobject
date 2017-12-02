@@ -99,7 +99,7 @@
 <view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
     商品详情
 </view>
-<view style="display: flex;flex-direction: column">
+<view style="display: flex;flex-direction: column; padding-bottom: 50px">
     <image wx:for="{{goodsDetails.description}}" src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" mode="widthFix"/>
 </view>
 

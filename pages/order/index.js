@@ -30,7 +30,7 @@ Page({
         this.init()
     },
     onShow: function (options) {
-        this.getOrderList()
+        this.init()
     },
     getOrderList: function () {
         var _this = this
