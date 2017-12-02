@@ -21,7 +21,7 @@
         <view class="goods">
 
             <view class="flex">
-                <image src="{{imgUrl + '/' + item.seller.id + '/' + item.goodsList[0].images}}" style="width: 40px; height: 40px;"></image>
+                <image src="{{imgUrl + '/' + item.seller.id + '/' + item.goods.images}}" style="width: 40px; height: 40px;"></image>
                 <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
                     <view class="goods-name">{{item.goods.name}}</view>
                     <view class="goods-number" >x{{item.goods.count}}</view>
@@ -38,7 +38,7 @@
             <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}">
                 联系客服
             </view>
-            <view class="btn bc_red ml-10" data-index="{{index}}" bindtap="goRating">
+            <view class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="requestRefund">
                 退货
             </view>
             <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="pay">

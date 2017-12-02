@@ -175,5 +175,27 @@ Page({
         let url = `../rating/index`
 
         $.jump(url)
+    },
+    requestRefund: function (e) {
+        $.showLoading('请稍后')
+        let _this = this
+        let url = api.requestRefund(e.target.dataset.orderid)
+        $.get(url).then(function (res) {
+            $.hideLoading()
+            if(res.data.code == 0){
+                $.confirm('申请退货成功', function () {
+                    _this.init()
+                }, function () {
+                    _this.init()
+                })
+            }else {
+                $.alert(res.data.message || '申请退货成功')
+                throw res
+            }
+        }).catch(function (err) {
+            console.log(err)
+            $.alert(res.data.message || '申请退货成功')
+            $.hideLoading()
+        })
     }
 })
