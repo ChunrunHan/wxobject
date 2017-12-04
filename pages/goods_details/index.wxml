@@ -50,7 +50,7 @@
         假一赔十
     </view>
 </view>
-<view class="pd-10 pin" wx:if="{{groupList}}">
+<view class="pd-10 pin" wx:if="{{groupList.length > 0}}">
     <view class="title flex">
         <view>{{groupList.length}}人正在拼单</view>
         <view class="showMore" bindtap="showBox">查看更多</view>

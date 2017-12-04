@@ -3,8 +3,8 @@
     <view class="more" wx:if="{{!addressList}}" style="text-align: center">
         没有数据
     </view>
-    <view class="item mb-8" wx:for="{{addressList}}" wx:for-index="index" bindtap="setAddress" data-index="{{index}}">
-        <view class="details">
+    <view class="item mb-8" wx:for="{{addressList}}" wx:for-index="index">
+        <view class="details" bindtap="setAddress" data-index="{{index}}">
             <view>
                 <text class="name">{{item.receiver}}</text>, <text class="mobile">{{item.mobile}}</text>
             </view>

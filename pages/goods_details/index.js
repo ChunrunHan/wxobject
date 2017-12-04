@@ -84,6 +84,13 @@ Page({
                         groupList
                     })
                 }, 100)
+            }else {
+                groupList = []
+                _groupList = JSON.stringify(groupList);
+                groupList = JSON.parse(_groupList)
+                _this.setData({
+                    groupList
+                })
             }
         }).catch(function (err) {
             console.log(err)

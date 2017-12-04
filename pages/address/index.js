@@ -170,7 +170,6 @@ Page({
         })
     },
     setDefault: function (e) {
-        $.showLoading()
 
         let _this = this
         let index = e.currentTarget.dataset.index
@@ -178,6 +177,7 @@ Page({
         let isDfault = this.data.addressList[index].default
         let url = api.putAddressDefault(addressId)
         if (!isDfault) {
+            $.showLoading()
             $.put(url, {}).then(function (res) {
                 $.hideLoading()
                 if (res.data.code == 0) {
