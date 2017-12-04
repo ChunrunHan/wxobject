@@ -26,8 +26,8 @@ Page({
         $.setTitle('商品详情')
         console.log(e.id)
         let goodsId = e.id
-        this.getGoodsDetails(e.id)
-        this.getRating(e.id)
+        this.getGoodsDetails(goodsId)
+        this.getRating(goodsId)
         this.setData({
             goodsId
         })

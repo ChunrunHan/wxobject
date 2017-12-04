@@ -9,11 +9,11 @@
 </view>
 <swiper indicator-dots="{{swiperCofing.indicatorDots}}"
         autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circula="{{swiperCofing.circular}}">
-    <block wx:for="{{imgUrls}}">
+    <navigator url="../goods_details/index?id={{item.id}}" wx:for="{{adList}}">
         <swiper-item>
-            <image src="{{item}}" class="slide-image"/>
+            <image src="{{item.image}}" class="slide-image"/>
         </swiper-item>
-    </block>
+    </navigator>
 </swiper>
 
 <!--<view class="nav">-->

@@ -52,7 +52,7 @@
             <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="pay">
                 去支付
             </view>
-            <view wx:if="{{item.status == '待收货' || item.status == '待发货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
+            <view wx:if="{{item.status == '待收货' || item.status == '已收货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
                 确认收货
             </view>
             <!--<view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">-->

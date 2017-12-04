@@ -144,6 +144,7 @@ Page({
 
 
                 _this.getRecommendList()
+                _this.getAd()
 
             }
         })
@@ -163,6 +164,7 @@ Page({
                 zone
             })
             this.getRecommendList()
+            this.getAd()
         } else {
             wx.setStorageSync('latitude', '36.06623')
             wx.setStorageSync('longitude', '120.38299')
@@ -191,5 +193,33 @@ Page({
     },
     onReachBottom: function () {
         this.getMore()
+    },
+    getAd: function () {
+        console.log('getAd')
+        var latitude = wx.getStorageSync('latitude')
+        var longitude = wx.getStorageSync('longitude')
+        let _this = this
+        let obj = {
+            lng : longitude,
+            lat : latitude
+        }
+        let url = api.getAd
+        $.post(url, obj).then(function (res) {
+            if (res.data.errCode === 0) {
+                let adList = res.data.dataList
+                adList.forEach(obj => {
+                    obj.id = JSON.parse(obj.afterClick).goodsId
+                    obj.image = 'http://yzb-mall.oss-cn-qingdao.aliyuncs.com/ad/' + obj.image
+                })
+                _this.setData({
+                    adList
+                })
+                console.log(res.data)
+
+            }
+
+        }).catch(function (err) {
+            console.log(err)
+        })
     }
 })

@@ -15,6 +15,9 @@ Page({
             name: '待收货',
             status: '2'
         }, {
+          name: '已收货',
+          status: '9'
+        }, {
             name: '待评价',
             status: '3'
         }, {
