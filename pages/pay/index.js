@@ -33,14 +33,14 @@ Page({
                 goodsDetails.images = goodsDetails.images.split(':')
                 goodsDetails.description = goodsDetails.description.split(':')
                 let price = 0.00
-                if(_this.data.singleBuy){
+                if (_this.data.singleBuy) {
                     console.log('singleBuy')
                     price = goodsDetails.singlePrice
-                }else {
-                    if(_this.data.groupId){
+                } else {
+                    if (_this.data.groupId) {
                         console.log('memberPrice')
                         price = goodsDetails.memberPrice
-                    }else {
+                    } else {
                         console.log('leaderPrice')
                         price = goodsDetails.leaderPrice
                     }
@@ -60,39 +60,48 @@ Page({
         })
     },
     postOrder: function () {
-        $.showLoading('支付中')
+
         let _this = this
         let url = api.postOrder()
-        let obj = {
-            goodsId: this.data.goodsId,
-            singleBuy: this.data.singleBuy,
-            groupId: this.data.groupId,
-            count: this.data.count,
-            memo: "备注",
-            address: {
-                province: this.data.address.province,
-                city: this.data.address.city,
-                district: this.data.address.district,
-                zone: this.data.address.zone,
-                address: this.data.address.zone,
-                mobile: this.data.address.mobile,
-                receiver: this.data.address.receiver,
-                lng: this.data.address.longitude,
-                lat: this.data.address.latitude
+        let obj = {}
+        try {
+            obj = {
+                goodsId: this.data.goodsId,
+                singleBuy: this.data.singleBuy,
+                groupId: this.data.groupId,
+                count: this.data.count,
+                memo: "备注",
+                address: {
+                    province: this.data.address.province,
+                    city: this.data.address.city,
+                    district: this.data.address.district,
+                    zone: this.data.address.zone,
+                    address: this.data.address.zone,
+                    mobile: this.data.address.mobile,
+                    receiver: this.data.address.receiver,
+                    lng: this.data.address.longitude,
+                    lat: this.data.address.latitude
+                }
             }
+        } catch (err) {
+            $.alert('请选择地址或更新地址信息')
+            return false
         }
+
+
+        $.showLoading('支付中')
         console.log(obj)
         $.post(url, obj).then(function (res) {
-            if(res.data.code == 0){
-                if(res.data.additional){
+            if (res.data.code == 0) {
+                if (res.data.additional) {
                     console.log(JSON.parse(res.data.additional))
                     let payObj = JSON.parse(res.data.additional)
                     return $.wxRequestPayment(payObj)
-                }else {
+                } else {
                     _this.getGroupId(_this.data.goodsId)
                     throw '支付金额为0'
                 }
-            }else {
+            } else {
                 $.alert(res.data.message || '支付失败')
                 throw res
             }
@@ -125,7 +134,7 @@ Page({
             console.log(res)
         })
     },
-    getAddressList: function() {
+    getAddressList: function () {
         $.showLoading()
 
         let _this = this
@@ -136,11 +145,11 @@ Page({
             if (res.data.errCode == 0) {
                 let addressList = res.data.dataList
                 addressList.forEach(obj => {
-                  if(obj.default == true)  {
-                      _this.setData({
-                          address: obj
-                      })
-                  }
+                    if (obj.default == true) {
+                        _this.setData({
+                            address: obj
+                        })
+                    }
                 })
 
             }
@@ -166,12 +175,12 @@ Page({
     },
     setCount: function (count) {
         console.log(count)
-        if(!count || count < 1) {
+        if (!count || count < 1) {
             count = 1
             this.setData({
                 count
             })
-        }else if(count > this.data.goodsDetails.timeoutLimit){
+        } else if (count > this.data.goodsDetails.timeoutLimit) {
             count = this.data.goodsDetails.timeoutLimit
             this.setData({
                 count

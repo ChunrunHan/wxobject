@@ -1,19 +1,20 @@
 /**index.wxss**/
 
-.scroll-view-item {
-  height: 150px;
+swiper, swiper image {
+    width: 100vw;
+    height: 37.5vw;
 }
 
 .price {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .dec {
-  font-size: 14px;
+    font-size: 14px;
 }
 
-.goods-list .item{
-  border-top: 5px solid #e8e8e8;
+.goods-list .item {
+    border-top: 5px solid #e8e8e8;
 }
 
 .goods-list .item .img {
@@ -21,23 +22,24 @@
     justify-content: center;
     padding-top: 10px;
 }
-.goods-list .item .img image{
+
+.goods-list .item .img image {
     width: 150px;
     height: 150px;
 }
 
 .nav {
- text-align: center;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  font-size: 14px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: 14px;
 }
 
-.nav .item image{
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
+.nav .item image {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
 }
 
 .zone {
@@ -49,7 +51,7 @@
     display: flex;
 }
 
-.zone .flex{
+.zone .flex {
     padding: 5px 10px;
     text-align: center;
     justify-content: center;
@@ -66,7 +68,6 @@
     height: 14px;
     margin-left: 3px;
 }
-
 
 .zone view {
     background: transparent;

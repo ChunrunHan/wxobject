@@ -2,9 +2,18 @@
 .body {
     border-top: 1px solid #f2f2f2;
 }
-.body .item{
+view {
+    background: transparent;
+}
+
+.body .item {
     display: flex;
     padding: 15px;
     justify-content: space-between;
     border-bottom: 1px solid #f2f2f2;
+    background: #fff;
+}
+
+.body .item:active {
+   background: #f6f6f6;
 }
