@@ -1,6 +1,6 @@
 <!--pages/goods_details/index.wxml-->
 <swiper indicator-dots="{{swiperCofing.indicatorDots}}"
-        autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circula="{{swiperCofing.circular}}">
+        autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circular="{{swiperCofing.circular}}">
     <block wx:for="{{goodsDetails.images}}">
         <swiper-item>
             <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" class="slide-image"/>

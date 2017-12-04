@@ -8,7 +8,7 @@
 
 </view>
 <swiper indicator-dots="{{swiperCofing.indicatorDots}}"
-        autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circula="{{swiperCofing.circular}}">
+        autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circular="{{swiperCofing.circular}}">
     <navigator url="../goods_details/index?id={{item.id}}" wx:for="{{adList}}">
         <swiper-item>
             <image src="{{item.image}}" class="slide-image"/>
@@ -47,14 +47,15 @@
 
         <view class="pd-10">
             <view>{{item.name}}</view>
-            <view class="flex" style="justify-content: space-between">
+            <view class="flex" style="justify-content: space-between; padding-top: 10px;">
 
                 <view class="flex" style="align-items: flex-end">
                     <view class="price co_red">
                         ￥{{item.price}}
                     </view>
-                    <view class="dec co_ash" style="padding-left: 3px;">
-                        {{item.buyerLimit}}人团·单买价{{item.singlePrice}}元
+                    <view class="dec co_ash" style="padding-left: 10px;">
+                        {{item.buyerLimit}}人团
+                        <!--·单买价{{item.singlePrice}}元-->
                     </view>
                 </view>
                 <view class="btn bc_red">
