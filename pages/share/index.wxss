@@ -55,3 +55,9 @@ button {
     justify-content: space-between;
    border-bottom: 1px solid #f2f2f2;
 }
+.goods-name {
+    width: calc(100vw - 115px);
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}

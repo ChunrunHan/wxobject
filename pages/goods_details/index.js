@@ -131,7 +131,7 @@ Page({
         })
     },
     goRatingList: function () {
-        let url = `../rating-list/index`
+        let url = `../rating-list/index?id=${this.data.goodsId}`
         $.jump(url)
     }
 })
