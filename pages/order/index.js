@@ -144,6 +144,7 @@ Page({
     },
     pay: function (e) {
         $.showLoading('支付中')
+        console.log(e)
         let _this = this
         let singleBuy = e.target.dataset.singlebuy
         let goodsId = e.target.dataset.goodsid
@@ -154,6 +155,7 @@ Page({
             orderId,
             openId
         }
+
         let url = api.payOrder(obj)
 
         $.post(url, {}).then(function (res) {
@@ -163,7 +165,6 @@ Page({
                     let payObj = JSON.parse(res.data.additional)
                     return $.wxRequestPayment(payObj)
                 }else {
-                    _this.init()
                     throw '支付金额为0'
                 }
             }else {
@@ -173,7 +174,6 @@ Page({
         }).then(function (res) {
             console.log('支付成功')
             _this.getGroupId(goodsId, groupId, singleBuy)
-            _this.init()
             $.hideLoading()
         }).catch(function (err) {
             console.log('支付金额为0 的err')
@@ -190,7 +190,18 @@ Page({
         let _this = this
         console.log('当前是否存在groupId', groupId)
         if(groupId){
+            console.log(`../share/index?goodsId=${goodsId}&groupId=${groupId}&singleBuy=${singleBuy}`)
             $.jump(`../share/index?goodsId=${goodsId}&groupId=${groupId}&singleBuy=${singleBuy}`)
+        }else {
+            console.log('不存在groupId', groupId)
+            let url = api.getGroupId(goodsId)
+            $.get(url).then(function (res) {
+                console.log('获取到groupId', res.data.additional)
+                console.log(`../share/index?goodsId=${goodsId}&groupId=${groupId}&singleBuy=${singleBuy}`)
+                $.jump(`../share/index?goodsId=${goodsId}&groupId=${res.data.additional}&singleBuy=${singleBuy}`)
+            }).then(function (res) {
+                console.log(res)
+            })
         }
 
     },
