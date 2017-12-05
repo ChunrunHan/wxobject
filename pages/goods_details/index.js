@@ -1,6 +1,7 @@
 // pages/goods_details/index.js
 const $ = require('../../utils/utils');
 const api = require('../../utils/api');
+const app = getApp()
 
 const swiperCofing = {
     indicatorDots: false,
@@ -140,5 +141,11 @@ Page({
     goRatingList: function () {
         let url = `../rating-list/index?id=${this.data.goodsId}`
         $.jump(url)
+    },
+    getFormId: function (e) {
+        let formId = e.detail.formId;
+        app.formIds.push(formId)
+        console.log(`getFormId: ${formId}`)
+        console.log(app.formIds)
     }
 })

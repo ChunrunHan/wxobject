@@ -51,15 +51,14 @@ swiper image {
     width: 100vw;
     height: 50px;
     background: #fff;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
 }
 
 .buy .alone
 , .buy .group{
     width: 50vw;
     display: flex;
+    color: #fff;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
 }

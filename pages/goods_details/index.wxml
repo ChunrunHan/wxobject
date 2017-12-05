@@ -1,152 +1,155 @@
 <!--pages/goods_details/index.wxml-->
-<swiper indicator-dots="{{swiperCofing.indicatorDots}}"
-        autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}" circular="{{swiperCofing.circular}}">
-    <block wx:for="{{goodsDetails.images}}">
-        <swiper-item>
-            <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" class="slide-image"/>
-        </swiper-item>
-    </block>
-</swiper>
+<form report-submit="true" bindsubmit="getFormId">
+    <swiper indicator-dots="{{swiperCofing.indicatorDots}}"
+            autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}"
+            duration="{{swiperCofing.duration}}" circular="{{swiperCofing.circular}}">
+        <block wx:for="{{goodsDetails.images}}">
+            <swiper-item>
+                <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" class="slide-image"/>
+            </swiper-item>
+        </block>
+    </swiper>
 
-<view class="pd-10">
-    <view class="flex" style="justify-content: space-between; align-items: center">
+    <view class="pd-10">
+        <view class="flex" style="justify-content: space-between; align-items: center">
 
-        <view class="flex" style="align-items: flex-end">
-            <view class="price co_red">
-                ￥{{goodsDetails.price}}
+            <view class="flex" style="align-items: flex-end">
+                <view class="price co_red">
+                    ￥{{goodsDetails.price}}
+                </view>
+                <view class="old-price co_ash">
+                    ￥{{goodsDetails.oldPrice}}
+                </view>
             </view>
-            <view class="old-price co_ash">
-                ￥{{goodsDetails.oldPrice}}
-            </view>
-        </view>
-        <view class="share">
-            <button open-type="share">
-                <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/share.svg"></image>
-            </button>
+            <view class="share">
+                <button open-type="share">
+                    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/share.svg"></image>
+                </button>
 
-        </view>
-        <!--<view style="font-size: 14px">-->
+            </view>
+            <!--<view style="font-size: 14px">-->
             <!--已团{{goodsDetails.monthSell || 0}}件·{{goodsDetails.buyerLimit}}人团-->
-        <!--</view>-->
-    </view>
-
-</view>
-<view class="pd-10">{{goodsDetails.name}}</view>
-<view class="flex tag">
-    <view>
-        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
-        全场包邮
-    </view>
-    <view wx:if="{{goodsDetails.sevenDaysRefund}}">
-        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
-        7天退货
-    </view>
-    <view wx:if="{{goodsDetails.oneDayArrive}}">
-        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
-        当日达
-    </view>
-    <view>
-        <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
-        假一赔十
-    </view>
-</view>
-<view class="pd-10 pin" wx:if="{{groupList.length > 0}}">
-    <view class="title flex">
-        <view>{{groupList.length}}人正在拼单</view>
-        <view class="showMore" bindtap="showBox">查看更多</view>
-    </view>
-    <view class="item flex" wx:for="{{groupList}}" wx:for-index="index" wx:if="{{index < 3}}">
-        <view class="flex left">
-            <image src="{{item.avatar}}"></image>
-            <view class="name">{{item.name}}</view>
+            <!--</view>-->
         </view>
-        <view class="flex right">
-            <view class="flex prompt">
-                <view class="number">还差{{item.remaining}}人拼成</view>
-                <view class="time">剩余{{item.endTime}}</view>
-            </view>
-            <view bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
-                <view class="btn bc_red">去拼单</view>
-            </view>
 
+    </view>
+    <view class="pd-10">{{goodsDetails.name}}</view>
+    <view class="flex tag">
+        <view>
+            <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
+            全场包邮
+        </view>
+        <view wx:if="{{goodsDetails.sevenDaysRefund}}">
+            <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
+            7天退货
+        </view>
+        <view wx:if="{{goodsDetails.oneDayArrive}}">
+            <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
+            当日达
+        </view>
+        <view>
+            <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
+            假一赔十
         </view>
     </view>
-</view>
-
-<view class="pd-10 ratingList" wx:if="{{ratingList}}">
-    <view class="title flex">
-        <view>商品评价</view>
-        <view class="showMore" bindtap="goRatingList">查看更多</view>
-    </view>
-    <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
-        <view class="header flex">
+    <view class="pd-10 pin mb-8" wx:if="{{groupList.length > 0}}">
+        <view class="title flex">
+            <view>{{groupList.length}}人正在拼单</view>
+            <button form-type="submit" class="formButton showMore" bindtap="showBox">查看更多</button>
+        </view>
+        <view class="item flex" wx:for="{{groupList}}" wx:for-index="index" wx:if="{{index < 3}}">
             <view class="flex left">
                 <image src="{{item.avatar}}"></image>
-                <view class="name">匿名用户</view>
+                <view class="name">{{item.name}}</view>
             </view>
             <view class="flex right">
-                <view>{{item.createTime}}</view>
+                <view class="flex prompt">
+                    <view class="number">还差{{item.remaining}}人拼成</view>
+                    <view class="time">剩余{{item.endTime}}</view>
+                </view>
+                <button form-type="submit" class="formButton" bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
+                    <view class="btn bc_red">去拼单</view>
+                </button>
+
             </view>
         </view>
-        <view class="body">
-            {{item.comment}}
+    </view>
+
+    <view class="pd-10 ratingList  mb-8" wx:if="{{ratingList}}">
+        <view class="title flex">
+            <view>商品评价</view>
+            <button form-type="submit"  class="formButton showMore" bindtap="goRatingList">查看更多</button>
         </view>
-
-    </view>
-</view>
-
-<!--<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>-->
-<view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
-    商品详情
-</view>
-<view style="display: flex;flex-direction: column; padding-bottom: 50px">
-    <image wx:for="{{goodsDetails.description}}" src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" mode="widthFix"/>
-</view>
-
-<view class="buy flex">
-    <view class="alone" bindtap="pay" data-type="{{true}}">
-        <view>¥{{goodsDetails.singlePrice}}</view>
-        <view>单独购买</view>
-    </view>
-    <view class="group"  bindtap="pay" data-type="{{false}}">
-        <view>¥{{goodsDetails.leaderPrice}}</view>
-        <view>一键开团</view>
-    </view>
-</view>
-
-
-
-<view class="mask" wx:if="{{box}}">
-    <view class="alert">
-        <view class="title">
-            正在拼团
-        </view>
-        <view style="height: calc(100vh - 250px); overflow: auto">
-            <view class="item flex" wx:for="{{groupList}}" wx:for-index="index">
+        <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
+            <view class="header flex">
                 <view class="flex left">
                     <image src="{{item.avatar}}"></image>
-                    <view class="flex" style="justify-content: space-around; flex-direction: column">
-                        <view class="flex">
-                            <view class="name">{{item.name}}</view>
-                            <view class="remaining">还差{{item.remaining}}人</view>
-                        </view>
-
-                        <view class="time">剩余{{item.endTime}}</view>
-                    </view>
-
+                    <view class="name">匿名用户</view>
                 </view>
-                <view class="flex right" bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
-                    <view class="btn bc_red">去拼团</view>
+                <view class="flex right">
+                    <view>{{item.createTime}}</view>
                 </view>
             </view>
-            <view class="footer">
-                仅显示10个正在拼单的人
+            <view class="body">
+                {{item.comment}}
             </view>
-        </view>
 
-        <view class="close"  bindtap="hideBox">
-            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
         </view>
     </view>
 
-</view>
+    <!--<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>-->
+    <view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
+        商品详情
+    </view>
+    <view style="display: flex;flex-direction: column; padding-bottom: 50px">
+        <image wx:for="{{goodsDetails.description}}" src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}"
+               mode="widthFix"/>
+    </view>
+
+    <view class="buy flex">
+        <button form-type="submit" class="formButton alone" bindtap="pay" data-type="{{true}}">
+            <view>¥{{goodsDetails.singlePrice}}</view>
+            <view>单独购买</view>
+        </button>
+        <button form-type="submit" class="formButton group" bindtap="pay" data-type="{{false}}">
+            <view>¥{{goodsDetails.leaderPrice}}</view>
+            <view>一键开团</view>
+        </button>
+    </view>
+
+
+    <view class="mask" wx:if="{{box}}">
+        <view class="alert">
+            <view class="title">
+                正在拼团
+            </view>
+            <view style="height: calc(100vh - 250px); overflow: auto">
+                <view class="item flex" wx:for="{{groupList}}" wx:for-index="index">
+                    <view class="flex left">
+                        <image src="{{item.avatar}}"></image>
+                        <view class="flex" style="justify-content: space-around; flex-direction: column">
+                            <view class="flex">
+                                <view class="name">{{item.name}}</view>
+                                <view class="remaining">还差{{item.remaining}}人</view>
+                            </view>
+
+                            <view class="time">剩余{{item.endTime}}</view>
+                        </view>
+
+                    </view>
+                    <button form-type="submit" class="formButton flex right" bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
+                        <view class="btn bc_red">去拼团</view>
+                    </button>
+                </view>
+                <view class="footer">
+                    仅显示10个正在拼单的人
+                </view>
+            </view>
+
+            <button form-type="submit" class="formButton close" bindtap="hideBox">
+                <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
+            </button>
+        </view>
+
+    </view>
+</form>

@@ -13,7 +13,6 @@ function getToken() {
     return wx.getStorageSync('token');
 }
 
-
 // 获取header
 function getHeader() {
     var token = getToken();

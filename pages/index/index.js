@@ -223,7 +223,8 @@ Page({
         })
     },
     openDetail: function(e) {
-        let id = e.target.dataset.id
+        console.log(e)
+        let id = e.currentTarget.dataset.id
         let url = `../goods_details/index?id=${id}`
         $.jump(url)
     },

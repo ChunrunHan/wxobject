@@ -12,7 +12,7 @@ Page({
             name: '待成团',
             status: '5'
         }, {
-            name: '待收货',
+            name: '配送中',
             status: '2'
         }, {
             name: '待评价',

@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <form  report-submit="true" bindsubmit="getFormId">
-    <view class="zone" bindtap="chooseLocation">
+    <button form-type="submit" class="formButton zone" bindtap="chooseLocation">
         <view class="flex">
             <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/gps.svg" class="slide-image"
                    style="margin-right: 3px;"/>
@@ -8,7 +8,7 @@
             <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/down.svg" class="slide-image"/>
         </view>
 
-    </view>
+    </button>
     <swiper indicator-dots="{{swiperCofing.indicatorDots}}"
             autoplay="{{swiperCofing.autoplay}}" interval="{{swiperCofing.interval}}" duration="{{swiperCofing.duration}}"
             circular="{{swiperCofing.circular}}">
