@@ -156,6 +156,7 @@ Page({
                 })
             } else {
                 _this.setData({
+                    addressList: [],
                     more: '没有更多数据'
                 })
             }

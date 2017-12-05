@@ -16,11 +16,12 @@ module.exports = {
     getGroupsUser: groupId => `${mallUrl}/goods/groups_user_info/${groupId}`,
     getGroupId: goodsId => `${mallUrl}/goods/user_group/${goodsId}`,
     putOrderWatitingevalaute: orderId => `${mallUrl}/order/watitingevalaute/${orderId}`,
-    payOrder: orderId => `${mallUrl}/payment/group/${orderId}`,
+    payOrder: obj => `${mallUrl}/payment/group/${obj.orderId}/${obj.openId}`,
     postRating: () => `${mallUrl}/rating`,
     getRating: obj => `${mallUrl}/rating/list/goods/ratings///${obj.goodsId}////${obj.page}/${obj.size}`,
     putUser: `${baseUrl}/user`,
     requestRefund: orderId => `${mallUrl}/order/request_refund/${orderId}`,
     groupExpireTime: groupId => `${mallUrl}/goods/group_expire_time/${groupId}`,
-    getAd: `${mallUrl}/ad/group/list`
+    getAd: `${mallUrl}/ad/group/list`,
+    postFormId: `${mallUrl}/tm/form_id`
 }

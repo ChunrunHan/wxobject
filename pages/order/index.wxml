@@ -49,7 +49,7 @@
             <!--<view class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="requestRefund">-->
                 <!--退货-->
             <!--</view>-->
-            <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="pay">
+            <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-goodsId="{{item.goods.id}}" data-groupId="{{item.groupId}}" data-singleBuy="{{item.single}}" data-orderId="{{item.id}}" bindtap="pay">
                 去支付
             </view>
             <view wx:if="{{item.status == '待收货' || item.status == '已收货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">

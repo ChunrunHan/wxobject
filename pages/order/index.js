@@ -15,9 +15,6 @@ Page({
             name: '待收货',
             status: '2'
         }, {
-          name: '已收货',
-          status: '9'
-        }, {
             name: '待评价',
             status: '3'
         }, {
@@ -52,7 +49,9 @@ Page({
                     // obj.images = obj.images.split(':')[0]
                     obj.status = _this.statusCode[obj.status]
                     obj.orderTime = new Date(obj.orderTime).Format('yyyy-MM-dd hh:mm:ss')
-                    obj.goods.images = obj.goods.images.split(':')[0]
+                    if(obj.goods){
+                        obj.goods.images = obj.goods.images.split(':')[0]
+                    }
                 })
                 if(_this.data.page > 0){
                     orderList = [..._this.data.orderList, ...orderList]
@@ -146,7 +145,17 @@ Page({
     pay: function (e) {
         $.showLoading('支付中')
         let _this = this
-        let url = api.payOrder(e.target.dataset.orderid)
+        let singleBuy = e.target.dataset.singlebuy
+        let goodsId = e.target.dataset.goodsid
+        let groupId = e.target.dataset.groupid
+        let orderId = e.target.dataset.orderid
+        let openId = wx.getStorageSync('openId')
+        let obj = {
+            orderId,
+            openId
+        }
+        let url = api.payOrder(obj)
+
         $.post(url, {}).then(function (res) {
             if(res.data.code == 0){
                 if(res.data.additional){
@@ -163,12 +172,27 @@ Page({
             }
         }).then(function (res) {
             console.log('支付成功')
+            _this.getGroupId(goodsId, groupId, singleBuy)
             _this.init()
             $.hideLoading()
         }).catch(function (err) {
+            console.log('支付金额为0 的err')
             console.log(err)
+
+            if(err == '支付金额为0'){
+                console.log('支付金额为0 获取groupId')
+                _this.getGroupId(goodsId, groupId, singleBuy)
+            }
             $.hideLoading()
         })
+    },
+    getGroupId: function (goodsId, groupId, singleBuy) {
+        let _this = this
+        console.log('当前是否存在groupId', groupId)
+        if(groupId){
+            $.jump(`../share/index?goodsId=${goodsId}&groupId=${groupId}&singleBuy=${singleBuy}`)
+        }
+
     },
     call: function (e) {
         wx.makePhoneCall({

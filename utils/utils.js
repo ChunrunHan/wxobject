@@ -2,6 +2,7 @@
  *  kouchao 创建于 2017/11/20
  */
 const api = require('api');
+const app = getApp()
 
 const imgUrl = `https://dev.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
@@ -124,6 +125,19 @@ module.exports = {
                                     let obj = {
                                         nickname: nickName,
                                         wxAvatar: avatarUrl
+                                    }
+                                    console.log(app.formIds)
+                                    if(app.formIds.length > 0){
+                                        _this.post(api.postFormId, app.formIds).then(function (res) {
+                                            console.log(res)
+                                            if(res.data.code == 0){
+                                                console.log('上传formId成功')
+                                                app.formIds = []
+                                            }
+                                        }).catch(function (err) {
+                                            console.log('上传formId失败')
+                                            console.log(err)
+                                        })
                                     }
                                     if(!res.data.data.wxAvatar){
                                         _this.put(url, obj).then(function (res) {

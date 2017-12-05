@@ -87,5 +87,6 @@ Math.__proto__.div = function (num1, num2) {
 
 App({
     onLaunch: function () {
-    }
+    },
+    formIds: []
 })

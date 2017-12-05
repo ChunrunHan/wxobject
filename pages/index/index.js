@@ -221,5 +221,16 @@ Page({
         }).catch(function (err) {
             console.log(err)
         })
+    },
+    openDetail: function(e) {
+        let id = e.target.dataset.id
+        let url = `../goods_details/index?id=${id}`
+        $.jump(url)
+    },
+    getFormId: function (e) {
+        let formId = e.detail.formId;
+        app.formIds.push(formId)
+        console.log(`getFormId: ${formId}`)
+        console.log(app.formIds)
     }
 })

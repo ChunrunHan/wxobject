@@ -12,13 +12,27 @@ Page({
     onLoad: function (options) {
         let goodsId = options.goodsId
         let groupId = options.groupId
+        let singleBuy = options.singleBuy == 'true' ? true : false
+
+        console.log('支付成功页面的参数')
+        console.log(`goodsId: ${goodsId}`)
+        console.log(`groupId: ${groupId}`)
+        console.log(`singleBuy: ${singleBuy}`)
+        console.log('- - - - - - - - - -')
+
         this.setData({
             goodsId,
-            groupId
+            groupId,
+            singleBuy
         })
+
         this.getGoodsDetails()
-        this.getGroupsUserList()
-        this.groupExpireTime()
+
+        if(!singleBuy){
+            this.getGroupsUserList()
+            this.groupExpireTime()
+        }
+
     },
     getGoodsDetails: function () {
         let _this = this
@@ -27,8 +41,9 @@ Page({
             if (res.data.errCode === 0) {
                 let goodsDetails = res.data.data
                 $.setTitle(goodsDetails.name)
-                goodsDetails.images = goodsDetails.images.split(':')
+                goodsDetails.images = goodsDetails.images.split(':')[0]
                 goodsDetails.description = goodsDetails.description.split(':')
+                goodsDetails.startTime = new Date(parseInt(goodsDetails.startTime)).Format('yyyy-MM-dd hh:mm:ss')
                 _this.setData({
                     goodsDetails
                 })
@@ -43,15 +58,18 @@ Page({
         let url = api.getGroupsUser(this.data.groupId)
         $.get(url).then(function (res) {
             if (res.data.errCode === 0) {
-
+                console.log('getGroupsUserList的参数')
                 let groupNumber = JSON.parse(JSON.stringify(res.data.dataList)).length
                 let groupsUserList = res.data.dataList
+
                 for (let i = groupsUserList.length; i < 10; i++) {
                     groupsUserList.push({
                         avatar: null
                     })
                 }
                 let openId = wx.getStorageSync('openId')
+                console.log(`openId: ${openId}`)
+
                 let isMe = false
                 groupsUserList.forEach(obj => {
                     if (obj.openId == openId) {
@@ -59,6 +77,15 @@ Page({
                         isMe = true
                     }
                 })
+
+
+                console.log(`groupsUserList: `)
+                console.log(res.data.dataList)
+                console.log(`groupNumber:`)
+                console.log(groupNumber)
+                console.log(`isMe: ${isMe}`)
+                console.log('- - - - - - - - - -')
+
                 _this.setData({
                     groupsUserList,
                     groupNumber,
@@ -71,10 +98,29 @@ Page({
         })
     },
     onShareAppMessage: function (res) {
-        return {
-            title: this.data.goodsDetails.name,
-            path: `/pages/share/index?goodsId=${this.data.goodsId}&groupId=${this.data.groupId}`
+        let singleBuy = this.data.singleBuy
+        console.log(`singleBuy: ${singleBuy}`)
+        let path = ''
+        let title = this.data.goodsDetails.name
+        let obj = {}
+        if(singleBuy){
+            path = `/pages/goods_details/index?id=${this.data.goodsId}`
+            let imageUrl = `${this.data.imgUrl}/${this.data.goodsDetails.sellerId}/${this.data.goodsDetails.images}`
+            obj = {
+                title,
+                path,
+                imageUrl
+            }
+            console.log(imageUrl)
+        }else {
+            path = `/pages/share/index?goodsId=${this.data.goodsId}&groupId=${this.data.groupId}`
+            obj = {
+                title,
+                path
+            }
         }
+        console.log(`path: ${path}`)
+        return obj
     },
     pay: function (e) {
         var _this = this
@@ -82,8 +128,17 @@ Page({
             console.log(e.currentTarget.dataset.type)
             let singleBuy = e.currentTarget.dataset.type
             let goodsId = _this.data.goodsDetails.id
-            let groupId = e.currentTarget.dataset.groupid || ''
-            $.jump(`../pay/index?singleBuy=${singleBuy}&goodsId=${goodsId}&groupId=${groupId}`)
+            let groupId = e.currentTarget.dataset.groupid
+            let url = `../pay/index?singleBuy=${singleBuy}&goodsId=${goodsId}&groupId=${groupId}`
+
+            console.log('pay的参数')
+            console.log(`singleBuy: ${singleBuy}`)
+            console.log(`goodsId: ${goodsId}`)
+            console.log(`groupId: ${groupId}`)
+            console.log(`url: ${url}`)
+            console.log('- - - - - - - - - -')
+
+            $.jump(url)
         })
 
     },

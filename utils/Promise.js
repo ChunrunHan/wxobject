@@ -3,7 +3,7 @@ function wxPromisify(fn) {
         obj = obj || {}
         return new Promise(function (resolve, reject) {
             obj.success = function (res) {
-                console.log(res)
+                // console.log(res)
                 resolve(res)
             }
 

@@ -98,7 +98,7 @@ Page({
                     let payObj = JSON.parse(res.data.additional)
                     return $.wxRequestPayment(payObj)
                 } else {
-                    _this.getGroupId(_this.data.goodsId)
+                    _this.getGroupId()
                     throw '支付金额为0'
                 }
             } else {
@@ -111,6 +111,7 @@ Page({
             _this.groupExpireTime()
             $.hideLoading()
         }).catch(function (err) {
+            console.log('支付金额为0 的err')
             console.log(err)
             $.hideLoading()
         })
@@ -127,12 +128,24 @@ Page({
     },
     getGroupId: function () {
         let _this = this
-        let url = api.getGroupId(this.data.goodsId)
-        $.get(url).then(function (res) {
-            $.jump(`../share/index?goodsId=${_this.data.goodsId}&groupId=${res.data.additional}`, true)
-        }).then(function (res) {
-            console.log(res)
-        })
+        let groupId = this.data.groupId
+        console.log('当前是否存在groupId', groupId)
+        if(groupId){
+            console.log('存在groupId', groupId)
+            $.jump(`../share/index?goodsId=${_this.data.goodsId}&groupId=${groupId}&singleBuy=${_this.data.singleBuy}`, true)
+        }else {
+            console.log('不存在groupId', this.data.groupId)
+
+            let url = api.getGroupId(this.data.goodsId)
+            $.get(url).then(function (res) {
+                console.log('获取到groupId', res.data.additional)
+
+                $.jump(`../share/index?goodsId=${_this.data.goodsId}&groupId=${res.data.additional}&singleBuy=${_this.data.singleBuy}`, true)
+            }).then(function (res) {
+                console.log(res)
+            })
+        }
+
     },
     getAddressList: function () {
         $.showLoading()
