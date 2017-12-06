@@ -230,7 +230,11 @@ Page({
     },
     getFormId: function (e) {
         let formId = e.detail.formId;
-        app.formIds.push(formId)
+        let time = new Date().getTime()
+        app.formIds.push({
+            formId,
+            time
+        })
         console.log(`getFormId: ${formId}`)
         console.log(app.formIds)
     }

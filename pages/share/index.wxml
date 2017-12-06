@@ -43,11 +43,11 @@
             <view class="goods-name">
                 {{goodsDetails.name}}
             </view>
-            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>
+            <!--<image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>-->
         </view>
     </view>
-    <view class="item" wx:if="{{!singleBuy}}">
-        <view>参团时间</view>
-        <view style="color: #9c9c9c">{{goodsDetails.startTime}}</view>
-    </view>
+    <!--<view class="item" wx:if="{{!singleBuy}}">-->
+        <!--<view>参团时间</view>-->
+        <!--<view style="color: #9c9c9c">{{goodsDetails.startTime}}</view>-->
+    <!--</view>-->
 </view>
