@@ -13,6 +13,6 @@
         </view>
     </view>
     <view class="item" bindtap="logout">
-        <view>注销</view>
+        <view>退出登录</view>
     </view>
 </view>

@@ -15,10 +15,10 @@
 
             <view class="flex" style="align-items: flex-end">
                 <view class="price co_red">
-                    ￥{{goodsDetails.price}}
+                    ¥{{goodsDetails.price}}
                 </view>
                 <view class="old-price co_ash">
-                    ￥{{goodsDetails.oldPrice}}
+                    ¥{{goodsDetails.oldPrice}}
                 </view>
             </view>
             <view class="share">
@@ -54,7 +54,7 @@
     </view>
     <view class="pd-10 pin mb-8" wx:if="{{groupList.length > 0}}">
         <view class="title flex">
-            <view>{{groupList.length}}人正在拼单</view>
+            <view>{{groupList.length}}人正在参团</view>
             <button form-type="submit" class="formButton showMore" bindtap="showBox">查看更多</button>
         </view>
         <view class="item flex" wx:for="{{groupList}}" wx:for-index="index" wx:if="{{index < 3}}">
@@ -68,7 +68,7 @@
                     <view class="time">剩余{{item.endTime}}</view>
                 </view>
                 <button form-type="submit" class="formButton" bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
-                    <view class="btn bc_red">去拼单</view>
+                    <view class="btn bc_red">去参团</view>
                 </button>
 
             </view>
@@ -138,11 +138,11 @@
 
                     </view>
                     <button form-type="submit" class="formButton flex right" bindtap="pay" data-type="{{false}}" data-groupid="{{item.id}}">
-                        <view class="btn bc_red">去拼团</view>
+                        <view class="btn bc_red">去参团</view>
                     </button>
                 </view>
                 <view class="footer">
-                    仅显示10个正在拼单的人
+                    仅显示10个开团的人
                 </view>
             </view>
 

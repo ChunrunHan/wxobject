@@ -11,11 +11,11 @@ Page({
         $.setTitle('我的')
     },
     logout: function () {
-        $.confirm('确认注销？', function () {
+        $.confirm('确认退出？', function () {
             wx.removeStorageSync('unionId')
             wx.removeStorageSync('openId')
             wx.removeStorageSync('token')
-            $.alert('已注销!')
+            $.alert('已退出!')
         })
     },
     order: function () {
