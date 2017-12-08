@@ -4,6 +4,11 @@
 const api = require('api');
 const app = getApp()
 
+const QQMapWX = require('qqmap-wx-jssdk');
+const qqmapwx = new QQMapWX({
+    key: 'WHGBZ-5JZKO-4PMWR-SEXNN-4O54Z-SNFO5' // 必填
+});
+
 const imgUrl = `https://dev.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
@@ -52,14 +57,6 @@ module.exports = {
         wx.hideLoading()
     },
     getLocation: promise(wx.getLocation),
-    getDistrict: str => {
-        return {
-            province: str.slice(0,3),
-            city: str.slice(3,6),
-            district: str.slice(6,9)
-
-        }
-    },
     imgUrl: imgUrl,
     getTime: function (number) {
         var time = parseInt((number - new Date().getTime()) / 1000)
@@ -228,6 +225,7 @@ module.exports = {
             r2 = Number(num2.toString().replace(".", ""));
             return (r1 / r2) * Math.pow(10, t2 - t1);
         }
-    }
+    },
+    qqmapwx: qqmapwx
 
 }

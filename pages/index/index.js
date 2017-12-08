@@ -4,12 +4,6 @@ const $ = require('../../utils/utils');
 const api = require('../../utils/api');
 const app = getApp()
 
-var QQMapWX = require('../../utils/qqmap-wx-jssdk');
-var demo = new QQMapWX({
-    key: 'WHGBZ-5JZKO-4PMWR-SEXNN-4O54Z-SNFO5' // 必填
-});
-
-
 
 var loading = false
 
@@ -40,33 +34,11 @@ Page({
     },
     onLoad: function () {
         $.setTitle('乐拼青岛')
-        demo.geocoder({
-            address: '青岛市政府',
-            success: function (res) {
-                console.log(res.result);
-                console.log('成功')
-            },
-            fail: function (res) {
-                console.log('失败')
-                console.log(res);
-            },
-            complete: function (res) {
-                console.log(res);
-            }
-        });
         this.init()
     },
     getRecommendList: function () {
         var _this = this
-        // var obj = {
-        //     province: '山东省',
-        //     city: '青岛市',
-        //     district: wx.getStorageSync('district'),
-        //     zone: wx.getStorageSync('zone'),
-        //     longitude: wx.getStorageSync('longitude'),
-        //     latitude: wx.getStorageSync('latitude'),
-        //     page: _this.data.page
-        // }
+
         var obj = {
             province: '山东省',
             city: '青岛市',
@@ -87,7 +59,7 @@ Page({
                 recommendList.forEach(function (obj) {
                     obj.images = obj.images.split(':')[0]
                 })
-                if(_this.data.page > 0){
+                if (_this.data.page > 0) {
                     recommendList = [..._this.data.recommendList, ...recommendList]
                 }
 
@@ -130,46 +102,46 @@ Page({
     chooseLocation: function () {
         var _this = this
         wx.chooseLocation({
-            success: function (res) {
-                console.log(res);
+            success: function (ress) {
+                console.log(ress);
+                let zone = ress.name
+                $.qqmapwx.geocoder({
+                    address: ress.address,
+                    success: function (res) {
+                        console.log(res)
+                        console.log(' - - - - -  --  -- ')
+                        let latitude = res.result.location.lat
+                        let longitude = res.result.location.lng
 
-                var zone = res.name
-                var latitude = res.latitude
-                var longitude = res.longitude
+                        let city = res.result.address_components.city
+                        if (city != '青岛市') {
+                            $.alert('区域不在青岛市, 请重新选择')
+                            zone = "重新选择"
 
+                            _this.setData({
+                                zone,
+                            })
+                            return false
+                        }
 
-                let obj = {
-                    latitude,
-                    longitude,
-                    zone
-                }
+                        _this.setData({
+                            latitude,
+                            longitude,
+                            zone,
+                        })
 
-                if (!res.address.includes('山东省青岛市')) {
-                    $.alert('区域不在青岛市, 请重新选择')
-                    zone = "重新选择"
+                        wx.setStorageSync('latitude', latitude)
+                        wx.setStorageSync('longitude', longitude)
+                        wx.setStorageSync('zone', zone)
+                        wx.setStorageSync('district', res.result.address_components.district)
 
-                    _this.setData({
-                        zone,
-                    })
-                    return false
-                } else
-
-                var district = $.getDistrict(res.address).district
-
-                _this.setData({
-                    latitude,
-                    longitude,
-                    zone,
+                        _this.getRecommendList()
+                        _this.getAd()
+                    },
+                    fail: function (err) {
+                        console.log(err)
+                    }
                 })
-
-                wx.setStorageSync('latitude', latitude)
-                wx.setStorageSync('longitude', longitude)
-                wx.setStorageSync('zone', zone)
-                wx.setStorageSync('district', district)
-
-
-                _this.getRecommendList()
-                _this.getAd()
 
             }
         })
@@ -191,11 +163,7 @@ Page({
             this.getRecommendList()
             this.getAd()
         } else {
-            wx.setStorageSync('latitude', '36.06623')
-            wx.setStorageSync('longitude', '120.38299')
-            wx.setStorageSync('zone', '全青岛')
-            wx.setStorageSync('district', '市南区')
-            this.init()
+            this.getLocation()
         }
     },
     onPullDownRefresh: function () {
@@ -225,8 +193,8 @@ Page({
         var longitude = wx.getStorageSync('longitude')
         let _this = this
         let obj = {
-            lng : longitude,
-            lat : latitude
+            lng: longitude,
+            lat: latitude
         }
         console.log(obj)
         let url = api.getAd
@@ -248,7 +216,7 @@ Page({
             console.log(err)
         })
     },
-    openDetail: function(e) {
+    openDetail: function (e) {
         console.log(e)
         let id = e.currentTarget.dataset.id
         let url = `../goods_details/index?id=${id}`
@@ -263,5 +231,53 @@ Page({
         })
         console.log(`getFormId: ${formId}`)
         console.log(app.formIds)
+    },
+    getLocation: function () {
+        let _this = this
+        wx.getLocation({
+            type: 'wgs84',
+            success: function (ress) {
+                let latitude = ress.latitude
+                let longitude = ress.longitude
+                $.qqmapwx.reverseGeocoder({
+                    location: {
+                        latitude: latitude,
+                        longitude: longitude
+                    },
+                    success: function (res) {
+                        $.qqmapwx.geocoder({
+                            address: res.result.address,
+                            success: function (res) {
+                                console.log(res)
+                                let lat = res.result.location.lat
+                                let lng = res.result.location.lng
+                                let city = res.result.address_components.city
+                                if (city != '青岛市') {
+                                    $.alert('区域不在青岛市, 请重新选择')
+                                    zone = "手动选择"
+
+                                    _this.setData({
+                                        zone,
+                                    })
+                                    return false
+                                }
+                                wx.setStorageSync('latitude', lat)
+                                wx.setStorageSync('longitude', lng)
+                                wx.setStorageSync('zone', res.result.title)
+                                wx.setStorageSync('district', res.result.address_components.district)
+                                _this.init()
+                            },
+                            fail: function (err) {
+                                console.log(err)
+                            }
+                        })
+                    },
+                    fail: function (err) {
+                        console.log(err)
+                    }
+                })
+            }
+        })
+
     }
 })

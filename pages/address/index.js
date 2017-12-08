@@ -23,29 +23,32 @@ Page({
     chooseLocation: function () {
         var _this = this
         wx.chooseLocation({
-            success: function (res) {
-                var zone = res.name
-                var latitude = res.latitude
-                var longitude = res.longitude
-                let obj = {
-                    latitude,
-                    longitude,
-                    zone
-                }
+            success: function (ress) {
+                var zone = ress.name
+                $.qqmapwx.geocoder({
+                    address: ress.address,
+                    success: function (res) {
+                        console.log(res)
+                        console.log(' - - - - -  --  -- ')
+                        let latitude = res.result.location.lat
+                        let longitude = res.result.location.lng
 
-                let address = $.getDistrict(res.address)
+                        var province = res.result.address_components.province
+                        var city = res.result.address_components.city
+                        var district = res.result.address_components.district
 
-                var province = address.province
-                var city = address.city
-                var district = address.district
-
-                _this.setData({
-                    latitude,
-                    longitude,
-                    zone,
-                    district,
-                    city,
-                    province
+                        _this.setData({
+                            latitude,
+                            longitude,
+                            zone,
+                            district,
+                            city,
+                            province
+                        })
+                    },
+                    fail: function (err) {
+                        console.log(err)
+                    }
                 })
             }
         })

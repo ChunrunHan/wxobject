@@ -22,7 +22,6 @@ function getHeader() {
         return;
     }
 
-  console.log(arguments[0])
     var url = encodeURI(arguments[0]);
     var json = "";
     if (argNum == 2) {
