@@ -204,7 +204,7 @@ Page({
             })
         }
         let price = parseFloat(this.data.price)
-        let payPrice = Math.mul(count, price)
+        let payPrice = $.math.mul(count, price)
         this.setData({
             payPrice
         })

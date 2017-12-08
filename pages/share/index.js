@@ -103,7 +103,7 @@ Page({
         let path = ''
         let title = this.data.goodsDetails.name
         let obj = {}
-        if(singleBuy){
+        if(singleBuy || !(this.data.goodsDetails.buyerLimit - (this.data.groupNumber || 0))){
             path = `/pages/goods_details/index?id=${this.data.goodsId}`
             let imageUrl = `${this.data.imgUrl}/${this.data.goodsDetails.sellerId}/${this.data.goodsDetails.images}`
             obj = {

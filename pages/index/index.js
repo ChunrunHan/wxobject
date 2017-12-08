@@ -4,6 +4,13 @@ const $ = require('../../utils/utils');
 const api = require('../../utils/api');
 const app = getApp()
 
+var QQMapWX = require('../../utils/qqmap-wx-jssdk');
+var demo = new QQMapWX({
+    key: 'WHGBZ-5JZKO-4PMWR-SEXNN-4O54Z-SNFO5' // 必填
+});
+
+
+
 var loading = false
 
 const swiperCofing = {
@@ -33,6 +40,20 @@ Page({
     },
     onLoad: function () {
         $.setTitle('乐拼青岛')
+        demo.geocoder({
+            address: '青岛市政府',
+            success: function (res) {
+                console.log(res.result);
+                console.log('成功')
+            },
+            fail: function (res) {
+                console.log('失败')
+                console.log(res);
+            },
+            complete: function (res) {
+                console.log(res);
+            }
+        });
         this.init()
     },
     getRecommendList: function () {
@@ -110,9 +131,13 @@ Page({
         var _this = this
         wx.chooseLocation({
             success: function (res) {
+                console.log(res);
+
                 var zone = res.name
                 var latitude = res.latitude
                 var longitude = res.longitude
+
+
                 let obj = {
                     latitude,
                     longitude,
@@ -203,6 +228,7 @@ Page({
             lng : longitude,
             lat : latitude
         }
+        console.log(obj)
         let url = api.getAd
         $.post(url, obj).then(function (res) {
             if (res.data.errCode === 0) {

@@ -22,17 +22,17 @@
     </view>
 </view>
 
-<button open-type="share" wx:if="{{isMe && !singleBuy}}">
+<button open-type="share" wx:if="{{isMe && !singleBuy && goodsDetails.buyerLimit - (groupNumber || 0)}}">
     邀请好友参团 {{expireTime}} 后结束
 </button>
 
-<view wx:if="{{!isMe && !singleBuy}}" bindtap="pay" data-type="{{false}}" data-groupid="{{groupId}}">
+<view wx:if="{{!isMe && !singleBuy && goodsDetails.buyerLimit - (groupNumber || 0)}}" bindtap="pay" data-type="{{false}}" data-groupid="{{groupId}}">
     <button >
         立即参团
     </button>
 </view>
 
-<button open-type="share" wx:if="{{singleBuy}}" >
+<button open-type="share" wx:if="{{singleBuy || !(goodsDetails.buyerLimit - (groupNumber || 0))}}" >
     分享给好友
 </button>
 
