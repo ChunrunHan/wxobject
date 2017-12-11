@@ -111,11 +111,6 @@ Page({
             let mobile = this.data.addressList[index].mobile
 
 
-            // if (this.data.addressList[index].address.split(' ').length == 1) {
-            //     $.alert('地区信息已过期，重新选择地区')
-            // }
-
-
             this.setData({
                 receiver,
                 mobile,
@@ -179,6 +174,10 @@ Page({
         let index = e.currentTarget.dataset.index
         let addressId = this.data.addressList[index].id
         let isDfault = this.data.addressList[index].default
+        if (this.data.addressList[index].latitude == 0 && this.data.addressList[index].longitude == 0) {
+            $.alert('地区信息已过期，重新选择地区')
+            return false
+        }
         let url = api.putAddressDefault(addressId)
         if (!isDfault) {
             $.showLoading()
@@ -261,6 +260,11 @@ Page({
 
         if (!this.data.address) {
             $.alert('请输入详细地址')
+            return false
+        }
+
+        if (obj.latitude == 0 && obj.longitude == 0) {
+            $.alert('地区信息已过期，重新选择地区')
             return false
         }
 
