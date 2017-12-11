@@ -9,7 +9,7 @@
                 <text class="name">{{item.receiver}}</text>, <text class="mobile">{{item.mobile}}</text>
             </view>
             <view>
-                <text class="">{{item.province}}</text> <text>{{item.city}}</text> <text>{{item.district}}</text> <text>{{item.address}}</text>
+                <text class="">{{item.province}}</text> <text>{{item.city}}</text> <text>{{item.district}}</text> <text>{{item.zone}}</text> <text>{{item.address}}</text>
             </view>
         </view>
         <view class="handle">
@@ -56,8 +56,8 @@
             <view>{{(province || '') + (city || '') + (district || '选择地区')}}</view>
             <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px;height: 14px"></image>
         </view>
-        <view wx:if="{{zone}}" style="border-bottom: 1px dotted #d2d2d2;padding: 15px 10px">
-            {{zone}}
+        <view style="border-bottom: 1px dotted #d2d2d2;padding: 15px 10px" bindtap="chooseLocation">
+            {{zone || '选择小区'}}
         </view>
         <textarea bindinput="inputAddress" style="border-bottom: 1px dotted #d2d2d2" placeholder="详细地址（可填写楼号、单元、门牌号）" value="{{address}}"/>
         <view class="close"  bindtap="hideBox">

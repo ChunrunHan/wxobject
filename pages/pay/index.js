@@ -75,7 +75,7 @@ Page({
                     province: this.data.address.province,
                     city: this.data.address.city,
                     district: this.data.address.district,
-                    zone: '',
+                    zone: this.data.address.zone,
                     address: this.data.address.address,
                     mobile: this.data.address.mobile,
                     receiver: this.data.address.receiver,

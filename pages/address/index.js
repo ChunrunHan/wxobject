@@ -103,17 +103,17 @@ Page({
             let latitude = this.data.addressList[index].latitude
             let longitude = this.data.addressList[index].longitude
             let district = this.data.addressList[index].district
-            let address = this.data.addressList[index].address.split(' ').length > 1 ? this.data.addressList[index].address.split(' ')[1] : this.data.addressList[index].address.split(' ')[0]
-            let zone = this.data.addressList[index].address.split(' ').length > 1 ? this.data.addressList[index].address.split(' ')[0] : ''
+            let address = this.data.addressList[index].address
+            let zone = this.data.addressList[index].zone || ''
             let city = this.data.addressList[index].city
             let province = this.data.addressList[index].province
             let receiver = this.data.addressList[index].receiver
             let mobile = this.data.addressList[index].mobile
 
 
-            if (this.data.addressList[index].address.split(' ').length == 1) {
-                $.alert('地区信息已过期，重新选择地区')
-            }
+            // if (this.data.addressList[index].address.split(' ').length == 1) {
+            //     $.alert('地区信息已过期，重新选择地区')
+            // }
 
 
             this.setData({
@@ -236,12 +236,12 @@ Page({
             province: this.data.province,
             city: this.data.city,
             district: this.data.district,
-            address: this.data.zone + ' ' + this.data.address,
+            address: this.data.address,
+            zone: this.data.zone,
             mobile: this.data.mobile,
             receiver: this.data.receiver,
             latitude: this.data.latitude,
             longitude: this.data.longitude,
-            zone: ''
         }
 
         if (!obj.receiver) {

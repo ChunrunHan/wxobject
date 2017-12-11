@@ -118,6 +118,7 @@ Page({
                             $.alert('区域不在青岛市, 请重新选择')
                             zone = "重新选择"
 
+
                             _this.setData({
                                 zone,
                             })

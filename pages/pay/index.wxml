@@ -7,7 +7,7 @@
                 <text class="name">{{address.receiver}}</text> <text class="mobile">{{address.mobile}}</text>
             </view>
             <view>
-                <text class="">{{address.province}}</text> <text>{{address.city}}</text> <text>{{address.district}}</text> <text>{{address.address}}</text>
+                <text class="">{{address.province}}</text> <text>{{address.city}}</text> <text>{{address.district}}</text> <text>{{address.zone}}</text> <text>{{address.address}}</text>
             </view>
         </view>
     </view>
