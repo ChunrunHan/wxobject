@@ -43,7 +43,7 @@
             </view>
         </view>
         <view class="flex pd-10" style="justify-content: flex-end; background: #fff">
-            <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}">
+            <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}" style=''>
                 联系客服
             </view>
             <!--<view class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="requestRefund">-->
@@ -52,9 +52,13 @@
             <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-goodsId="{{item.goods.id}}" data-groupId="{{item.groupId}}" data-singleBuy="{{item.single}}" data-orderId="{{item.id}}" bindtap="pay">
                 去支付
             </view>
+            <view wx:if="{{item.status == '待收货'}}" class="btn bc_red bc_white font_red ml-10" data-orderId="{{item.id}}" bindtap="applicationForReturn">
+                申请退货
+            </view>
             <view wx:if="{{item.status == '待收货' || item.status == '已收货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
                 确认收货
             </view>
+              
             <!--<view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">-->
                 <!--查看-->
             <!--</view>-->
@@ -69,3 +73,47 @@
 
 
 </scroll-view>
+
+<view class="mask" wx:if="{{box}}">
+    <view class="alert">
+        <view class="title">
+            申请退货
+        </view>
+        <textarea bindinput="inputReason" style="border-bottom: 1px dotted #d2d2d2" placeholder="请输入申请退货原因" value="{{address}}"/>
+        <view class="close"  bindtap="hideBox">
+            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
+        </view>
+         <view class="weui-cell bg-white" style='padding:10px 15px'>
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                  <view class="weui-uploader__title" style='font-size:15px;color:gray'>上传图片</view>
+                  <view class="weui-uploader__info">{{files.length}}/6</view>
+                </view>
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files" id="uploaderFiles">
+                    <block wx:for="{{files}}" wx:key="*this">
+                      <view class="weui-uploader__file img-box" id="{{item}}">
+                        <image class="weui-uploader__img" src="{{item.oldImg}}" mode="aspectFill" bindtap="previewImage" id='{{item.oldImg}}' />
+                        <icon id='{{index}}' data-name='{{item.newImg}}' class='cancel' bindtap="delImage" type="cancel" size="30"></icon>
+                      </view>
+                    </block>
+                    <view class="weui-uploader__file img-box" hidden='{{files.length == 6?true:false}}'>
+                      <image class="weui-uploader__img" id='addphoto' src="../../img/iconfont-tianjia.png" bindtap="chooseImage" />
+                    </view>
+
+
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
+        <view>
+            <view class="btn bc_red" bindtap="submitReturnGoods">
+                确认退货
+            </view>
+        </view>
+    </view>
+
+</view>

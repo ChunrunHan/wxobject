@@ -23,16 +23,31 @@ Page({
         }],
         status: '1',
         imgUrl: $.imgUrl,
-        more: '上拉加载更多'
+        more: '上拉加载更多',
+        returnOrder:{
+          orderId:'',
+          reason:'',
+          images:''
+        },
+        box:false,
+        files: [],
+        ajax: true
     },
     onLoad: function (options) {
         $.setTitle('订单列表')
         this.init()
     },
     onShow: function (options) {
+      console.log('执行啊');
+      console.log(this.data.ajax);
+      if(this.data.ajax){
         this.init()
+      }else{
+      }
+        
     },
     getOrderList: function () {
+      console.log('执行啊');
         var _this = this
         var obj = {
             status: _this.data.status,
@@ -142,6 +157,16 @@ Page({
         })
         
     },
+    applicationForReturn: function(e){
+      var _this = this;
+      console.log(e)
+      console.log(e.target.dataset.orderid);
+      _this.setData({
+        'returnOrder.orderId': e.target.dataset.orderid,
+        ajax: false,
+        box: true
+      })
+    },
     pay: function (e) {
         $.showLoading('支付中')
         console.log(e)
@@ -239,5 +264,224 @@ Page({
             $.alert(res.data.message || '申请退货成功')
             $.hideLoading()
         })
+    },
+    showBox: function(){
+      this.setData({
+        box:true
+      })
+    },
+    hideBox: function(){
+      this.setData({
+        box:false,
+        ajax: true,
+        files:[],
+        'returnOrder.images':'',
+        'returnOrder.reason':''
+      })
+    },
+    inputReason: function(e){
+      console.log(e.detail.value);
+      this.setData({
+        'returnOrder.reason': e.detail.value
+      })
+    },
+    // 添加图片
+    chooseImage:function(e){
+      var _this = this;
+      wx.chooseImage({
+        count: 1, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          console.log(res);
+          var tempFilePaths = res.tempFiles[0].path;
+          var filesize = res.tempFiles[0].size;
+          // var tempFilePaths = res.tempFilePaths[0];
+          // var filesize = res.tempFilePaths[0].size;
+          console.log(filesize);
+          var maxsize = 500 * 1024;
+          console.log(filesize * 1024)
+          if (filesize > maxsize) {
+            $.alert('图片不能大于500KB');
+          } else {
+            wx.showLoading();
+            $.ossUpload(tempFilePaths).then(function(res){
+              wx.hideLoading()
+              console.log(res);
+              if (res.statusCode == 200) {
+                wx.showToast({
+                  title: '上传成功',
+                });
+                console.log(res.filename);
+                var img = {
+                  oldImg: tempFilePaths,
+                  newImg: res.filename
+                }
+                _this.setData({
+                  files: _this.data.files.concat(img)
+                })
+              }
+            }).catch(function(){
+              wx.hideLoading()
+
+            })
+          }
+          console.log(res)
+          
+        }
+      })
+    },
+    // 显示图片
+    previewImage: function (e) {
+      var imgs = this.data.files;
+      console.log(this.data.files)
+      var showImg = [];
+      for (var i = 0; i < imgs.length; i++) {
+        console.log(imgs[i].oldImg)
+        showImg.push(imgs[i].oldImg);
+      }
+      console.log(showImg);
+      wx.previewImage({
+        current: e.currentTarget.id, // 当前显示图片的http链接
+        urls: showImg // 需要预览的图片http链接列表
+      })
+    },
+    //  删除图片
+    delImage: function (e) {
+      var that = this;
+      console.log(e.currentTarget.id);
+      console.log(e.currentTarget.dataset.name);
+      var index = e.currentTarget.id;
+      var delfilename = e.currentTarget.dataset.name;
+      wx.showModal({
+        title: '提示',
+        content: "确定删除该照片",
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            var bucket = app.bucket;
+            var delfile = [{
+              bucket: bucket,
+              object: delfilename
+            }]
+            var urlBase = app.urlBase;
+            var url = urlBase + '/mall/oss/delete/wx_lpqd';
+            $.post(url, delfile).then(function (res) {
+              console.log(JSON.stringify(res));
+              if (res.data.code == 0) {
+                console.log('删除成功');
+                wx.showToast({
+                  title: '删除成功',
+                })
+                console.log(res);
+        
+                  var files = that.data.files;
+                  console.log(files);
+                  files.splice(index, 1);
+                  that.setData({
+                    files: files
+                  });
+                  
+              } else {
+                wx.showToast({
+                  title: '删除失败',
+                  image: '../../img/alert.png',
+                  duration: 2000
+                })
+              }
+
+
+            }).catch(function (err) {
+              console.log('oss单个文件删除', err)
+              if (err.errMsg == "request: fail timeout") {
+                wx.showToast({
+                  title: '删除请求超时',
+                  image: '../../img/alert.png',
+                  duration: 2000
+                })
+              } else {
+                wx.showToast({
+                  title: '删除失败',
+                  image: '../../img/alert.png',
+                  duration: 2000
+                })
+              }
+
+
+            })
+
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+
+          }
+        }
+      });
+    },
+    // 退货请求
+    submitReturnGoods:function(e){
+      var _this = this;
+      console.log(_this.data.returnOrder);
+      console.log(_this.data.files);
+      var returnInfo = _this.data.returnOrder;
+      if (returnInfo.reason == ''){
+        $.alert('请输入退货原因')
+      }else if(_this.data.files.length == 0){
+        $.alert('至少上传一张图片')
+      }else{
+        console.log(returnInfo);
+        var newImg = [];
+        var path = _this.data.files;
+        console.log(JSON.stringify(path));
+
+        for (var i = 0; i < path.length; i++) {
+          console.log(path[i].newImg)
+          newImg.push(path[i].newImg);
+        }
+        var imgsPath = newImg.join(":");
+        console.log(imgsPath);
+        _this.setData({
+          'returnOrder.images':imgsPath
+        })
+       
+       
+        console.log('上传的数据' + JSON.stringify(returnInfo));
+        wx.showLoading({
+          title: '添加中',
+        })
+        console.log('上传的数据' + JSON.stringify(returnInfo));
+        var url = app.urlBase + '/mall/order/request_refund';
+        console.log(url);
+        $.post(url, returnInfo).then(function (data) {
+          wx.hideLoading();
+          console.log(data);
+          console.log(JSON.stringify(data));
+          if (data.data.code == 0) {
+            wx.showToast({
+              title: '申请退货成功',
+              duration: 2000
+            })
+            _this.hideBox();
+            _this.init();
+           
+          } else if (data.statusCode == 200 && data.data.code != 0){
+            // oss.statusHandler(data.statusCode);
+            wx.showToast({
+              title: data.data.message,
+              image: '../../img/alert.png',
+              duration: 2000
+            })
+          }
+
+        }).catch(function (status) {
+          wx.hideLoading();
+          console.log(status.errMsg);
+          wx.showToast({
+            title: '请求超时',
+            image: '../../img/alert.png',
+            duration: 2000
+          })
+        });
+      }
     }
 })

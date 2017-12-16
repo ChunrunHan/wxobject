@@ -20,5 +20,8 @@ Date.prototype.Format = function (fmt) { //author: meizz
 App({
     onLaunch: function () {
     },
-    formIds: []
+    formIds: [],
+    bucket: 'yzb-mall',
+    ossHost: 'https://dev.yezhubao.net/oss_mall',
+    urlBase: 'https://dev.yezhubao.net',
 })

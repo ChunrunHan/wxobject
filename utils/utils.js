@@ -12,6 +12,7 @@ const qqmapwx = new QQMapWX({
 const imgUrl = `https://dev.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
+var wxUploadFile = promise(wx.uploadFile);
 module.exports = {
     get: ajax.get,
     post: ajax.post,
@@ -226,6 +227,127 @@ module.exports = {
             return (r1 / r2) * Math.pow(10, t2 - t1);
         }
     },
-    qqmapwx: qqmapwx
+    qqmapwx: qqmapwx,
+    ossUpload: ossUpload
 
+}
+
+
+//  upload img to oss
+function ossUpload(source) {
+  console.log('ossUpload(' + source + ')');
+  var upload = new Promise(function (resolve, reject) {
+
+    stsUpdate().then(function (sts) {
+      console.log(sts);
+      var ossKeyId = sts.accessKeyId;
+      var signature = sts.signature;
+      var policy = sts.policy;
+      var dir = sts.dir;
+      var host = app.ossHost
+
+      if (ossKeyId === undefined || signature === undefined) {
+        reject(ERROR.INVALID_PARAMS);
+      }
+
+      var pos = source.lastIndexOf('.');
+      var suffix = source.substring(pos).toLowerCase();
+      var filename = uuid().replace(/-/, '') + suffix;
+      var keyname = dir + filename;
+
+      wx.showLoading({
+        title: '上传中',
+      });
+
+      wxUploadFile({
+        url: host,
+        filePath: source,
+        formData: {
+          'key': keyname,
+          'policy': policy,
+          'OSSAccessKeyId': ossKeyId,
+          'signature': signature,
+          'success_action_status': '200'
+        },
+        name: "file"
+      }).then(function (res) {
+        wx.hideLoading();
+        res.filename = filename
+        resolve(res)
+      }).catch(function (err) {
+        wx.hideLoading();
+        console.log(err);
+        reject(err)
+      })
+    })
+  });
+
+  return upload;
+}
+
+// get post signature
+function stsUpdate(forceUpdate) {
+  var urlBase = app.urlBase;
+  var url = urlBase + "/mall/oss/sign/wx_lpqd"; 
+  console.log('ossupload图片上传url' + url);
+
+  var getTts = new Promise(function (resolve, reject) {
+    ajax.get(url).then(function (res) {
+      if (res.statusCode !== 200) {
+        throw (res)
+      }
+      console.log('res');
+      console.log(res);
+
+      console.log(res.data);
+      console.log(res.data.data);
+      var sts = res.data;
+      if (sts.errCode !== 0) reject(sts.errorCode);
+      console.log('sts=' + JSON.stringify(sts));
+      var data = new Object();
+      data.sts = sts.data;
+      resolve(data.sts)
+
+    }).catch(function (err) {
+      wx.hideLoading();
+      console.log('fail to update sts: ', err);
+      reject(err)
+    })
+  })
+  return getTts
+}
+
+
+//	oss单个文件删除
+function delImgFromServer(file, source) {
+  bucket = app.bucket;
+  var delfile = [{
+    bucket: bucket,
+    object: file
+  }]
+  console.log('删除的文件名字： ' + delfile);
+  console.log('删除的文件来源： ' + source);
+  urlBase = app.urlBase;
+  var url = urlBase + '/oss/delete/seller';
+  ajax.post(url, delfile).then(function (res) {
+    console.log('删除成功');
+    console.log(res.data);
+
+  }).catch(function (status) {
+    console.log('oss单个文件删除' + status)
+    statusHandler(status);
+  })
+}
+
+function uuid() {
+  var lut = [];
+  for (var i = 0; i < 256; i++) { lut[i] = (i < 16 ? '0' : '') + (i).toString(16); }
+  var d0 = Math.random() * 0xffffffff | 0;
+  var d1 = Math.random() * 0xffffffff | 0;
+  var d2 = Math.random() * 0xffffffff | 0;
+  var d3 = Math.random() * 0xffffffff | 0;
+  return lut[d0 & 0xff] + lut[d0 >> 8 & 0xff] + lut[d0 >> 16 & 0xff] + lut[d0 >> 24 & 0xff] +
+    lut[d1 & 0xff] + lut[d1 >> 8 & 0xff] + lut[d1 >> 16 & 0x0f | 0x40] + lut[d1 >> 24 & 0xff] +
+    lut[d2 & 0x3f | 0x80] + lut[d2 >> 8 & 0xff] + lut[d2 >> 16 & 0xff] + lut[d2 >> 24 & 0xff] +
+    lut[d3 & 0xff] + lut[d3 >> 8 & 0xff] + lut[d3 >> 16 & 0xff] + lut[d3 >> 24 & 0xff];
 }

@@ -28,6 +28,12 @@
 					"name": "test",
 					"pathName": "pages/pay/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "order",
+					"pathName": "pages/order/index",
+					"query": ""
 				}
 			]
 		}
