@@ -5,7 +5,7 @@
             duration="{{swiperCofing.duration}}" circular="{{swiperCofing.circular}}">
         <block wx:for="{{goodsDetails.images}}">
             <swiper-item>
-                <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}" class="slide-image"/>
+                <image src="{{item}}" id='{{item}}' class="slide-image" bindtap='showImages'/>
             </swiper-item>
         </block>
     </swiper>
@@ -21,11 +21,11 @@
                     ¥{{goodsDetails.oldPrice}}
                 </view>
             </view>
-            <view class="share">
+            <view class="share relative">
                 <button open-type="share">
                     <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/share.svg"></image>
                 </button>
-
+              <span class="sharetext">分享</span>
             </view>
             <!--<view style="font-size: 14px">-->
             <!--已团{{goodsDetails.monthSell || 0}}件·{{goodsDetails.buyerLimit}}人团-->

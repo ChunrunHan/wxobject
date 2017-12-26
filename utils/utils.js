@@ -10,9 +10,11 @@ const qqmapwx = new QQMapWX({
 });
 
 const imgUrl = `https://dev.yezhubao.net/oss_mall`
+// const imgUrl = `https://api.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
 var wxUploadFile = promise(wx.uploadFile);
+
 module.exports = {
     get: ajax.get,
     post: ajax.post,
@@ -103,7 +105,7 @@ module.exports = {
                         unionId,
                         openId
                     })).then(function (res) {
-
+                       console.log('登录获取的'+res.data.errCode);
                         if (res.data.errCode !== 0) {
                             _this.jump('../mobile/index')
                         } else {
@@ -139,7 +141,7 @@ module.exports = {
                                     }
                                     if(!res.data.data.wxAvatar){
                                         _this.put(url, obj).then(function (res) {
-                                            console.log(res)
+                                            console.log('上传头像啊'+res)
                                             if(res.data.errCode == 0){
                                                 console.log('上传头像成功')
                                             }
@@ -228,8 +230,63 @@ module.exports = {
         }
     },
     qqmapwx: qqmapwx,
-    ossUpload: ossUpload
+    ossUpload: ossUpload,
+    formatDate: formatDate,
+    formatDateAll: formatDateAll
+}
 
+// / 时间戳转时间
+function formatDate(timestamp) {
+  timestamp = new Date(timestamp);
+  var year = timestamp.getFullYear();
+  var month = timestamp.getMonth() + 1;
+  var date = timestamp.getDate();
+  var hour = timestamp.getHours();
+  var minute = timestamp.getMinutes();
+  var second = timestamp.getSeconds();
+  if (month < 10) {
+    month = '0' + month;
+  }
+  if (date < 10) {
+    date = '0' + date;
+  }
+  if (hour < 10) {
+    hour = '0' + hour;
+  }
+  if (minute < 10) {
+    minute = '0' + minute;
+  }
+  if (second < 10) {
+    second = '0' + second;
+  }
+  // return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+  return year + "-" + month + "-" + date;
+}
+
+function formatDateAll(timestamp) {
+  timestamp = new Date(timestamp);
+  var year = timestamp.getFullYear();
+  var month = timestamp.getMonth() + 1;
+  var date = timestamp.getDate();
+  var hour = timestamp.getHours();
+  var minute = timestamp.getMinutes();
+  var second = timestamp.getSeconds();
+  if (month < 10) {
+    month = '0' + month;
+  }
+  if (date < 10) {
+    date = '0' + date;
+  }
+  if (hour < 10) {
+    hour = '0' + hour;
+  }
+  if (minute < 10) {
+    minute = '0' + minute;
+  }
+  if (second < 10) {
+    second = '0' + second;
+  }
+  return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
 }
 
 

@@ -1,16 +1,20 @@
 /**index.wxss**/
-
+page{
+  font-family:sans-serif;
+}
 swiper, swiper image {
     width: 100vw;
     height: 37.5vw;
 }
 
 .price {
-    font-size: 20px;
+    font-size: 18px;
+    font-weight:900;
+
 }
 
 .dec {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .goods-list .item {
@@ -20,13 +24,13 @@ swiper, swiper image {
 .goods-list .item .img {
     display: flex;
     justify-content: center;
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
-.goods-list .item .img image {
+/* .goods-list .item .img image {
     width: 150px;
     height: 150px;
-}
+} */
 
 .nav {
     text-align: center;
@@ -43,12 +47,14 @@ swiper, swiper image {
 }
 
 .zone {
-    border-top: 1px solid #f2f2f2;
+    /* border-top: 1px solid #f2f2f2; */
     padding: 5px;
     text-align: center;
     justify-content: center;
     align-items: center;
     display: flex;
+    background:#e02e24;
+
 }
 
 .zone .flex {
@@ -59,7 +65,7 @@ swiper, swiper image {
     display: flex;
     color: #fff;
     font-weight: bold;
-    background: #d2d2d2;
+    /* background: #d2d2d2; */
     border-radius: 25px;
 }
 
@@ -71,4 +77,8 @@ swiper, swiper image {
 
 .zone view {
     background: transparent;
+}
+#border-white{
+  border-radius: 25px;
+  border: 1px solid whtie;
 }

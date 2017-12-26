@@ -5,7 +5,7 @@
     </view>
 
     <view class="goods">
-        <image src="http://yzb-mall.oss-cn-qingdao.aliyuncs.com/{{orderInfo.seller.id}}/{{orderInfo.goods.images}}"></image>
+        <image src="{{osshost}}/{{orderInfo.seller.id}}/{{orderInfo.goods.images}}"></image>
         <view class="goods-name">{{orderInfo.goods.name}}</view>
     </view>
 
@@ -23,7 +23,7 @@
         <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/rating.svg"></image>店铺评价
     </view>
     <view class="goods">
-        <image src="http://yzb-mall.oss-cn-qingdao.aliyuncs.com/{{orderInfo.seller.id}}/{{orderInfo.seller.logo}}"></image>
+        <image src="{{osshost}}/{{orderInfo.seller.id}}/{{orderInfo.seller.logo}}"></image>
         <view class="goods-name">{{orderInfo.seller.name}}</view>
     </view>
     <view class="goods-rating mb-8">

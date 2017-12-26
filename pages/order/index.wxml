@@ -7,7 +7,7 @@
     <view class="item" wx:for="{{orderList}}" wx:for-index="index">
         <view class="title">
             <view class="flex" style="align-items: center">
-                <image src="http://yzb-mall.oss-cn-qingdao.aliyuncs.com/{{item.seller.id}}/{{item.seller.logo}}" style="width: 20px; height: 20px;padding-right: 10px;"></image>
+                <image src="{{osshost}}/{{item.seller.id}}/{{item.seller.logo}}" style="width: 20px; height: 20px;padding-right: 10px;"></image>
                 <view class="seller-name">
                     {{item.seller.name}}
                 </view>
@@ -15,6 +15,7 @@
 
             <view class="state co_red">
                 {{item.status}}
+                <span wx:if="{{item.status == '待支付'}}">(将于{{item.expireTime}}关闭)</span>
             </view>
         </view>
 
@@ -52,11 +53,14 @@
             <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-goodsId="{{item.goods.id}}" data-groupId="{{item.groupId}}" data-singleBuy="{{item.single}}" data-orderId="{{item.id}}" bindtap="pay">
                 去支付
             </view>
-            <view wx:if="{{item.status == '待收货'}}" class="btn bc_red bc_white font_red ml-10" data-orderId="{{item.id}}" bindtap="applicationForReturn">
-                申请退货
+            <view wx:if="{{item.status == '待收货' || item.status == '已收货' ||item.status == '待评价'||item.status == '退货申请驳回'}}" class="btn bc_red bc_white font_red ml-10" data-orderId="{{item.id}}" bindtap="applicationForReturn">
+                申请退款
             </view>
             <view wx:if="{{item.status == '待收货' || item.status == '已收货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
                 确认收货
+            </view>
+            <view wx:if="{{item.status == '退货申请通过' || item.status == '退货申请驳回' || item.status == '退款成功' }}" class="btn bc_red ml-10" data-orderId="{{item.id}}:{{item.status}}:{{item.userId}}" bindtap="getServiceInfo">
+                查看详情
             </view>
               
             <!--<view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">-->
@@ -77,9 +81,9 @@
 <view class="mask" wx:if="{{box}}">
     <view class="alert">
         <view class="title">
-            申请退货
+            申请退款
         </view>
-        <textarea bindinput="inputReason" style="border-bottom: 1px dotted #d2d2d2" placeholder="请输入申请退货原因" value="{{address}}"/>
+        <textarea bindinput="inputReason" style="border-bottom: 1px dotted #d2d2d2" placeholder="请输入申请退款原因" value="{{address}}"/>
         <view class="close"  bindtap="hideBox">
             <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
         </view>
@@ -117,3 +121,4 @@
     </view>
 
 </view>
+

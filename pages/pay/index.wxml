@@ -18,12 +18,12 @@
 <view class="order">
     <view class="item">
         <view class="title">
-            <view class="flex" style="align-items: center">
+            <!-- <view class="flex" style="align-items: center">
                 <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 20px; height: 20px;padding-right: 10px;"></image>
                 <view class="seller-name">
                     乐拼青岛
                 </view>
-            </view>
+            </view> -->
         </view>
 
         <view class="goods">

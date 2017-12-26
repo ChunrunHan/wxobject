@@ -5,6 +5,7 @@ const app = getApp()
 var loading = false
 Page({
     data: {
+      osshost: app.ossHost,
         nav: [{
             name: '待付款',
             status: '1'
@@ -20,6 +21,9 @@ Page({
         }, {
             name: '已完成',
             status: '4'
+        } , {
+          name: '退款/售后',
+          status: '6'
         }],
         status: '1',
         imgUrl: $.imgUrl,
@@ -31,7 +35,10 @@ Page({
         },
         box:false,
         files: [],
-        ajax: true
+        ajax: true,
+        infoBox: true
+      
+
     },
     onLoad: function (options) {
         $.setTitle('订单列表')
@@ -56,6 +63,7 @@ Page({
         var url = api.getOrderList(obj)
         $.showLoading()
         $.get(url).then(function (res) {
+          console.log(res);
             wx.stopPullDownRefresh()
             $.hideLoading()
             if (res.data.errCode == 0) {
@@ -64,6 +72,7 @@ Page({
                     // obj.images = obj.images.split(':')[0]
                     obj.status = _this.statusCode[obj.status]
                     obj.orderTime = new Date(obj.orderTime).Format('yyyy-MM-dd hh:mm:ss')
+                    obj.expireTime = new Date(obj.expireTime).Format('yyyy-MM-dd hh:mm:ss')
                     if(obj.goods){
                         obj.goods.images = obj.goods.images.split(':')[0]
                     }
@@ -279,6 +288,11 @@ Page({
         'returnOrder.reason':''
       })
     },
+    hideInfoBox:function(){
+      this.setData({
+        infoBox:false
+      })
+    },
     inputReason: function(e){
       console.log(e.detail.value);
       this.setData({
@@ -483,5 +497,53 @@ Page({
           })
         });
       }
+    },
+    getServiceInfo: function(e){
+      console.log(e.target.dataset.orderid);
+      var _this = this;
+      let info = e.target.dataset.orderid;
+      wx.navigateTo({
+        url: `../../pages/orderDetail/index?info=${info}`,
+      })
+      // _this.setData({
+      //   infoBox: true,
+      //   refundStatus: refundStatus,
+      //   userId: userId
+      // })
+      // _this.getRefundOrderDetail(orderID);
+    },
+    getRefundOrderDetail: function (id) {
+      var that = this;
+      wx.showLoading();
+      console.log(id);
+      var url = `${app.urlBase}/mall/order/refund_list/${id}`;
+      console.log(url);
+      $.get(url).then(function (data) {
+        wx.hideLoading();
+        console.log(JSON.stringify(data));
+        var statusCode = data.statusCode;
+        var dataList = data.data;
+        if (dataList.errCode == 0) {
+          that.setData({
+            refundTime: dataList.dataList[0].time,
+            refundTeason: dataList.dataList[0].reason,
+            refundAmount: dataList.dataList[0].amount
+          })
+          var imgs = dataList.dataList[0].images.split(':');
+          var imgURL = [];
+          for (var i = 0; i < imgs.length; i++) {
+            var a = `https://dev.yezhubao.net/oss_mall/${that.data.userId}/${imgs[i]}`;
+            console.log(a)
+            imgURL.push(a)
+          }
+          that.setData({
+            images: imgURL
+          })
+        }
+      }).catch(function (status) {
+        console.log(status)
+        // oss.statusHandler(status);
+        console.log(status)
+      })
     }
 })

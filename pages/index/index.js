@@ -33,7 +33,7 @@ Page({
         page: 0
     },
     onLoad: function () {
-        $.setTitle('乐拼青岛')
+        $.setTitle('盛华优选')
         this.init()
     },
     getRecommendList: function () {
@@ -204,7 +204,7 @@ Page({
                 let adList = res.data.dataList
                 adList.forEach(obj => {
                     obj.id = JSON.parse(obj.afterClick).goodsId
-                    obj.image = 'http://yzb-mall.oss-cn-qingdao.aliyuncs.com/ad/' + obj.image
+                    obj.image = `http://${app.bucket}.oss-cn-qingdao.aliyuncs.com/ad/` + obj.image
                 })
                 _this.setData({
                     adList

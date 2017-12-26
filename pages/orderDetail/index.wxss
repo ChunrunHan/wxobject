@@ -1,0 +1,39 @@
+@import '../order/index.wxss'
+.top-title{
+  color: white;
+  background: #e02e24;
+  padding: 20px 15px;
+}
+.top-title view{
+  background: transparent;
+}
+.top-title view:first-of-type{
+  margin-bottom: 5px;
+}
+
+.color-title-red{
+  color:#e02e24;
+}
+.item{
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+textarea{
+  padding: 10px 10px;
+  width: calc(100vw - 20px);
+  height: 4em;
+  border-bottom: 1px dotted #d2d2d2;
+}
+.color-money{
+  color: #ff0036;
+}
+ .weui-uploader__img {
+  display: block;
+  width: 100%;
+  height:calc(100vw/3.5);
+
+} 
+
+.mg-top8{
+  margin-top: 8px;
+}

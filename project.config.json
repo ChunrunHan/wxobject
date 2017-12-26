@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.7.0",
-	"appid": "wx4fb3968bd246af41",
-	"projectname": "%E4%B9%90%E6%8B%BC%E9%9D%92%E5%B2%9B",
+	"appid": "wx55d5508a573edace",
+	"projectname": "%E7%9B%9B%E5%8D%8E%E4%BC%98%E9%80%89",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,6 +33,24 @@
 					"id": -1,
 					"name": "order",
 					"pathName": "pages/order/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "退款售后",
+					"pathName": "pages/orderDetail/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "share",
+					"pathName": "pages/share/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/goods_details/index",
 					"query": ""
 				}
 			]

@@ -1,10 +1,11 @@
 // pages/rating/index.js
 const $ = require('../../utils/utils');
 const api = require('../../utils/api');
-
+const app = getApp();
 
 Page({
     data: {
+        osshost: app.ossHost,
         goodsStart: [true, true, true, true, true],
         sellerStart: [true, true, true, true, true],
         sellerScore: 5,

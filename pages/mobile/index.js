@@ -81,17 +81,44 @@ Page({
             jsCode
         })).then(function (res) {
             $.hideLoading()
-
+            console.log('登录成功'+JSON.stringify(res));
             if(res.data.errCode == 0){
                 wx.setStorageSync('unionId', res.data.data.wxUnionId)
                 wx.setStorageSync('openId', res.data.data.wxOpenId)
+                wx.setStorageSync('token', res.data.data.token)
+                wx.getUserInfo({
+                  success: function (res) {
+                    var userInfo = res.userInfo
+                    var nickName = userInfo.nickName
+                    var avatarUrl = userInfo.avatarUrl
+                    var gender = userInfo.gender //性别 0：未知、1：男、2：女
+                    var province = userInfo.province
+                    var city = userInfo.city
+                    var country = userInfo.country
+                    let url = api.putUser
+                    let obj = {
+                      nickname: nickName,
+                      wxAvatar: avatarUrl
+                    }
+                    $.put(url, obj).then(function (res) {
+                      console.log('上传头像啊' + res)
+                      console.log(JSON.stringify(res));
+                      if (res.data.errCode == 0) {
+                        console.log('上传头像成功')
+                      }
+                    }).catch(function (err) {
+                      console.log('上传头像失败')
+                      console.log(err)
+                    })
+                  }
+                })
                 wx.navigateBack({
                     delta: 1
                 })
             }else {
                 $.alert(res.data.errMsg || '登陆失败')
             }
-
+            console.log(res.data.data)
             console.log(res.data.data.unionId)
         })
 

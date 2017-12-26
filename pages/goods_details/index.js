@@ -21,11 +21,12 @@ Page({
         swiperCofing: swiperCofing,
         goodsDetails: {},
         imgUrl: $.imgUrl,
-        box: false
+        box: false,
+        files: []
     },
     onLoad: function (e) {
         $.setTitle('商品详情')
-        console.log(e.id)
+        console.log('商品的id'+e.id)
         let goodsId = e.id
         this.getGoodsDetails(goodsId)
         this.getRating(goodsId)
@@ -44,6 +45,14 @@ Page({
             if (res.data.errCode === 0) {
                 let goodsDetails = res.data.data
                 goodsDetails.images = goodsDetails.images.split(':')
+                for(var i = 0;i<goodsDetails.images.length;i++){
+                  goodsDetails.images[i] = $.imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[i]
+                  // console.log(goodsDetails.images[i]);
+                  _this.setData({
+                    files: _this.data.files.concat(goodsDetails.images[i])
+                  })
+                }
+                // console.log(_this.data.files)
                 goodsDetails.description = goodsDetails.description.split(':')
                 _this.setData({
                     goodsDetails
@@ -70,6 +79,7 @@ Page({
         let _this = this
         let url = api.getGroups(id)
         $.get(url).then(function (res) {
+          console.log('参团人数：'+JSON.stringify(res));
             if (res.data.errCode === 0) {
                 groupList = res.data.dataList
                 _groupList = JSON.stringify(groupList);
@@ -123,6 +133,7 @@ Page({
         }
         let url = api.getRating(obj)
         $.get(url).then(function (res) {
+          console.log('商品评论'+ JSON.stringify(res))
             if (res.data.errCode === 0) {
                 let ratingList = res.data.dataList
                 ratingList.forEach(obj => {
@@ -151,5 +162,14 @@ Page({
         })
         console.log(`getFormId: ${formId}`)
         console.log(app.formIds)
+    },
+    showImages: function(e){
+      var files = this.data.files;
+      console.log(files);
+      // console.log(e)
+      wx.previewImage({
+        current: e.currentTarget.id, // 当前显示图片的http链接
+        urls: files // 需要预览的图片http链接列表
+      })
     }
 })

@@ -101,7 +101,7 @@ textarea {
   margin-right:9px;
   margin-bottom:9px;
   width:30%;
-  margin:5px 1.6%;
+  margin:5px 1%;
 }
 
 .weui-uploader__img {
@@ -125,7 +125,11 @@ textarea {
     border-radius: 10px;
     width: calc(100vw - 60px);
     position: relative;
-    max-height: calc(100vh - 100px);
+     max-height: calc(100vh - 10px); 
+}
+
+.color-title-red{
+  color:#e02e24;
 }
 
 /*  */

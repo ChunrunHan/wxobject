@@ -60,7 +60,7 @@ button[type="warn"] {
 }
 
 .co_ash {
-    color: #ddd;
+    color: #727274;
 }
 
 .btn {
@@ -146,4 +146,11 @@ button[type="warn"] {
 
 .formButton::after{
     display:none;
+}
+/* 字体大少 */
+.fs-18{
+  font-size: 14px;
+}
+.goods-Tcolor{
+  color: #151516;
 }

@@ -1,0 +1,46 @@
+<view class="top-title">
+  <view>{{refundStatus}}<span wx:if="{{refundStatus == '退货申请驳回' && endTime}}">（订单将于 {{endTime}} 关闭）</span></view>
+  <view>订单号:{{id}}</view>
+</view>
+<!-- <view wx:if="{{refundStatus == '退货申请通过'}}" class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px solid #d2d2d2;padding: 15px 10px" bindtap="chooseLocation">
+  <view class="">退款金额</view>
+  <view class="color-money">{{refundAmount}}元</view>
+</view> -->
+
+
+<block wx:for="{{dataList}}">
+<view class="flex mg-top8" style="justify-content: space-between;align-items: center;padding: 15px 10px;border-bottom: 1px dotted #d2d2d2" bindtap="">
+  <view class="">{{item.images? '我的反馈' : '商家处理'}}</view>
+  <view class="">{{item.time}}</view>
+</view>
+  <view class='item'>
+    <!-- <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding: 10px 10px" bindtap="chooseLocation">
+      <view class="">时间：{{item.time}}</view>
+    </view> -->
+    
+    <textarea wx:if="{{item.reason}}" placeholder='理由' disabled="true" value="原因：{{item.reason}}"></textarea>
+    <textarea wx:if="{{item.amount && refundStatus == '退款成功' && !item.images}}" class='color-money' placeholder='退款金额' disabled="true" value="退款金额：{{item.amount}}"></textarea>
+
+    <view wx:if="{{item.images}}" class="weui-cell bg-white" style='padding:10px 10px'>
+      <view class="weui-cell__bd">
+        <view class="weui-uploader">
+          <view class="weui-uploader__hd">
+            <view class="weui-uploader__title" style='font-size:15px;'>反馈图片</view>
+            <view class="weui-uploader__info">{{item.imgURL.length}}/6</view>
+          </view>
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="uploaderFiles">
+              <block wx:for="{{item.imgURL}}" wx:key="*this" wx:for-item="img">
+                <view class="weui-uploader__file img-box">
+                  <image class="weui-uploader__img" src="{{img}}" mode="aspectFill" bindtap="previewImage" id='{{img}}' />
+                </view>
+              </block>
+
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </block>

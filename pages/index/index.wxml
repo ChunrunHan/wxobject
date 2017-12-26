@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <form  report-submit="true" bindsubmit="getFormId">
     <button form-type="submit" class="formButton zone" bindtap="chooseLocation">
-        <view class="flex">
+        <view class="flex" id='border-white'>
             <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/gps.svg" class="slide-image"
                    style="margin-right: 3px;"/>
             <view>{{zone}}</view>
@@ -46,24 +46,24 @@
         <button class="formButton item" wx:for="{{recommendList}}" bindtap="openDetail" data-id="{{item.id}}"
                 form-type="submit">
             <view class="img">
-                <image src="{{imgUrl + '/' + item.sellerId + '/' + item.images}}"></image>
+                <image src="{{imgUrl + '/' + item.sellerId + '/' + item.images}}" mode='aspectFill'></image>
             </view>
 
             <view class="pd-10">
-                <view>{{item.name}}</view>
+                <view class='fs-18'>{{item.name}}</view>
                 <view class="flex" style="justify-content: space-between; padding-top: 10px;">
 
-                    <view class="flex" style="align-items: flex-end">
+                    <view class="flex" style="align-items: flex-end;align-items:center;">
                         <view class="price co_red">
-                            ¥{{item.price}}
+                            ￥{{item.price}}
                         </view>
                         <view class="dec co_ash" style="padding-left: 10px;">
                             {{item.buyerLimit}}人团
-                            <!--·单买价{{item.singlePrice}}元-->
+                            <!-- ·单买价{{item.singlePrice}}元 -->
                         </view>
                     </view>
                     <view class="btn bc_red">
-                        去开团
+                        去开团 <image src="../../img/white_row.png" style="width: 14px; height: 14px;position:relative;top:2px;color:white"></image>
                     </view>
                 </view>
             </view>

@@ -9,7 +9,8 @@
     "pages/share/index",
     "pages/my/index",
     "pages/rating/index",
-    "pages/rating-list/index"
+    "pages/rating-list/index",
+    "pages/orderDetail/index"
   ],
   "tabBar": {
     "color": "#d2d2d2",
@@ -27,8 +28,8 @@
     }]
   },
   "window":{
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#e02e24",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   }
 }
