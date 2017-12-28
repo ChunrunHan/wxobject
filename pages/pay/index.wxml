@@ -1,7 +1,7 @@
 <!--pages/pay/index.wxml-->
 <navigator url="../address/index?setAddress=1" class="address">
     <view class="flex">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height: 30px"></image>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height:auto;"></image>
         <view class="details">
             <view>
                 <text class="name">{{address.receiver}}</text> <text class="mobile">{{address.mobile}}</text>

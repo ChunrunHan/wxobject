@@ -19,16 +19,16 @@
             </view>
         </view>
 
-        <view class="goods">
+        <view class="goods bg-all">
 
             <view class="flex">
-                <image src="{{imgUrl + '/' + item.seller.id + '/' + item.goods.images}}" style="width: 40px; height: 40px;"></image>
-                <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
-                    <view class="goods-name">{{item.goods.name}}</view>
-                    <view class="goods-number" >x{{item.goods.count}}</view>
+                <image src="{{imgUrl + '/' + item.seller.id + '/' + item.goods.images+'!thumbnail'}}" style="width: 40px; height: 40px;"></image>
+                <view class="flex bg-all" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
+                    <view class="goods-name bg-all">{{item.goods.name}}</view>
+                    <view class="goods-number bg-all" >x{{item.goods.count}}</view>
                 </view>
             </view>
-            <view class="price">
+            <view class="price bg-all">
                 ¥ {{item.goods.price || '0.00'}}
             </view>
         </view>

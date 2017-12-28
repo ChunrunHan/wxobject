@@ -1164,3 +1164,7 @@ icon {
   color: #09BB07;
   white-space: nowrap;
 }
+
+.bg-all{
+  background: #f2f2f2;
+}

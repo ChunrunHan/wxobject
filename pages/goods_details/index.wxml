@@ -27,14 +27,15 @@
                 </button>
               <span class="sharetext">分享</span>
             </view>
-            <!--<view style="font-size: 14px">-->
-            <!--已团{{goodsDetails.monthSell || 0}}件·{{goodsDetails.buyerLimit}}人团-->
-            <!--</view>-->
+           
         </view>
+         <view class='buyInfo'>
+            已团{{goodsDetails.monthSell || 0}}件·{{goodsDetails.buyerLimit}}人团
+          </view>
 
     </view>
-    <view class="pd-10">{{goodsDetails.name}}</view>
-    <view class="flex tag">
+    <view class="pd-10 pd-t0">{{goodsDetails.name}}</view>
+    <view class="flex tag color-memo">
         <view>
             <image class="icon" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/icon.svg"></image>
             全场包邮
@@ -52,10 +53,11 @@
             假一赔十
         </view>
     </view>
-    <view class="pd-10 pin mb-8" wx:if="{{groupList.length > 0}}">
+    <view class="pd-10 pin mb-8 pd-t0" wx:if="{{groupList.length > 0}}">
         <view class="title flex">
-            <view>{{groupList.length}}人正在参团</view>
-            <button form-type="submit" class="formButton showMore" bindtap="showBox">查看更多</button>
+            <view>{{groupList.length}}人在开团，可直接参与</view>
+            <button form-type="submit" class="formButton showMore color-memo" bindtap="showBox">查看更多
+            </button>
         </view>
         <view class="item flex" wx:for="{{groupList}}" wx:for-index="index" wx:if="{{index < 3}}">
             <view class="flex left">
@@ -78,7 +80,7 @@
     <view class="pd-10 ratingList  mb-8" wx:if="{{ratingList}}">
         <view class="title flex">
             <view>商品评价</view>
-            <button form-type="submit"  class="formButton showMore" bindtap="goRatingList">查看更多</button>
+            <button form-type="submit"  class="formButton showMore color-memo" bindtap="goRatingList">查看更多</button>
         </view>
         <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
             <view class="header flex">
@@ -98,7 +100,7 @@
     </view>
 
     <!--<view class="pd-10 dec">  一直以来，我们都心存一个设想，期待着能够打造出这样一部 iPhone：它有整面的屏幕，能让你在使用时完全沉浸其中，仿佛忘记了它的存在。它是如此智能，你的一触、一碰、一言、一语，哪怕是轻轻一瞥，都会得到它心有灵犀的回应。而这个设想，终于随着 iPhone X 的到来成为了现实。现在，就跟未来见个面吧。</view>-->
-    <view style="padding: 15px; border-bottom: 1px solid #e8e8e8">
+    <view style="padding: 15px; border-bottom: 1px solid #e8e8e8;padding-left:10px;">
         商品详情
     </view>
     <view style="display: flex;flex-direction: column; padding-bottom: 50px">

@@ -42,11 +42,12 @@ Page({
         let _this = this
         let url = api.getGoodsDetails(id)
         $.get(url).then(function (res) {
+          console.log(JSON.stringify(res))
             if (res.data.errCode === 0) {
                 let goodsDetails = res.data.data
                 goodsDetails.images = goodsDetails.images.split(':')
                 for(var i = 0;i<goodsDetails.images.length;i++){
-                  goodsDetails.images[i] = $.imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[i]
+                  goodsDetails.images[i] = $.imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[i]+'!thumbnail'
                   // console.log(goodsDetails.images[i]);
                   _this.setData({
                     files: _this.data.files.concat(goodsDetails.images[i])
