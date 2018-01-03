@@ -16,10 +16,12 @@ page {
     align-items: center;
     justify-content: space-between;
     background: #fff;
+    position:relative;
+
 }
 
 .address .details {
-    padding-left: 15px;
+    padding-left: 40px;
 }
 
 .address .details .name {

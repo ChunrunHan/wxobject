@@ -1,52 +1,87 @@
 /* pages/address/index.wxss */
+@import '../tpl/index.wxss';
 .address-list {
-    background: transparent;
+  background: transparent;
 }
 
 .btn {
-    padding: 10px;
-    margin: 10px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .selected {
-    color: #e02e24
+  color: #e02e24;
 }
 
 .address-list .item .details {
-    padding: 15px;
-    background: #fff;
-    border-bottom: 1px dotted #d2d2d2;
+  padding: 15px;
+  background: #fff;
+  border-bottom: 1px dotted #d2d2d2;
 }
 
 .address-list .item .handle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background: #fff;
-    color: #9c9c9c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fff;
+  color: #9c9c9c;
 }
 
 .edit {
-    margin-right: 15px;
+  margin-right: 15px;
 }
-
-
 
 .alert .name {
-    width: 50%;
-    border-right: 1px dotted #d2d2d2;
+  width: 50%;
+  border-right: 1px dotted #d2d2d2;
 }
 
-
 .alert input {
-    padding: 10px;
+  padding: 10px;
 }
 
 textarea {
-    width: auto;
-    height: 50px;
-    padding: 10px;
+  width: auto;
+  height: 50px;
+  padding: 10px;
 }
 
+.address-title {
+  text-align: center;
+  display: block;
+  color: gray;
+  font-size: 14px;
+}
 
+@-webkit-keyframes slideIn {
+  0% {
+    bottom: -280px;
+  }
+
+  100% {
+    bottom: 0;
+  }
+}
+
+@-webkit-keyframes slideOut {
+  0% {
+    bottom: 0;
+  }
+
+  100% {
+    bottom: -280px;
+    visibility: hidden;
+  }
+}
+
+.divshow {
+  visibility: visible;
+  -webkit-animation-name: slideIn;
+  animation-duration: 0.5s;
+}
+
+.divhide {
+  -webkit-animation-name: slideOut;
+  animation-duration: 0.5s;
+}

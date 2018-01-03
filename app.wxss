@@ -91,18 +91,20 @@ button[type="warn"] {
     bottom: 0;
     left: 0;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     background: rgba(0, 0, 0, .3);
     z-index: 10;
 }
 
 .alert {
+    top:60px;
     background: #fff;
     border-radius: 10px;
     width: calc(100vw - 60px);
     position: relative;
-    max-height: calc(100vh - 200px);
+    /* max-height: calc(100vh - 200px); */
+    height: 255px;
 }
 
 .alert .title {

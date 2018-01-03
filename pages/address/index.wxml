@@ -1,73 +1,141 @@
 <!--pages/address/index.wxml-->
+<import src="../tpl/index.wxml"/>
 <view class="address-list">
-    <view class="more" wx:if="{{!addressList || addressList.length == 0}}" style="text-align: center">
-        没有数据
+  <view class="more" wx:if="{{!addressList || addressList.length == 0}}" style="text-align: center">
+    没有数据
+  </view>
+  <view class="item mb-8" wx:for="{{addressList}}" wx:for-index="index">
+    <view class="details" bindtap="setAddress" data-index="{{index}}">
+      <view>
+        <text class="name">{{item.receiver}}</text>,
+        <text class="mobile">{{item.mobile}}</text>
+      </view>
+      <view>
+         <text class="">{{item.province}}</text>
+        <text>{{item.city}}</text>
+        <text>{{item.district}}</text>
+        <text>{{item.zone}}</text> 
+        <text>{{item.address}}</text>
+      </view>
     </view>
-    <view class="item mb-8" wx:for="{{addressList}}" wx:for-index="index">
-        <view class="details" bindtap="setAddress" data-index="{{index}}">
-            <view>
-                <text class="name">{{item.receiver}}</text>, <text class="mobile">{{item.mobile}}</text>
-            </view>
-            <view>
-                <text class="">{{item.province}}</text> <text>{{item.city}}</text> <text>{{item.district}}</text> <text>{{item.zone}}</text> <text>{{item.address}}</text>
-            </view>
+    <view class="handle">
+      <view class="flex" style="align-items: center;" bindtap="setDefault" data-index="{{index}}">
+        <icon type="success" size="14" color="{{item.default ? '#e02e24' : '#9c9c9c'}}" />
+        <view style="padding-left: 3px;" class="{{item.default ? 'selected' : ''}}">
+          {{text}}
         </view>
-        <view class="handle">
-            <view class="flex" style="align-items: center;" bindtap="setDefault" data-index="{{index}}">
-                <icon type="success" size="14" color="{{item.default ? '#e02e24' : '#9c9c9c'}}"/>
-                <view style="padding-left: 3px;" class="{{item.default ? 'selected' : ''}}">
-                    {{text}}
-                </view>
-            </view>
-            <view class="flex">
-                <view class="flex edit" style="align-items: center;" bindtap="addOrEdit" data-addoredit="{{1}}" data-index="{{index}}">
-                    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/edit.svg" style="width: 14px;height: 14px"></image>
-                    <view style="padding-left: 3px;">
-                        编辑
-                    </view>
-                </view>
-                <view class="flex" style="align-items: center;" bindtap="deleteAddress" data-index="{{index}}">
-                    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/delete.svg" style="width: 14px;height: 14px"></image>
-                    <view style="padding-left: 3px;">
-                        删除
-                    </view>
-                </view>
-            </view>
+      </view>
+      <view class="flex">
+        <view class="flex edit" style="align-items: center;" bindtap="addOrEdit" data-addoredit="{{1}}" data-index="{{index}}">
+          <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/edit.svg" style="width: 14px;height: 14px"></image>
+          <view style="padding-left: 3px;">
+            编辑
+          </view>
         </view>
+        <view class="flex" style="align-items: center;" bindtap="deleteAddress" data-index="{{index}}">
+          <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/delete.svg" style="width: 14px;height: 14px"></image>
+          <view style="padding-left: 3px;">
+            删除
+          </view>
+        </view>
+      </view>
     </view>
+  </view>
 
 </view>
 
 <view class="btn bc_red" bindtap="addOrEdit" data-addoredit="{{0}}">
-    新增地址
+  新增地址
 </view>
+
 
 
 <view class="mask" wx:if="{{box}}">
-    <view class="alert">
-        <view class="title">
-            {{addOrEdit ? '添加' : '编辑'}}收货地址
+<template is="cascade" data="{{animationData:animationData,sheng:sheng,shi:shi,qu:qu}}"/>
+  <view class="alert">
+    <view class="title">
+      {{!addOrEdit ? '添加' : '编辑'}}收货地址
+    </view>
+    <view class="flex item">
+      <input class="name" bindinput="inputReceiver" value="{{receiver}}" type="text" placeholder="名字" />
+      <input type="number" bindinput="inputMobile" maxlength='11' value="{{mobile}}" placeholder="电话" />
+    </view>
+    <!-- <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding:0px 10px">
+      <view style='width:30%;'>选择地区</view>
+      <input type='text' placeholder='请选择地区' style='width:100%' disabled='true'></input>
+
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
         </view>
-        <view class="flex item">
-            <input class="name" bindinput="inputReceiver" value="{{receiver}}"  type="text" placeholder="名字"/>
-            <input type="number" bindinput="inputMobile" value="{{mobile}}" placeholder="电话"/>
-        </view>
-        <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding: 15px 10px" bindtap="chooseLocation">
-            <view>{{(province || '') + (city || '') + (district || '选择地区')}}</view>
-            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px;height: 14px"></image>
-        </view>
-        <view style="border-bottom: 1px dotted #d2d2d2;padding: 15px 10px" bindtap="chooseLocation">
-            {{zone || '选择小区'}}
-        </view>
-        <textarea bindinput="inputAddress" style="border-bottom: 1px dotted #d2d2d2" placeholder="详细地址（可填写楼号、单元、门牌号）" value="{{address}}"/>
-        <view class="close"  bindtap="hideBox">
-            <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
-        </view>
-        <view>
-            <view class="btn bc_red" bindtap="save">
-                保存
-            </view>
-        </view>
+      </picker>
+
+      <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px;height: 14px"></image>
+    </view> -->
+     <!-- <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding:13px 10px">
+  <view style="width:30%">选择地区</view>
+  <picker mode="region" bindchange="bindRegionChange" style='width:100%;' value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker" style='padding:0px 10px'>当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+    </view>
+  </picker>
+    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px;height: 14px"></image>
+</view> -->
+    <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding:0px 10px">
+      <view style='width:30%'>选择地区</view>
+      <input type='text'  bindtap='dianji' style='width:100%' value="{{jieguo.sheng}} {{jieguo.shi}} {{jieguo.qu}}" disabled='true'></input>
+      <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 20px;height: 20px" bindtap="showLocation"></image>
     </view>
 
+    <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding:0px 10px">
+      <view style='width:30%'>详细地址</view>
+      <input type='text' value='{{address}}' placeholder='请输入地址或者点击地址选择' style='width:100%'></input>
+      <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 20px;height: 20px" bindtap="showLocation"></image>
+    </view>
+
+    <!-- <view style="border-bottom: 1px dotted #d2d2d2;padding: 15px 10px" bindtap="chooseLocation">
+            {{zone || '选择小区'}}
+        </view> -->
+    <!-- <textarea bindinput="inputAddress" style="border-bottom: 1px dotted #d2d2d2" placeholder="详细地址（可填写楼号、单元、门牌号）" value="{{address}}"/> -->
+    <view class="close" bindtap="hideBox">
+      <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/close.svg"></image>
+    </view>
+    <view>
+      <view class="btn bc_red" bindtap="save">
+        保存
+      </view>
+    </view>
+  </view>
+  <!-- 选择区域 -->
+  <view wx:if="{{showAddress}}" class="{{animation}}" style="height:280px;width:100%;position:fixed;bottom:0px;background:white;left:0px">
+    <view class='address-title'>请点击选择地址</view>
+    <scroll-view scroll-y style='height:calc(100% - 20px)'>
+      <block wx:for="{{addressListMore}}">
+      <view class='flex' style="justify-content:space-between; align-items:center;padding:10px 10px;border-bottom: 1px dotted #d2d2d2" bindtap='hideLocation' data-address="{{item}}">
+        <view>
+          <view>{{item}}</view>
+          <view style='color: gray;'>{{jieguo.sheng}}{{jieguo.shi}}{{jieguo.qu}}{{item}}</view>
+        </view>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px;height: 14px"></image>
+      </view>
+      
+      
+      
+       </block>
+      
+
+    </scroll-view>
+  </view>
+
+
+
 </view>
+
+
+
+<!-- <view bindtap="dianji">点击</view>
+<view>
+　　<text>省：{{jieguo.sheng}}</text>
+　　<text>市：{{jieguo.shi}}</text>
+　　<text>区：{{jieguo.qu}}</text>
+</view> -->
+

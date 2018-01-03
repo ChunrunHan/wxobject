@@ -18,15 +18,22 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 
+Array.prototype.contains = function (needle) {
+    for (i in this) {
+        if (this[i] == needle) return true;
+    }
+    return false;
+}
+
 
 App({
   onLaunch: function () {
   },
   formIds: [],
-  // bucket: 'yzb-mall',
-  bucket:'yezhubao-mall',
-  // ossHost: 'https://dev.yezhubao.net/oss_mall',
-  // urlBase: 'https://dev.yezhubao.net',
-  ossHost: 'https://api.yezhubao.net/oss_mall',
-  urlBase: 'https://api.yezhubao.net',
+  bucket: 'yzb-mall',
+  // bucket:'yezhubao-mall',
+  ossHost: 'https://dev.yezhubao.net/oss_mall',
+  urlBase: 'https://dev.yezhubao.net',
+  // ossHost: 'https://api.yezhubao.net/oss_mall',
+  // urlBase: 'https://api.yezhubao.net',
 })

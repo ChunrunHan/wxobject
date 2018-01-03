@@ -26,13 +26,13 @@
 				{
 					"id": 0,
 					"name": "test",
-					"pathName": "pages/pay/index",
+					"pathName": "pages/address/index",
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "order",
-					"pathName": "pages/order/index",
+					"id": 1,
+					"name": "tpl",
+					"pathName": "pages/tpl/index",
 					"query": ""
 				},
 				{

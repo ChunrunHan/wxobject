@@ -1,13 +1,13 @@
 <!--pages/pay/index.wxml-->
 <navigator url="../address/index?setAddress=1" class="address">
     <view class="flex">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height:auto;"></image>
+        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height:30px;position:absolute;top:50%;margin-top:-15px"></image>
         <view class="details">
             <view>
                 <text class="name">{{address.receiver}}</text> <text class="mobile">{{address.mobile}}</text>
             </view>
             <view>
-                <text class="">{{address.province}}</text> <text>{{address.city}}</text> <text>{{address.district}}</text> <text>{{address.zone}}</text> <text>{{address.address}}</text>
+                 <text class="">{{address.province}}</text> <text>{{address.city}}</text> <text>{{address.district}}</text><text>{{address.address}}</text> 
             </view>
         </view>
     </view>

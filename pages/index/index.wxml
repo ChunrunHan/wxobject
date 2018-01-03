@@ -53,7 +53,7 @@
                 <view class='fs-18'>{{item.name}}</view>
                 <view class="flex" style="justify-content: space-between; padding-top: 10px;">
 
-                    <view class="flex" style="align-items: flex-end;align-items:center;">
+                    <view class="flex" style="align-items: flex-end;align-items:baseline;">
                         <view class="price co_red">
                             ￥{{item.price}}
                         </view>
