@@ -83,12 +83,12 @@
     <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding:0px 10px">
       <view style='width:30%'>选择地区</view>
       <input type='text'  bindtap='dianji' style='width:100%' value="{{jieguo.sheng}} {{jieguo.shi}} {{jieguo.qu}}" disabled='true'></input>
-      <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 20px;height: 20px" bindtap="showLocation"></image>
+      <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 20px;height: 20px" bindtap="dianji"></image>
     </view>
 
     <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding:0px 10px">
       <view style='width:30%'>详细地址</view>
-      <input type='text' value='{{address}}' placeholder='请输入地址或者点击地址选择' style='width:100%'></input>
+      <input type='text' value='{{address}}' placeholder='请输入地址或者点击地址选择' style='width:100%' bindinput='inputAddress'></input>
       <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 20px;height: 20px" bindtap="showLocation"></image>
     </view>
 
