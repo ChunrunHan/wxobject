@@ -347,9 +347,7 @@ Page({
 
   },
   showLocation: function (e) {
-    wx.showLoading({
-      title: '',
-    })
+    $.showLoading()
     var _this = this;
     _this.setData({
       showAddress: true,
