@@ -34,10 +34,10 @@ Page({
     },
     onLoad: function () {
         $.setTitle('盛华优选')
-        // this.init()
+        this.init()
     },
     onShow: function(){
-      this.init()
+      // this.init()
     },
     getRecommendList: function () {
         var _this = this

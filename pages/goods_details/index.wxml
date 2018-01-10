@@ -62,7 +62,7 @@
         <view class="item flex" wx:for="{{groupList}}" wx:for-index="index" wx:if="{{index < 3}}">
             <view class="flex left">
                 <image src="{{item.avatar}}"></image>
-                <view class="name">{{item.name}}</view>
+                <view class="name nowrap">{{item.name}}</view>
             </view>
             <view class="flex right">
                 <view class="flex prompt">

@@ -227,3 +227,21 @@ button::after{
 .pd-t0{
   padding-top: 0px;
 }
+
+@media all and (max-width: 320px) and (min-width: 300px) {  
+ .nowrap{
+  white-space:nowrap;
+  width:70px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+}  
+
+@media all and (max-width: 700px) and (min-width: 330px) {  
+ .nowrap{
+  white-space:nowrap;
+  width:120px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+}  
