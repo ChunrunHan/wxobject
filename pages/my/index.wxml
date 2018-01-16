@@ -1,11 +1,11 @@
 <!--pages/my/index.wxml-->
 <view class="body">
-    <view class="item" bindtap="order">
+    <!-- <view class="item" bindtap="order">
         <view>我的订单</view>
         <view style="display: flex; align-items: center; color: #9c9c9c">
             <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>
         </view>
-    </view>
+    </view> -->
     <view class="item" bindtap="address">
         <view>收货地址</view>
         <view style="display: flex; align-items: center; color: #9c9c9c">

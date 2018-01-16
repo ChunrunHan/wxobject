@@ -1,0 +1,73 @@
+
+<view class='flex topBox'>
+  <image src="{{imgUrl + '/' + sellerid + '/' + goodsImages+'!thumbnail'}}" class='goodsImg'></image> 
+  <view class='goodsText'>
+    <view class='goodsStatus'>{{expressStatus}}</view>
+    <view>{{company}}快递:<text selectable='true'>{{num}}</text></view>
+    <view>商品单号:<text class="tel">{{orderid}}</text></view>
+  </view>
+</view>
+
+<view class='bg-def noneBox' wx:if="{{!yes}}">
+  <image src="../../img/goodsinfo.svg" class='goodsImg' style='width:50px;height:50px'></image> 
+  <view class='bg-def'>暂无物流信息</view>
+</view>
+
+<view class='contentBox' wx:if="{{yes}}">
+  <block wx:for="{{expressList}}" wx:for-index="index">
+  <view class="flex contentlist {{index == 0? 'color-orange':'color-gray'}}">
+    <view class="leftinfo">
+      <view class='font16 pr-t4'>{{item.date}}</view>
+      <view class='font12'>{{item.time}}</view>
+    </view>
+    <view class='rightinfo'>
+       <span wx:if="{{index == 0}}" class="quan bg-orange now">^</span>   
+       <span wx:if="{{index !== 0}}" class="quan bg-gray yes"></span> 
+       <span wx:if="{{index == lenght}}" class="quan bg-gray now">^</span>  
+      <view  class='font16 pad-b5 pr-t3'>{{item.nuState}}</view>
+      <view>{{item.context}}</view>
+    </view>
+  </view>
+  </block>
+
+      <!-- <view class='flex contentlist color-orange'>
+    <view class="leftinfo">
+      <view class='font16 pr-t4'>01-13</view>
+      <view class='font12'>03:06:50</view>
+    </view>
+    <view class='rightinfo'>
+      <span class="quan bg-gray yes"></span>  
+      <view  class='font16 pad-b5 pr-t3'>运输中</view>
+      <view>山东省青岛转运设计费打开了房间考虑双方均大师傅可见</view>
+    </view>
+  </view>
+
+   <view class='flex contentlist color-gray'>
+    <view class="leftinfo">
+      <view class='font16 pr-t4'>早上</view>
+      <view class='font12'>10:00</view>
+    </view>
+    <view class='rightinfo'>
+      <span class="quan bg-gray yes"></span>  
+      <view  class='font16 pad-b5 pr-t3'>运输中</view>
+      <view>山东省青岛转运设计费打开了房间考虑双方均大师傅可见</view>
+    </view>
+  </view>
+
+    <view class='flex contentlist color-gray'>
+    <view class="leftinfo">
+      <view class='font16'>早上</view>
+      <view class='font12'>10:00</view>
+    </view>
+    <view class='rightinfo'>
+      <span class="quan bg-gray now">^</span>  
+      <view  class='font16 pad-b5'>运输中</view>
+      <view>山东省青岛转运设计费打开了房间考虑双方均大师傅可见</view>
+    </view>
+  </view>   -->
+
+   <view class="more">
+        {{more}}
+    </view>
+
+</view>

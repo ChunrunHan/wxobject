@@ -50,18 +50,22 @@
             <!--<view class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="requestRefund">-->
                 <!--退货-->
             <!--</view>-->
-            <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-10" data-goodsId="{{item.goods.id}}" data-groupId="{{item.groupId}}" data-singleBuy="{{item.single}}" data-orderId="{{item.id}}" bindtap="pay">
+            <view wx:if="{{item.status == '待支付'}}" class="btn bc_red ml-5" data-goodsId="{{item.goods.id}}" data-groupId="{{item.groupId}}" data-singleBuy="{{item.single}}" data-orderId="{{item.id}}" bindtap="pay">
                 去支付
             </view>
-            <view wx:if="{{item.status == '待收货' || item.status == '已收货' ||item.status == '待评价'||item.status == '退货申请驳回'}}" class="btn bc_red bc_white font_red ml-10" data-orderId="{{item.id}}" bindtap="applicationForReturn">
+            <view wx:if="{{item.status == '待收货' || item.status == '已收货' ||item.status == '待评价'||item.status == '退货申请驳回'}}" class="btn bc_red bc_white font_red ml-5" data-orderId="{{item.id}}" bindtap="applicationForReturn">
                 申请退款
             </view>
-            <view wx:if="{{item.status == '待收货' || item.status == '已收货'}}" class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
+            <view wx:if="{{item.status == '待收货' || item.status == '已收货'}}" class="btn bc_red ml-5" data-orderId="{{item.id}}" bindtap="putOrderWatitingevalaute">
                 确认收货
             </view>
-            <view wx:if="{{item.status == '退货申请通过' || item.status == '退货申请驳回' || item.status == '退款成功' }}" class="btn bc_red ml-10" data-orderId="{{item.id}}:{{item.status}}:{{item.userId}}" bindtap="getServiceInfo">
+            <view wx:if="{{item.status == '待收货' && item.carrierCode && item.expressNo}}" class="btn bc_red ml-5" data-goodsInfo="{{item.id}}:{{item.carrierCode}}:{{item.expressNo}}:{{item.seller.id}}:{{item.goods.images}}" bindtap="getLogistics">
+                查看物流
+            </view>
+            <view wx:if="{{item.status == '退货申请通过' || item.status == '退货申请驳回' || item.status == '退款成功' }}" class="btn bc_red ml-5" data-orderId="{{item.id}}:{{item.status}}:{{item.userId}}" bindtap="getServiceInfo">
                 查看详情
             </view>
+           
               
             <!--<view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">-->
                 <!--查看-->

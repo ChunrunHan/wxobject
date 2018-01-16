@@ -1,0 +1,63 @@
+<!--pages/my/index.wxml-->
+
+    <view class='searchTop'>
+       <view class='boxinput'>
+        <image src='../../img/search.svg' class='searchIcon'></image> 
+        <input type='text' value='{{searchGoods}}' bindinput='getSearchValue' placeholder='搜索商品' class='searchText'></input>
+        <text class='searchBtn' wx:if="{{haveValue}}" bindtap='searchGoods'>搜索</text>
+       </view>
+    </view>
+
+    <view class='top41' wx:if="{{showHis}}">
+        <view class='searchhistory'>
+            <view class='history'>
+              <view class='flex searchTitle'>
+                <view class=''>历史搜索</view>
+                 <image src='../../img/del.svg' class='searchIcon' bindtap='clearHistory'></image> 
+              </view>
+              
+              <view class='searchAll clearfix'>
+              <block wx:for="{{history}}">
+                <view class='allItem' bindtap='selectItem' data-text='{{item}}'>{{item}}</view>
+              </block>
+              </view>
+
+            </view>
+        </view>
+     </view>
+
+
+<scroll-view scroll-y class="order-list top41" bindscrolltolower="getMore" scroll-top="{{scrollTop}}">
+     <view class="goods-list">
+        <button class="formButton item" wx:for="{{recommendList}}" bindtap="openDetail" data-id="{{item.id}}"
+                form-type="submit">
+            <view class="img">
+                <image src="{{imgUrl + '/' + item.sellerId + '/' + item.images +'!thumbnail'}}" mode='aspectFill'></image>
+            </view>
+
+            <view class="pd-10">
+                <view class='fs-18'>{{item.name}}</view>
+                <view class="flex" style="justify-content: space-between; padding-top: 10px;">
+
+                    <view class="flex" style="align-items: flex-end;align-items:baseline;">
+                        <view class="price co_red">
+                            ￥{{item.price}}
+                        </view>
+                        <view class="dec co_ash" style="padding-left: 10px;">
+                            {{item.buyerLimit}}人团
+                            <!-- ·单买价{{item.singlePrice}}元 -->
+                        </view>
+                    </view>
+                    <view class="btn bc_red">
+                        去开团 <image src="../../img/white_row.png" style="width: 14px; height: 14px;position:relative;top:2px;color:white"></image>
+                    </view>
+                </view>
+            </view>
+        </button>
+
+    </view>
+    <view class="more">
+        {{more}}
+    </view>
+  </scroll-view>
+   

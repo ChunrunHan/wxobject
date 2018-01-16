@@ -10,20 +10,32 @@
     "pages/my/index",
     "pages/rating/index",
     "pages/rating-list/index",
-    "pages/orderDetail/index"
+    "pages/orderDetail/index",
+    "pages/logistics/index",
+    "pages/search/index"
   ],
   "tabBar": {
     "color": "#d2d2d2",
     "selectedColor": "#e02e24",
     "list": [{
       "pagePath": "pages/index/index",
-      "selectedIconPath": "img/index.png",
-      "iconPath": "img/index_.png",
+      "selectedIconPath": "img/sy.png",
+      "iconPath": "img/sy_.png",
       "text": "首页"
     }, {
+      "pagePath": "pages/search/index",
+      "selectedIconPath": "img/s.png",
+      "iconPath": "img/s_.png",
+      "text": "搜索"
+    }, {
+      "pagePath": "pages/order/index",
+      "selectedIconPath": "img/dd.png",
+      "iconPath": "img/dd_.png",
+      "text": "订单"
+    }, {
       "pagePath": "pages/my/index",
-      "selectedIconPath": "img/my.png",
-      "iconPath": "img/my_.png",
+      "selectedIconPath": "img/wd.png",
+      "iconPath": "img/wd_.png",
       "text": "我的"
     }]
   },

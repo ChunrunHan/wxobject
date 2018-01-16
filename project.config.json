@@ -20,8 +20,12 @@
 			"current": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"game": {
 			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -36,9 +40,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "退款售后",
-					"pathName": "pages/orderDetail/index",
+					"id": 2,
+					"name": "物流详细",
+					"pathName": "pages/logistics/index",
 					"query": ""
 				},
 				{
@@ -51,6 +55,12 @@
 					"id": -1,
 					"name": "详情",
 					"pathName": "pages/goods_details/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索商品",
+					"pathName": "pages/search/index",
 					"query": ""
 				}
 			]

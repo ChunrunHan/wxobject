@@ -57,7 +57,7 @@
       {{!addOrEdit ? '添加' : '编辑'}}收货地址
     </view>
     <view class="flex item">
-      <input class="name" bindinput="inputReceiver" value="{{receiver}}" type="text" placeholder="名字" />
+      <input class="name" bindinput="inputReceiver" value="{{receiver}}" type="text" placeholder="名字" maxlength='10'/>
       <input type="number" bindinput="inputMobile" maxlength='11' value="{{mobile}}" placeholder="电话" />
     </view>
     <!-- <view class="flex" style="justify-content: space-between;align-items: center;border-bottom: 1px dotted #d2d2d2;padding:0px 10px">

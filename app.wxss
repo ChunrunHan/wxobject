@@ -26,6 +26,10 @@ swiper {
     margin-left: 10px;
 }
 
+.ml-5 {
+    margin-left: 5px;
+}
+
 .mb-8 {
     margin-bottom: 8px;
 }
@@ -68,6 +72,15 @@ button[type="warn"] {
     color: #fff;
     border-radius: 5px;
     text-align: center;
+}
+
+@media all and (max-width:320px){
+  .btn {
+    padding: 5px 5px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
 }
 
 .btn-fff {

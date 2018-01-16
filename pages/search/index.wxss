@@ -1,0 +1,97 @@
+/* pages/my/index.wxss */
+.body {
+    /* border-top: 1px solid #f2f2f2; */
+}
+view {
+    background: transparent;
+}
+
+.searchTop{
+  background: #e02e24;
+  height: 41px;
+  position: fixed;
+  width: 100vw;
+  top:0px;
+}
+
+.searchTop .boxinput{
+  position: relative;
+   background: white; 
+   margin-left: 15px;
+   margin-right: 15px;
+   padding: 3px 0px;
+   border-radius: 25px;
+   
+}
+
+.searchTop .searchText{
+  padding-left: 25px;
+  padding-right: 50px;
+  
+}
+
+.searchTop .searchIcon{
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  left: 8px;
+}
+
+.searchTop .searchBtn{
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  border-radius: 25px;
+  cursor: pointer;
+  top: 3px;
+  right:3px;
+  background: #e02e24;
+  color: white;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+.top41{
+  margin-top: 41px;
+}
+
+.searchTitle{
+  padding: 10px 15px;
+  color: #717171;
+  font-size: 15px;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.searchhistory .searchIcon{
+  width: 20px;
+  height: 20px;
+}
+
+.searchhistory .searchAll{
+   padding: 0px 15px;
+   
+}
+.searchAll .allItem{
+  float: left;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #dedede;
+  color: #6e6e6e;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden} 
+/* .body .item {
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    border-bottom: 1px solid #f2f2f2;
+    background: #fff;
+}
+
+.body .item:active {
+   background: #f6f6f6;
+} */

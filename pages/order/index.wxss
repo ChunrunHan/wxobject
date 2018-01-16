@@ -125,7 +125,8 @@ textarea {
     border-radius: 10px;
     width: calc(100vw - 60px);
     position: relative;
-     max-height: calc(100vh - 10px); 
+    height:330px;
+
 }
 
 .color-title-red{

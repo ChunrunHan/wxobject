@@ -545,5 +545,12 @@ Page({
         // oss.statusHandler(status);
         console.log(status)
       })
+    },
+    getLogistics: function(e){
+      console.log(e.target.dataset.goodsinfo)
+      let info = e.target.dataset.goodsinfo;
+      wx.navigateTo({
+        url: `../../pages/logistics/index?info=${info}`,
+      })
     }
 })

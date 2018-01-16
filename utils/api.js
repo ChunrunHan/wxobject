@@ -1,5 +1,6 @@
 const baseUrl = `https://dev.yezhubao.net`
 const mallUrl = `https://dev.yezhubao.net/mall`
+const expressUrl = `https://dev.yezhubao.net/express`
 // const baseUrl = `https://api.yezhubao.net`
 // const mallUrl = `https://api.yezhubao.net/mall`
 module.exports = {
@@ -9,7 +10,8 @@ module.exports = {
     getRecommendList: obj => `${mallUrl}/recommend/group/${obj.page || 0}/${obj.size || 10}`,
     getGoodsDetails: goodsId => `${mallUrl}/goods/group/${goodsId}`,
     postOrder: () => `${mallUrl}/order/add/group`,
-    getOrderList: obj => `${mallUrl}/order/list/group//${obj.status}/${obj.page || 0}/${obj.size || 10}`,
+    getOrderList: obj => `${mallUrl}/order/list/group//${obj.status}/${obj.page || 0}/${obj.size || 10}`, 
+    getExpressList: obj => `${expressUrl}/query/${obj.orderid}/${obj.company}/${obj.num}`,
     getAddressList: obj => `${mallUrl}/address/list/${obj.page || 0}/${obj.size || 10}`,
     putAddressDefault: addressId => `${mallUrl}/address/default/${addressId}`,
     deleteAddress: addressId => `${mallUrl}/address/${addressId}`,
@@ -26,4 +28,5 @@ module.exports = {
     groupExpireTime: groupId => `${mallUrl}/goods/group_expire_time/${groupId}`,
     getAd: `${mallUrl}/ad/group/list`,
     postFormId: `${mallUrl}/tm/form_id`
+  
 }

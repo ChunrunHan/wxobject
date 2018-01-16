@@ -1,0 +1,134 @@
+.topBox{
+  padding:10px 15px;
+  font-size: 13px;
+  color: #7d7d7d;
+}
+
+.topBox .goodsStatus{
+  font-size: 16px;
+  color:#f98c23;
+  top:-3px;
+  position:relative;
+  margin-bottom:3px !important;
+
+}
+
+.topBox .goodsImg{
+  width: 60px;
+  height: 60px;
+  /* border: 1px solid #a6a6a6; */
+  margin-right: 15px;
+  /* margin-left: 20px; */
+}
+
+.topBox .tel{
+  color:#239fff;
+}
+
+.topBox .goodsText view{
+  margin-bottom: 5px;
+}
+
+.contentBox{
+  margin-top: 10px;
+  padding: 10px 15px;
+  padding-top: 15px;
+}
+
+.contentBox .contentlist{
+  /* padding-bottom: 15px */
+}
+
+.contentBox .leftinfo{
+  width: 60px;
+  text-align: center;
+  padding-right:10px;
+
+}
+
+.contentBox .rightinfo{
+  border-left: 1px solid #eee;
+  padding-left: 20px;
+  position: relative;
+  padding-bottom: 15px;
+   width: calc(100vw - 120px); 
+}
+
+.contentBox .rightinfo .quan{
+  position: absolute;
+  /* content: '^'; */
+  /* line-height: 20px; */
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  align-self: center;
+  border-radius: 50%;
+  top:0px;
+
+}
+
+.quan.now{
+  width: 15px;
+  height: 15px; 
+  left:-8px;
+}
+.quan.yes{
+  width:10px;
+  height:10px;
+  left:-5px;
+}
+
+.color-orange{
+  color:#f8881c;
+}
+
+.color-gray{
+  color:#a6a6a6;
+}
+
+.bg-orange{
+  background: #f8881c;
+}
+
+.bg-gray{
+  background: #a6a6a6;
+}
+
+.font16{
+  font-size: 16px;
+}
+
+.font14{
+  font-size: 14px;
+}
+
+.font12{
+  font-size: 12px;
+}
+
+.pad-b3{
+  padding-bottom: 3px;
+}
+
+.pad-b5{
+  padding-bottom: 5px;
+}
+
+.pr-t4{
+  position: relative;
+  top: -4px;
+}
+
+.pr-t3{
+  position: relative;
+  top: -3px;
+}
+
+.bg-def{
+  background: #f2f2f2;
+}
+.noneBox{
+  text-align: center;
+  color: gray;
+  padding-top: 50%
+}
