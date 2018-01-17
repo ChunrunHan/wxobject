@@ -50,6 +50,7 @@ Page({
             lng: parseFloat(wx.getStorageSync('longitude')),
             lat: parseFloat(wx.getStorageSync('latitude')),
         }
+        console.log(obj)
         var url = api.getRecommendList({
             page: _this.data.page
         })
@@ -65,7 +66,7 @@ Page({
                 if (_this.data.page > 0) {
                     recommendList = [..._this.data.recommendList, ...recommendList]
                 }
-
+                console.log(JSON.stringify(recommendList));
                 _this.setData({
                     recommendList
                 })

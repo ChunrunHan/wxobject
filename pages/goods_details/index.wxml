@@ -78,14 +78,14 @@
     </view>
 
     <view class="pd-10 ratingList  mb-8" wx:if="{{ratingList}}">
-        <view class="title flex">
+        <view class="title flex" style="padding: 2px 10px;">
             <view>商品评价</view>
             <button form-type="submit"  class="formButton showMore color-memo" bindtap="goRatingList">查看更多</button>
         </view>
         <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
             <view class="header flex">
                 <view class="flex left">
-                    <image src="{{item.avatar}}"></image>
+                    <image src="{{item.userAvatar}}"></image>
                     <view class="name">匿名用户</view>
                 </view>
                 <view class="flex right">
@@ -151,9 +151,9 @@
                         <view class="btn bc_red">去参团</view>
                     </button>
                 </view>
-                <view class="footer">
+                <!-- <view class="footer">
                     仅显示10个开团的人
-                </view>
+                </view> -->
             </view>
 
             <button form-type="submit" class="formButton close" bindtap="hideBox">

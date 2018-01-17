@@ -1,7 +1,13 @@
 <!--pages/rating/index.wxml-->
 <view class="rating mb-8">
     <view class="title">
+       <view>
         <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/rating.svg"></image>商品评价
+       </view> 
+
+         <view class="start">
+        <image wx:for="{{goodsStart}}" wx:for-index="index" data-index="{{index}}" data-type="1" bindtap="setStart" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/start{{item ? '' : '_'}}.svg"></image>
+         </view> 
     </view>
 
     <view class="goods">
@@ -13,14 +19,45 @@
         <textarea placeholder="亲，您对这个商品满意吗？您的评价会帮助我们选择更好的商品哦！" bindinput="goodsComment"/>
     </view>
 
-    <view class="start">
-        <image wx:for="{{goodsStart}}" wx:for-index="index" data-index="{{index}}" data-type="1" bindtap="setStart" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/start{{item ? '' : '_'}}.svg"></image>
+      <view class="weui-cell bg-white" style='padding:10px 15px'>
+      <view class="weui-cell__bd">
+        <view class="weui-uploader">
+          <!-- <view class="weui-uploader__hd">
+          
+          </view> -->
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="uploaderFiles">
+              <block wx:for="{{files}}" wx:key="*this">
+                <view class="weui-uploader__file img-box" id="{{item}}">
+                  <image class="weui-uploader__img" src="{{item.oldImg}}" mode="aspectFill" bindtap="previewImage" id='{{item.oldImg}}' />
+                  <icon id='{{index}}' data-source='goods' data-name='{{item.newImg}}' class='cancel' bindtap="delImage" type="cancel" size="30"></icon>
+                </view>
+              </block>
+              <view class="weui-uploader__file img-box" hidden='{{files.length == 6?true:false}}'>
+                <image class="weui-uploader__img" id='addphoto' src="../../img/iconfont-tianjia.png" bindtap="chooseImage" />
+              </view>
+
+
+            </view>
+          </view>
+        </view>
+      </view>
     </view>
+
+    
+
+   
 </view>
 
 <view class="rating">
     <view class="title">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/rating.svg"></image>店铺评价
+        <view>
+          <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/rating.svg"></image>店铺评价
+        </view>
+
+         <view class="start">
+        <image wx:for="{{sellerStart}}" wx:for-index="index" data-index="{{index}}" bindtap="setStart" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/start{{item ? '' : '_'}}.svg"></image>
+         </view>
     </view>
     <view class="goods">
         <image src="{{osshost}}/{{orderInfo.seller.id}}/{{orderInfo.seller.logo}}"></image>
@@ -29,9 +66,7 @@
     <view class="goods-rating mb-8">
         <textarea placeholder="亲，您对这个商家满意吗？您的评价会帮助我们选择更好的商家哦！" bindinput="sellerComment"/>
     </view>
-    <view class="start">
-        <image wx:for="{{sellerStart}}" wx:for-index="index" data-index="{{index}}" bindtap="setStart" src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/start{{item ? '' : '_'}}.svg"></image>
-    </view>
+   
 </view>
 
 <button type="warn"  bindtap="addRating"> 提交评论 </button>

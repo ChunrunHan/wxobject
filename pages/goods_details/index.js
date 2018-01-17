@@ -50,7 +50,8 @@ Page({
                   goodsDetails.images[i] = $.imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[i]+'!thumbnail'
                   // console.log(goodsDetails.images[i]);
                   _this.setData({
-                    files: _this.data.files.concat(goodsDetails.images[i])
+                    files: _this.data.files.concat(goodsDetails.images[i]),
+                    servicePhone: goodsDetails.servicePhone
                   })
                 }
                 // console.log(_this.data.files)
@@ -181,5 +182,8 @@ Page({
     },
     callSeller: function(e){
       console.log("联系客服");
+      wx.makePhoneCall({
+        phoneNumber: this.data.servicePhone
+      })
     }
 })

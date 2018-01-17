@@ -1,9 +1,9 @@
 <!--pages/rating-list/index.wxml-->
 <view class="ratingList">
-    <view class="item" wx:for="{{ratingList}}" wx:for-index="index" wx:if="{{index < 2}}">
+    <view class="item" wx:for="{{ratingList}}" wx:for-index="index">
         <view class="header flex">
             <view class="flex left">
-                <image src="{{item.avatar}}"></image>
+                <image src="{{item.userAvatar}}" class='avatar'></image>
                 <view class="name">匿名用户</view>
             </view>
             <view class="flex right">
@@ -13,6 +13,25 @@
         <view class="body">
             {{item.comment}}
         </view>
+
+        <view class="weui-cell bg-white" wx:if="{{item.images}}">
+      <view class="weui-cell__bd">
+        <view class="weui-uploader">
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="uploaderFiles">
+               <block wx:for="{{item.images}}" wx:key="*this" wx:for-item="itemName"> 
+                <view class="weui-uploader__file img-box">
+                  <image class="weui-uploader__img" src="{{imgUrl +'/'+ item.userId +'/'+ itemName}}" mode="aspectFill" bindtap="previewImage" />
+                </view>
+               </block> 
+             
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
 
     </view>
 </view>

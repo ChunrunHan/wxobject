@@ -3,7 +3,7 @@
 const $ = require('../../utils/utils');
 const api = require('../../utils/api');
 const app = getApp()
-
+var loading = false
 
 Page({
     data: {
@@ -11,13 +11,17 @@ Page({
       searchGoods: '',
       more: '没有更多数据',
       history: [],
-      showHis: false
+      imgUrl: $.imgUrl,
+      showHis: true,
+      page: 0,
+      recommendList:[]
+
     },
     onLoad: function (options) {
         $.setTitle('搜索')
     
     },
-    onshow: function(){
+    onShow: function(){
       var history = wx.getStorageSync('history');
       console.log('搜索历史' + history);
       history = history || [];
@@ -29,6 +33,15 @@ Page({
           showHis: true
         })
       }
+      wx.getStorageSync('province')
+      wx.getStorageSync('city')
+      wx.getStorageSync('district')
+      wx.getStorageSync('latitude')
+      wx.getStorageSync('longitude')
+      wx.getStorageSync('zone')
+      // sellerId[String] 商家id，[可以为空]
+      // categoryId[String] 分类id, [可以为空]
+
     },
     getSearchValue: function(e){
       var _this = this;
@@ -66,6 +79,7 @@ Page({
       if (_this.data.history !== ''){
         if (_this.arryHave(currentGoods,_this.data.history)){
           console.log('true有');
+          _this.getGoodsList()
         }else{
           console.log('false木有');
           _this.setData({
@@ -73,10 +87,9 @@ Page({
             showHis: true
           })
           console.log(_this.data.history)
-          // var list = _this.data.history.join(":");
-          // console.log(list);
           wx.setStorageSync('history', _this.data.history)
           console.log(wx.getStorageSync('history'));
+          _this.getGoodsList()
         }
 
       }else{
@@ -85,10 +98,9 @@ Page({
           showHis: true
         })
         console.log(_this.data.history)
-        // var list = _this.data.history.join(":");
-        // console.log(list);
         wx.setStorageSync('history', _this.data.history)
         console.log(wx.getStorageSync('history'));
+        _this.getGoodsList()
       }
       
 
@@ -111,5 +123,91 @@ Page({
         showHis: false
       })
       wx.setStorageSync('history',this.data.history)
+    },
+    openDetail: function (e) {
+      console.log(e)
+      let id = e.currentTarget.dataset.id
+      let url = `../goods_details/index?id=${id}`
+      $.jump(url)
+    },
+    getFormId: function (e) {
+      let formId = e.detail.formId;
+      let time = new Date().getTime()
+      app.formIds.push({
+        formId,
+        time
+      })
+      console.log(`getFormId: ${formId}`)
+      console.log(app.formIds)
+    },
+    getMore: function () {
+      console.log("加载啊");
+      if (!loading) {
+        var page = this.data.page + 1
+        var more = '加载中'
+        loading = true
+        this.setData({
+          page,
+          more
+        })
+        this.getGoodsList()
+      }
+
+    },
+    getGoodsList: function () {
+      console.log('执行啊');
+      var _this = this
+      var obj = {
+        province: '山东省',
+        city: '青岛市',
+        district: wx.getStorageSync('district'),
+        zone: wx.getStorageSync('zone'),
+        longitude : parseFloat(wx.getStorageSync('longitude')),
+        latitude : parseFloat(wx.getStorageSync('latitude')),
+        sellerId :'',
+        categoryId :'',
+        goodsName: _this.data.searchGoods,
+        page : _this.data.page,
+        size :10
+      }
+      var url = api.postSearchGoods()
+      console.log(url);
+      console.log(obj)
+      $.showLoading()
+      $.post(url,obj).then(function (res) {
+        console.log(res);
+        $.hideLoading()
+        if (res.data.errCode == 0) {
+          var recommendList = res.data.dataList
+          recommendList.forEach(function (obj) {
+            obj.images = obj.images.split(':')[0]
+          })
+          if (_this.data.page > 0) {
+            recommendList = [..._this.data.recommendList, ...recommendList]
+          }
+          console.log(JSON.stringify(recommendList));
+          _this.setData({
+            recommendList,
+            showHis: false
+          })
+          loading = false
+          _this.setData({
+            more: '上拉加载更多'
+          })
+        } else {
+          _this.setData({
+            more: '没有更多数据',
+            showHis: false
+          })
+        }
+
+      }).catch(function (err) {
+        $.hideLoading()
+        console.log(err)
+        _this.setData({
+          more: '没有更多数据',
+          showHis: false
+        })
+      })
     }
 })

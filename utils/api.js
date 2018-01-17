@@ -27,6 +27,7 @@ module.exports = {
     requestRefund: orderId => `${mallUrl}/order/request_refund/${orderId}`,
     groupExpireTime: groupId => `${mallUrl}/goods/group_expire_time/${groupId}`,
     getAd: `${mallUrl}/ad/group/list`,
-    postFormId: `${mallUrl}/tm/form_id`
+    postFormId: `${mallUrl}/tm/form_id`,
+    postSearchGoods: () =>`${mallUrl}/goods/search/group`
   
 }
