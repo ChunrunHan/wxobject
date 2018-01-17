@@ -1169,3 +1169,11 @@ icon {
 .bg-all{
   background: #f2f2f2;
 }
+
+#shareBtn{
+  height:32px;
+  line-height:32px;
+  font-size:14px !important;
+  color:white;
+  margin-right: 0px;
+}

@@ -19,7 +19,7 @@
             </view>
         </view>
 
-        <view class="goods bg-all">
+        <view class="goods bg-all" bindtap='goGoodsDetail' id="{{item.goods.id}}">
 
             <view class="flex">
                 <image src="{{imgUrl + '/' + item.seller.id + '/' + item.goods.images+'!thumbnail'}}" style="width: 40px; height: 40px;"></image>
@@ -65,6 +65,10 @@
             <view wx:if="{{item.status == '退货申请通过' || item.status == '退货申请驳回' || item.status == '退款成功' }}" class="btn bc_red ml-5" data-orderId="{{item.id}}:{{item.status}}:{{item.userId}}" bindtap="getServiceInfo">
                 查看详情
             </view>
+
+             <button wx:if="{{item.status == '待拼团'}}" id='shareBtn' data-goodsid='{{item.goods.id}}' data-img="{{imgUrl + '/' + item.seller.id + '/' + item.goods.images+'!thumbnail'}}" open-type="share" class="bc_red ml-5">
+               分享好友
+             </button>
            
               
             <!--<view wx:if="{{item.status == '待拼团'}}" class="btn bc_red ml-10">-->

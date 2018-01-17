@@ -9,7 +9,7 @@ Page({
     data: {
       haveValue:false,
       searchGoods: '',
-      more: '没有更多数据了',
+      more: '没有更多数据',
       history: [],
       showHis: false
     },

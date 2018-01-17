@@ -172,5 +172,14 @@ Page({
         current: e.currentTarget.id, // 当前显示图片的http链接
         urls: files // 需要预览的图片http链接列表
       })
+    },
+    goIndex: function(e){
+      console.log(e);
+      wx.switchTab({
+        url: '../index/index'
+      })
+    },
+    callSeller: function(e){
+      console.log("联系客服");
     }
 })

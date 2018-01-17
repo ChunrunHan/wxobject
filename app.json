@@ -15,7 +15,7 @@
     "pages/search/index"
   ],
   "tabBar": {
-    "color": "#d2d2d2",
+    "color": "#717171",
     "selectedColor": "#e02e24",
     "list": [{
       "pagePath": "pages/index/index",

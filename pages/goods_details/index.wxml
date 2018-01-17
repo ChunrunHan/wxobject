@@ -108,7 +108,15 @@
                mode="widthFix"/>
     </view>
 
-    <view class="buy flex">
+    <view class="buy flex" style='border-top:1px solid #eaeaea;'>
+        <view class='buyLink' style='border-right:1px solid #eaeaea;' bindtap="goIndex">
+           <view><image class='bugImg' src='../../img/sy.svg'></image></view> 
+            <view class='fs-10'>首页</view>
+        </view>
+        <view class='buyLink' bindtap='callSeller'>
+             <view><image class='bugImg' src='../../img/services.svg'></image></view> 
+            <view class='fs-10'>客服</view>
+        </view>
         <button form-type="submit" class="formButton alone" bindtap="pay" data-type="{{true}}">
             <view>¥{{goodsDetails.singlePrice}}</view>
             <view>单独购买</view>

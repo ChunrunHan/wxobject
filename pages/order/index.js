@@ -552,5 +552,22 @@ Page({
       wx.navigateTo({
         url: `../../pages/logistics/index?info=${info}`,
       })
-    }
+    },
+    goGoodsDetail:function(e){
+      console.log(e.currentTarget.id)
+      let id = e.currentTarget.id;
+      let url = `../goods_details/index?id=${id}`
+      $.jump(url)
+    },
+    onShareAppMessage: function (e) {
+      console.log(e);
+      var id = e.target.dataset.goodsid;
+      var img = e.target.dataset.img
+      console.log(id);
+      return {
+        title: '优质好货不等人，大家快来拼团啊！',
+        path: `/pages/goods_details/index?id=${id}`,
+        imageUrl: img
+      }
+    },
 })
