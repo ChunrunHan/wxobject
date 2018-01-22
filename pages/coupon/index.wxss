@@ -1,0 +1,120 @@
+view{
+  background: transparent;
+}
+.couponList{
+    background: #f2f2f2 !important;
+}
+
+.couponList .item {
+    position: relative;
+    padding: 0;
+    margin: 2.5vh auto 0 auto;
+    width: 90vw;
+}
+
+.couponList .item .circles {
+    position: absolute;
+    left: -5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 10px;
+    height: 100%;
+}
+
+.couponList .item .circles .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+}
+
+.couponList .item .couponItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.couponList .item .left {
+    width: 70%;
+    display: -webkit-flex;
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+}
+
+.couponList .item .left .header {
+    width: 70px;
+    height: 70px;
+    padding-left: 5px;
+}
+
+.couponList .item .left .header .img {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+.couponList .item .left .content {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 10px;
+}
+
+.couponList .item .left .content .title {
+    width: 35vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 0;
+}
+
+.couponList .item .left .content .description {
+    font-size: 12px;
+    color: #9f9f9f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 0;
+}
+
+.couponList .item .left .content .time {
+    font-size: 12px;
+    color: #9f9f9f;
+    padding: 2px 0;
+}
+
+.couponList .item .right.active {
+    width: 35%;
+    padding: 5px 0;
+    text-align: center;
+    background: -webkit-linear-gradient(left, #ff285c, #f34f2b);
+    background: -o-linear-gradient(right, #ff285c, #f34f2b);
+    background: -moz-linear-gradient(right, #ff285c, #f34f2b);
+    background: linear-gradient(to right, #ff285c, #f34f2b);
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.couponList .item .right.no {
+    text-align: center;
+    width: 35%;
+    padding: 5px 0;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    background-color: rgba(7, 17, 27, 0.2);
+    flex-direction: column;
+    justify-content: center;
+}
+
+.couponList  .item .right .money {
+    color: #fff;
+}
+
+.couponList .item .right .button {
+    font-size: 12px;
+    color: #fff;
+}

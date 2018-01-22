@@ -51,3 +51,23 @@
         <!--<view style="color: #9c9c9c">{{goodsDetails.startTime}}</view>-->
     <!--</view>-->
 </view>
+
+<!-- 
+ <view class="buy flex" style='border-top:1px solid #eaeaea;'>
+        <view class='buyLink' style='border-right:1px solid #eaeaea;' bindtap="goIndex">
+           <view><image class='bugImg' src='../../img/sy.svg'></image></view> 
+            <view class='fs-10'>首页</view>
+        </view>
+        <view class='buyLink' bindtap='callSeller'>
+             <view><image class='bugImg' src='../../img/services.svg'></image></view> 
+            <view class='fs-10'>客服</view>
+        </view>
+        <button form-type="submit" class="formButton alone" bindtap="pay" data-type="{{true}}">
+            <view>¥{{goodsDetails.singlePrice}}</view>
+            <view>单独购买</view>
+        </button>
+        <button form-type="submit" class="formButton group" bindtap="pay" data-type="{{false}}">
+            <view>¥{{goodsDetails.leaderPrice}}</view>
+            <view>一键开团</view>
+        </button>
+    </view> -->

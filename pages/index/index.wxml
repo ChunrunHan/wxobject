@@ -74,3 +74,63 @@
         {{more}}
     </view>
 </form>
+
+
+<!-- 优惠券 -->
+<view class="model" id="model" style="display:none">
+    <view class="discount">
+        <view class="top"></view>
+        <view class="topF">
+            <view style="transform: translateY(0vw);">
+                <view class="text1">送你<span id="couponSum"></span>元优惠券</view>
+                <view class="text2">赶快下单使用吧！</view>
+            </view>
+
+        </view>
+        <view class="box" id="couponList">
+            <view class="list">
+                <view class="left">
+                    <view class="price">¥<span>6</span></view>
+                    <view class="full">满<span>25</span>元可用</view>
+                    <view class="topY"></view>
+                    <view class="bottomY"></view>
+                </view>
+                <view class="center">
+                    <view class="name">烛光晚餐</view>
+                    <view class="tags">
+                        <view class="tag">满减</view>
+                        <!--<view class="tag">晚餐</view>-->
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="date"><span>2015-01-01到期</span></view>
+                    <view class="use">立即领取</view>
+                </view>
+            </view>
+            <view class="list">
+                <view class="left">
+                    <view class="price">¥<span>6</span></view>
+                    <view class="full">满<span>25</span>元可用</view>
+                    <view class="topY"></view>
+                    <view class="bottomY"></view>
+                </view>
+                <view class="center">
+                    <view class="name">烛光晚餐</view>
+                    <view class="tags">
+                        <view class="tag">满减</view>
+                        <!--<view class="tag">晚餐</view>-->
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="date"><span>2015-01-01到期</span></view>
+                    <view class="use">立即领取</view>
+                </view>
+
+            </view>
+        </view>
+        <view class="close" id="modelClose">
+          <image src='../../img/modal_close.png' style='width:35px;height:35px'></image>
+        </view>
+    </view>
+
+</view>

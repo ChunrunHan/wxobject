@@ -46,7 +46,7 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "share",
 					"pathName": "pages/share/index",
 					"query": ""
@@ -61,6 +61,12 @@
 					"id": 5,
 					"name": "搜索商品",
 					"pathName": "pages/search/index",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "coupon",
+					"pathName": "pages/coupon/index",
 					"query": ""
 				}
 			]

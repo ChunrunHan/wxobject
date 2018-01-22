@@ -13,11 +13,16 @@ Page({
     },
     onLoad: function (options) {
         $.setTitle('评价列表')
+        console.log(options.id);
       this.getRating(options.id)
+      this.setData({
+        id: options.id
+      })
     },
     getRating: function (id) {
         console.log('getRating')
         let _this = this
+        id = id || _this.data.id;
         let obj = {
             goodsId: id,
             page: this.data.page,
@@ -30,7 +35,7 @@ Page({
             if (res.data.errCode === 0) {
               wx.hideLoading();
                 let ratingList = res.data.dataList
-                console.log(JSON.stringify(ratingList));
+                // console.log(JSON.stringify(ratingList));
                 ratingList.forEach(obj => {
                     obj.createTime = new Date(obj.createTime).Format("yyyy.MM.dd")
                     if(obj.images){
@@ -48,9 +53,10 @@ Page({
                 })
 
                 loading = false
-                console.log(JSON.stringify(ratingList));
+                // console.log(JSON.stringify(ratingList));
                 
-                if(ratingList.length <= 10){
+                if (ratingList.length == ratingList.totalRecords){
+                  console.log('没数据了');
                     loading = true
                     _this.setData({
                         more: '没有更多数据'

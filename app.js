@@ -28,12 +28,13 @@ Array.prototype.contains = function (needle) {
 
 App({
   onLaunch: function () {
+    wx.setStorageSync('orderLoginAlertShown', 'false')
   },
   formIds: [],
   bucket: 'yzb-mall',
-  // bucket:'yezhubao-mall',
   ossHost: 'https://dev.yezhubao.net/oss_mall',
   urlBase: 'https://dev.yezhubao.net',
+  // bucket: 'yezhubao-mall',
   // ossHost: 'https://api.yezhubao.net/oss_mall',
   // urlBase: 'https://api.yezhubao.net',
 })

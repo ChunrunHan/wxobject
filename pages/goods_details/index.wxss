@@ -154,6 +154,11 @@ swiper image {
 
 .alert .name {
     font-weight: bold;
+   white-space:nowrap;
+width:120px;
+overflow:hidden;
+text-overflow:ellipsis;
+
 }
 
 .share {
@@ -235,6 +240,14 @@ button::after{
   width:70px;
   overflow:hidden;
   text-overflow:ellipsis;
+}
+.alert .name {
+    font-weight: bold;
+   white-space:nowrap;
+width:90px;
+overflow:hidden;
+text-overflow:ellipsis;
+
 }
 }  
 

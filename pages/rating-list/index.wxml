@@ -10,9 +10,7 @@
                 <view>{{item.createTime}}</view>
             </view>
         </view>
-        <view class="body">
-            {{item.comment}}
-        </view>
+        <view class="body">{{item.comment}}</view>
 
         <view class="weui-cell bg-white" wx:if="{{item.images}}">
       <view class="weui-cell__bd">
@@ -21,7 +19,7 @@
             <view class="weui-uploader__files" id="uploaderFiles">
                <block wx:for="{{item.images}}" wx:key="*this" wx:for-item="itemName"> 
                 <view class="weui-uploader__file img-box">
-                  <image class="weui-uploader__img" src="{{imgUrl +'/'+ item.userId +'/'+ itemName}}" mode="aspectFill" bindtap="previewImage" />
+                  <image class="weui-uploader__img" src="{{imgUrl +'/'+ item.userId +'/'+ itemName+'!thumbnail'}}" mode="aspectFill" bindtap="previewImage" />
                 </view>
                </block> 
              

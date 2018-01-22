@@ -3,6 +3,7 @@ const $ = require('../../utils/utils');
 const api = require('../../utils/api');
 const app = getApp()
 var loading = false
+
 Page({
     data: {
       osshost: app.ossHost,
@@ -41,17 +42,39 @@ Page({
 
     },
     onLoad: function (options) {
+      console.log('订单也');
         $.setTitle('订单列表')
-        this.init()
+        // $.login(true).then(function () {
+        //   this.init()
+        // })
+       
     },
     onShow: function (options) {
-      console.log('执行啊');
-      console.log(this.data.ajax);
-      if(this.data.ajax){
-        this.init()
+
+      var cToken = wx.getStorageSync('token');
+      if (cToken) {
+        console.log('执行啊');
+        console.log(this.data.ajax);
+        if (this.data.ajax) {
+          this.init()
+        } else {
+        }
       }else{
+        this.setData({
+          orderList: [],
+          status: '1'
+        })
+
+        if (wx.getStorageSync('orderLoginAlertShown') == 'false'){
+          $.goLoginMobile();
+        }   
+
       }
-        
+    },
+    onHide:function(){
+      if (wx.getStorageSync('orderLoginAlertShown') == 'false'){
+        wx.setStorageSync('orderLoginAlertShown','true');
+      }
     },
     getOrderList: function () {
       console.log('执行啊');
@@ -102,11 +125,20 @@ Page({
         })
     },
     selectStatus: function (e) {
-        let status = e.target.dataset.status
-        this.setData({
+      var cToken = wx.getStorageSync("token")
+      if (cToken){
+          let status = e.target.dataset.status
+          this.setData({
             status
-        })
-        this.init()
+          })
+          console.log('执行啊');
+          this.init()
+        } else{
+          $.goLoginMobile();
+        } 
+        
+        
+        
     },
     init: function () {
         loading = false

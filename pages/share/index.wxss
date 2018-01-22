@@ -61,3 +61,17 @@ button {
     text-overflow:ellipsis;
     white-space: nowrap;
 }
+
+
+/* .buy .bugImg{
+  width: 20px;
+  height: 20px;
+}
+.buy .buyLink{
+  width:15vw;
+  flex-direction:column;
+  justify-content:center;
+  display:flex;
+  text-align:center;
+  color: #696969;
+} */

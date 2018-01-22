@@ -44,7 +44,7 @@
             </view>
         </view>
         <view class="flex pd-10" style="justify-content: flex-end; background: #fff">
-            <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}" style=''>
+            <view wx:if="{{item.seller.servicePhone}}" class="btn-fff" bindtap="call" data-number="{{item.seller.servicePhone}}" style='border-radius:5px'>
                 联系客服
             </view>
             <!--<view class="btn bc_red ml-10" data-orderId="{{item.id}}" bindtap="requestRefund">-->

@@ -3,6 +3,7 @@ const mallUrl = `https://dev.yezhubao.net/mall`
 const expressUrl = `https://dev.yezhubao.net/express`
 // const baseUrl = `https://api.yezhubao.net`
 // const mallUrl = `https://api.yezhubao.net/mall`
+// const expressUrl = `https://api.yezhubao.net/express`
 module.exports = {
     getSms: mobile => `${baseUrl}/user/sms/${mobile}/login`,
     login: obj => `${baseUrl}/user/micro_app/login/${obj.mobile || ''}/${obj.smsValidateCode || ''}/${obj.jsCode || ''}/${obj.unionId || ''}/${obj.openId || ''}`,
@@ -28,6 +29,7 @@ module.exports = {
     groupExpireTime: groupId => `${mallUrl}/goods/group_expire_time/${groupId}`,
     getAd: `${mallUrl}/ad/group/list`,
     postFormId: `${mallUrl}/tm/form_id`,
-    postSearchGoods: () =>`${mallUrl}/goods/search/group`
+    postSearchGoods: () =>`${mallUrl}/goods/search/group`,
+    getCoupons: obj => `${mallUrl}/coupon/received/group/${obj.page || 0}/${obj.size || 10}`
   
 }

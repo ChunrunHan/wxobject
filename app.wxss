@@ -166,6 +166,9 @@ button[type="warn"] {
 .fs-18{
   font-size: 14px;
 }
+.fs-30{
+  font-size: 30px;
+}
 .goods-Tcolor{
   color: #151516;
 }

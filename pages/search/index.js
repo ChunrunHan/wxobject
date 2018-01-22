@@ -22,44 +22,53 @@ Page({
     
     },
     onShow: function(){
-      var history = wx.getStorageSync('history');
-      console.log('搜索历史' + history);
-      history = history || [];
-      this.setData({
-        history: history
-      })
-      if (history) {
+        var history = wx.getStorageSync('history');
+        console.log('搜索历史' + history);
+        history = history || [];
+
         this.setData({
-          showHis: true
+          history: history
         })
-      }
-      wx.getStorageSync('province')
-      wx.getStorageSync('city')
-      wx.getStorageSync('district')
-      wx.getStorageSync('latitude')
-      wx.getStorageSync('longitude')
-      wx.getStorageSync('zone')
-      // sellerId[String] 商家id，[可以为空]
-      // categoryId[String] 分类id, [可以为空]
+        history = history || [];
+        console.log('搜索历史' + history);
+        if (history != "") {
+          console.log('显示')
+          this.setData({
+            showHis: true
+          })
+        } else {
+          console.log('隐藏')
+          this.setData({
+            showHis: false
+          })
+        }
+        wx.getStorageSync('province')
+        wx.getStorageSync('city')
+        wx.getStorageSync('district')
+        wx.getStorageSync('latitude')
+        wx.getStorageSync('longitude')
+        wx.getStorageSync('zone')
+    
 
     },
     getSearchValue: function(e){
-      var _this = this;
-      console.log(e.detail.value);
-      console.log(e.detail.value.length);
-      var valueLength = e.detail.value.length;
-      var goods = e.detail.value;
-      if (valueLength){
-        _this.setData({
-          haveValue: true,
-          searchGoods: goods
-        })
-      }else{
-        _this.setData({
-          haveValue: false,
-          searchGoods: ''
-        })
-      }
+        var _this = this;
+        console.log(e.detail.value);
+        console.log(e.detail.value.length);
+        var valueLength = e.detail.value.length;
+        var goods = e.detail.value;
+        if (valueLength) {
+          _this.setData({
+            haveValue: true,
+            searchGoods: goods
+          })
+        } else {
+          _this.setData({
+            haveValue: false,
+            searchGoods: ''
+          })
+        }
+      
 
     },
     selectItem:function(e){
@@ -67,12 +76,22 @@ Page({
       console.log(e.target.dataset.text)
       _this.setData({
         searchGoods: e.target.dataset.text,
-        haveValue: true
+        haveValue: true,
+        recommendList: [],
+        page: 0
       })
+      this.getGoodsList()
+
+
 
     },
     searchGoods: function(e){
+      
       var _this = this;
+      _this.setData({
+        recommendList: [],
+        page:0
+      })
       console.log(e);
       console.log(_this.data.searchGoods)
       var currentGoods = _this.data.searchGoods;
@@ -84,7 +103,7 @@ Page({
           console.log('false木有');
           _this.setData({
             history: _this.data.history.concat(currentGoods),
-            showHis: true
+            showHis: true,
           })
           console.log(_this.data.history)
           wx.setStorageSync('history', _this.data.history)
@@ -190,10 +209,19 @@ Page({
             recommendList,
             showHis: false
           })
-          loading = false
-          _this.setData({
-            more: '上拉加载更多'
-          })
+          if (recommendList.length <= 10) {
+            loading = true
+            _this.setData({
+              more: '没有更多数据'
+            })
+          }else{
+            loading = false
+            _this.setData({
+              more: '上拉加载更多'
+            })
+          }
+
+          
         } else {
           _this.setData({
             more: '没有更多数据',

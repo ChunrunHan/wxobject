@@ -92,9 +92,7 @@
                     <view>{{item.createTime}}</view>
                 </view>
             </view>
-            <view class="body">
-                {{item.comment}}
-            </view>
+            <view class="body">{{item.comment}}</view>
 
         </view>
     </view>

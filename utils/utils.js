@@ -92,7 +92,8 @@ module.exports = {
         }
 
     },
-    login: function () {
+    login: function (yes) {
+      console.log(yes);
         var _this = this
         return new Promise(function (resolve, reject) {
             _this.wxLogin().then(function (res) {
@@ -106,9 +107,9 @@ module.exports = {
                         openId
                     })).then(function (res) {
                        console.log('登录获取的'+res.data.errCode);
-                        if (res.data.errCode !== 0) {
-                            _this.jump('../mobile/index')
-                        } else {
+                       if (res.data.errCode !== 0) {
+                         _this.jump('../mobile/index')
+                        } else{
                             wx.setStorageSync('token', res.data.data.token)
                             wx.getUserInfo({
                                 success: function(ress) {
@@ -157,13 +158,50 @@ module.exports = {
                         }
                     })
                 } else {
+                  if(yes == true){
+                    wx.showModal({
+                      content: '当前尚未登录，是否登录？',
+                      cancelText: '稍后',
+                      confirmText: '登陆',
+                      success: function (res) {
+                        if (res.confirm) {
+                          console.log('用户点击确定')
+                          _this.jump('../mobile/index')
+                        } else if (res.cancel) {
+                          console.log('用户点击取消')
+                        }
+                      }
+                    })
+                  }else{
                     _this.jump('../mobile/index')
+                  }
+                    
                 }
 
             }).catch(function (err) {
                 reject(err)
             })
         })
+    },
+    goLoginMobile:function(){
+      var _this = this;
+      wx.showModal({
+        title: '提示',
+        content: '当前尚未登录，是否立即登录？',
+        cancelText: '稍后',
+        confirmText: '登录',
+        success: function (res) {
+         // false 没显示  true 显示
+          if (res.confirm) {
+            console.log('用户点击确定')
+            _this.jump('../mobile/index')
+           
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+            wx.setStorageSync('orderLoginAlertShown', 'false'); 
+          }
+        }
+      })
     },
     math: {
         add: function (num1, num2) {

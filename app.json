@@ -12,7 +12,8 @@
     "pages/rating-list/index",
     "pages/orderDetail/index",
     "pages/logistics/index",
-    "pages/search/index"
+    "pages/search/index",
+    "pages/coupon/index"
   ],
   "tabBar": {
     "color": "#717171",

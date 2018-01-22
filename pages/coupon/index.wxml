@@ -1,0 +1,57 @@
+<!--pages/my/index.wxml-->
+<scroll-view scroll-y style='height:100vh' bindscrolltolower="getMore">
+  <view class="couponList">
+  <block wx:for="{{couponList}}">
+    <view class='item' bindtap='goBuyGoods' id='{{item.rule.includeGoodsId}}'>
+      <view class="circles">
+        <view class="circle"></view>
+        <view class="circle"></view>
+        <view class="circle"></view>
+        <view class="circle"></view>
+        <view class="circle"></view>
+        <view class="circle"></view>
+      </view>
+      <view class="couponItem">
+        <view class="left">
+          <view class="header">
+            <!-- <image src="{{imgUrl +'/' + item.sellerId + '/'+ item.logo}}" class="img"></image> -->
+            <image src="../../img/default_goods.png" class="img"></image>
+          </view>
+
+          <view class="content">
+              <view class="title" wx:if="{{item.type == 1}}">满{{item.rule.amountLimit}}减{{item.rule.decrease}}</view>
+              <view class="title" wx:if="{{item.type == 2}}">满{{item.rule.amountLimit}}打{{item.rule.discount}}折</view>
+              <view class="title" wx:if="{{item.type == 3}}">满{{item.rule.amountLimit}}赠{{item.rule.giftGoodsName}}</view>
+              <view class="title" wx:if="{{item.type == 4}}">新人专享</view>
+              <view class="description">限{{item.rule.includeGoodsName}}</view>
+               <view class="time">{{item.validityStartTime}} 开始</view>
+              <view class="time">{{item.validityEndTime}} 到期</view>
+          </view>
+
+        </view>
+        <view class="right {{item.validitystartTime >= nowtime ? 'active': 'no' }}">
+          <view class="circle"></view>
+          <view class="money" wx:if="{{item.type == 1}}">
+            <span class="symbol">¥</span>
+            <span class="number fs-30">{{item.rule.decrease}}</span>
+          </view>
+          <view class="money" wx:if="{{item.type == 2}}">
+            <span class="number fs-30">{{item.rule.discount}}</span>
+            <span class="symbol">折</span>
+          </view>
+          <view class="money" wx:if="{{item.type == 3}}">
+            <span class="symbol"></span>
+            <span class="number fs-30">满赠</span>
+          </view>
+          <view class="button">满{{item.rule.amountLimit}}元可用</view>
+        </view>
+      </view>
+
+    </view>
+  </block>
+
+  </view>
+  <view class="more">
+    {{more}}
+  </view>
+</scroll-view>
