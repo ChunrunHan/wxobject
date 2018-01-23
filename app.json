@@ -13,7 +13,8 @@
     "pages/orderDetail/index",
     "pages/logistics/index",
     "pages/search/index",
-    "pages/coupon/index"
+    "pages/coupon/index",
+    "pages/selectCoupon/index"
   ],
   "tabBar": {
     "color": "#717171",

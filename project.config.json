@@ -68,6 +68,12 @@
 					"name": "coupon",
 					"pathName": "pages/coupon/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pay",
+					"pathName": "pages/pay/index",
+					"query": ""
 				}
 			]
 		}

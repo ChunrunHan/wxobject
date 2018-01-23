@@ -30,6 +30,7 @@ module.exports = {
     getAd: `${mallUrl}/ad/group/list`,
     postFormId: `${mallUrl}/tm/form_id`,
     postSearchGoods: () =>`${mallUrl}/goods/search/group`,
-    getCoupons: obj => `${mallUrl}/coupon/received/group/${obj.page || 0}/${obj.size || 10}`
+    getCoupons: obj => `${mallUrl}/coupon/received/group/${obj.page || 0}/${obj.size || 10}`,
+    getUseCoupons: obj => `${mallUrl}/coupon/effective/${obj.goodsId}/${obj.count}/${obj.groupBuyType}/${obj.page || 0}/${obj.size || 10}`
   
 }
