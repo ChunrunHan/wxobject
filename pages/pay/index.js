@@ -1,28 +1,115 @@
 // pages/pay/index.js
 const $ = require('../../utils/utils');
 const api = require('../../utils/api');
+var app = getApp();
 Page({
     data: {
         imgUrl: $.imgUrl,
         count: 1,
-        price: 0.00
+        price: 0.00,
+        useCoupon: false,
+        conponName: '选择优惠券',
+        couponId: ''
     },
     onLoad: function (options) {
         $.setTitle('确认支付')
         console.log(options)
+        console.log('单独购买'+options.singleBuy);
+        let groupBuyType;
+        if (options.singleBuy == 'true'){
+          groupBuyType = 0;
+        } else if (options.singleBuy == 'false'){
+          groupBuyType = 1;
+        } else{
+          groupBuyType = 2;
+        }
         let singleBuy = options.singleBuy == 'true' ? true : false
         let goodsId = options.goodsId
         let groupId = options.groupId
         this.setData({
             singleBuy,
             goodsId,
-            groupId
+            groupId,
+            groupBuyType
         })
         this.getGoodsDetails()
+        
 
     },
     onShow: function (options) {
-        this.getAddressList()
+        this.getAddressList();
+        console.log('优惠券存储' + app.golobalData.sendRule)
+        if (app.golobalData.sendRule){
+          // 不为空，使用优惠券
+          var couponData = app.golobalData.sendRule.split(":");
+          this.setData({
+            couponId: couponData[0],
+            couponType: couponData[1],
+            coponAmountLimit: couponData[2],
+            coponTypeValue: couponData[3]
+          });
+          this.showFinalMoney(couponData[1])
+
+        }
+    },
+    showFinalMoney: function(value){
+      value = parseInt(value);
+      var _this = this;
+      if (value == 1) {
+        // 满减
+        console.log("满减")
+        this.setData({
+          conponName: `满${_this.data.coponAmountLimit}减${_this.data.coponTypeValue}`,
+          useCoupon: true
+        })
+        
+        var payPrice = $.math.sub(_this.data.payPrice, parseFloat(_this.data.coponTypeValue))
+        this.setData({
+          payPrice
+        })
+
+      } else if (value == 2) {
+        // 折扣
+        console.log("折扣")
+        this.setData({
+          conponName: `满${_this.data.coponAmountLimit}打${_this.data.coponTypeValue*10}折`,
+          useCoupon: true
+        })
+        let price = parseFloat(this.data.coponTypeValue)
+        let payPrice = $.math.mul(_this.data.payPrice, price)
+        this.setData({
+          payPrice
+        })
+
+      } else if (value == 3) {
+        // 满赠
+        console.log("满赠")
+        this.setData({
+          conponName: `满${_this.data.coponAmountLimit}赠${_this.data.coponTypeValue}`,
+          useCoupon: true
+        })
+
+
+      } else if (value == 4) {
+        // 折扣
+        console.log("新人")
+        this.setData({
+          conponName: `满${_this.data.coponAmountLimit}减${_this.data.coponTypeValue}`,
+          useCoupon: true
+        })
+
+      }
+    },
+    delCoupon: function(){
+      app.golobalData.sendRule = ''
+      this.setData({
+        couponId: '',
+        couponType: '',
+        coponAmountLimit: '',
+        coponTypeValue: '',
+        useCoupon: false,
+        conponName: '选择优惠券',
+      });
     },
     getGoodsDetails: function () {
         let _this = this
@@ -70,6 +157,7 @@ Page({
                 singleBuy: this.data.singleBuy,
                 groupId: this.data.groupId,
                 count: this.data.count,
+                couponId: this.data.couponId,
                 memo: "备注",
                 address: {
                     province: this.data.address.province,
@@ -176,11 +264,13 @@ Page({
         let count = this.data.count
         count--
         this.setCount(count)
+        this.delCoupon();
     },
     plus: function () {
         let count = this.data.count
         count++
         this.setCount(count)
+        this.delCoupon();
     },
     count: function (e) {
         let count = parseInt(e.detail.value)
@@ -208,5 +298,15 @@ Page({
         this.setData({
             payPrice
         })
+    },
+    selectCoupon:function(e){
+      var _this = this;
+      if(_this.data.useCoupon){
+        // 如果有优惠券
+        $.jump(`../selectCoupon/index?goodsId=${_this.data.goodsId}&count=${_this.data.count}&couponId=${_this.data.couponId}&groupBuyType=${_this.data.groupBuyType}`)
+      }else{
+        // 如果没有优惠券
+        $.jump(`../selectCoupon/index?goodsId=${_this.data.goodsId}&count=${_this.data.count}&couponId=${_this.data.couponId}&groupBuyType=${_this.data.groupBuyType}`)
+      }
     }
 })

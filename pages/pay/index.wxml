@@ -1,60 +1,75 @@
 <!--pages/pay/index.wxml-->
 <navigator url="../address/index?setAddress=1" class="address">
-    <view class="flex">
-        <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height:30px;position:absolute;top:50%;margin-top:-15px"></image>
-        <view class="details">
-            <view>
-                <text class="name">{{address.receiver}}</text> <text class="mobile">{{address.mobile}}</text>
-            </view>
-            <view>
-                 <text class="">{{address.province}}</text> <text>{{address.city}}</text> <text>{{address.district}}</text><text>{{address.address}}</text> 
-            </view>
-        </view>
+  <view class="flex">
+    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/address.svg" style="width: 30px; height:30px;position:absolute;top:50%;margin-top:-15px"></image>
+    <view class="details">
+      <view>
+        <text class="name">{{address.receiver}}</text>
+        <text class="mobile">{{address.mobile}}</text>
+      </view>
+      <view>
+        <text class="">{{address.province}}</text>
+        <text>{{address.city}}</text>
+        <text>{{address.district}}</text>
+        <text>{{address.address}}</text>
+      </view>
     </view>
-    <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>
+  </view>
+  <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>
 
 </navigator>
 <view class="line"></view>
 <view class="order">
-    <view class="item">
-        <view class="title">
-            <!-- <view class="flex" style="align-items: center">
+  <view class="item">
+    <view class="title">
+      <!-- <view class="flex" style="align-items: center">
                 <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" style="width: 20px; height: 20px;padding-right: 10px;"></image>
                 <view class="seller-name">
                     乐拼青岛
                 </view>
             </view> -->
-        </view>
-
-        <view class="goods">
-
-            <view class="flex">
-                <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[0]}}" style="width: 60px; height: 60px;"></image>
-                <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
-                    <view class="goods-name">{{goodsDetails.name}}</view>
-                    <view class="goods-number" >x{{count}}</view>
-                    <view>¥ {{price}}/{{goodsDetails.unit}}</view>
-                </view>
-            </view>
-        </view>
-
-        <view class="price">
-            <view class="reduce" bindtap="reduce">-</view>
-            <view>
-                <input type="number" bindinput="count" value="{{count}}"/>
-            </view>
-            <view class="plus" bindtap="plus">+</view>
-        </view>
     </view>
+
+    <view class="goods">
+
+      <view class="flex">
+        <image src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[0]}}" style="width: 60px; height: 60px;"></image>
+        <view class="flex" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
+          <view class="goods-name">{{goodsDetails.name}}</view>
+          <view class="goods-number">x{{count}}</view>
+          <view>¥ {{price}}/{{goodsDetails.unit}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="price">
+      <view class="reduce" bindtap="reduce">-</view>
+      <view>
+        <input type="number" bindinput="count" value="{{count}}" />
+      </view>
+      <view class="plus" bindtap="plus">+</view>
+    </view>
+  </view>
 </view>
+ <view class="settlement-coupon flex" id="{{useConpon}}" style='justify-content:space-between;align-items:center' bindtap='selectCoupon'>
+    <view class="title flex" style='align-items:center'>
+      <view class="sign">券</view>
+      <view class="words">优惠券</view>
+    </view>
+    <view class='flex' style='align-items:center'>
+      <view class="{{useCoupon == true ? 'color-red' : 'color-gray' }}" id="couponNum" style='margin-right:3px;'>{{conponName}}</view>
+      <image src="http://yzb-img.oss-cn-qingdao.aliyuncs.com/wechat/groupon_lite/right.svg" style="width: 14px; height: 14px"></image>
+    </view>
+    
+  </view>
 
 
 <view class="buy flex">
-    <view style="padding-right: 10px;">
-        <text>实付款：</text>
-        <text style="font-size: 18px; color: #e02e24">¥ {{payPrice}} </text>
-    </view>
-    <view class="pay bc_red" bindtap="postOrder">
-        <view>立即支付</view>
-    </view>
+  <view style="padding-right: 10px;">
+    <text>实付款：</text>
+    <text style="font-size: 18px; color: #e02e24">¥ {{payPrice}} </text>
+  </view>
+  <view class="pay bc_red" bindtap="postOrder">
+    <view>立即支付</view>
+  </view>
 </view>

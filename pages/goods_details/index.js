@@ -37,6 +37,7 @@ Page({
     onShow: function () {
         clearInterval(this.time)
         this.getGroupList(this.data.goodsId)
+        app.golobalData.sendRule = ''
     },
     getGoodsDetails: function (id) {
         let _this = this

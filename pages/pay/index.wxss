@@ -1,109 +1,132 @@
 /* pages/pay/index.wxss */
 
 page {
-    background: #f2f2f2;
+  background: #f2f2f2;
 }
 
 .line {
-    height: 2px;
-    width: 100vw;
-    background: repeating-linear-gradient(135deg, #0da7d6, #0da7d6 15px, #fff 15px, #fff 30px, #e02242 30px, #e02242 45px, #fff 45px, #fff 60px);
+  height: 2px;
+  width: 100vw;
+  background: repeating-linear-gradient(135deg, #0da7d6, #0da7d6 15px, #fff 15px, #fff 30px, #e02242 30px, #e02242 45px, #fff 45px, #fff 60px);
 }
 
 .address {
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    position:relative;
-
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  position: relative;
 }
 
 .address .details {
-    padding-left: 40px;
+  padding-left: 40px;
 }
 
 .address .details .name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .address .details text {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
 .order .item {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 .order .item .title {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
 }
 
 .order .item .goods {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .goods-number {
-    color: #9c9c9c;
-    font-size: 12px;
+  color: #9c9c9c;
+  font-size: 12px;
 }
 
 .price {
-    font-size: 16px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
-    background: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background: #fff;
 }
 
-
 .buy {
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    background: #fff;
-    font-size: 14px;
-    justify-content: flex-end;
-    align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background: #fff;
+  font-size: 14px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .buy .pay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40vw;
-    height: 50px;
-    color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40vw;
+  height: 50px;
+  color: #fff;
 }
 
-.pay view{
-    background: transparent;
+.pay view {
+  background: transparent;
 }
 
 input {
-    background: #f2f2f2;
-    width: 50px;
-    text-align: center;
+  background: #f2f2f2;
+  width: 50px;
+  text-align: center;
 }
+
 .reduce, .plus {
-    background: #eee;
-    width: 1.4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background: #eee;
+  width: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .goods-name {
-    width: calc(100vw - 90px);
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
+  width: calc(100vw - 90px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 选择优惠券 */
+
+.settlement-coupon {
+  margin-top: 8px;
+  height: 45px;
+  padding: 0px 15px;
+}
+
+.settlement-coupon .sign {
+  background-color: rgb(240, 60, 84);
+  border-radius: 3px;
+  color: #fff;
+  margin-right: 5px;
+  padding: 0px 2px;
+}
+
+.color-red{
+  color:#e02242
+}
+
+.color-gray{
+  color:#9c9c9c
 }
