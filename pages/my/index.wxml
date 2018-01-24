@@ -24,4 +24,6 @@
       <view class="item" bindtap="login" wx:if="{{!islogin}}">
         <view>立即登录</view>
     </view>
+
+    <text class='version'>版本号 1.0.19 体验版</text>
 </view>
