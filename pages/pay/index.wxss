@@ -122,7 +122,12 @@ input {
   margin-right: 5px;
   padding: 0px 2px;
 }
-
+.settlement-coupon .words{
+  width:50vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .color-red{
   color:#e02242
 }

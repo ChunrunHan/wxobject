@@ -2,7 +2,7 @@
 <scroll-view scroll-y style='height:100vh' bindscrolltolower="getMore">
   <view class="couponList">
    <block wx:for="{{couponList}}"> 
-    <view class='item' bindtap='goBuyGoods' id='{{item.id}}' data-status="{{item.reason == ''  ? 'active': 'no' }}" data-reason="{{item.reason}}" data-rule="{{item.id}}:{{item.type}}:{{item.sendRule}}">
+    <view class='item' bindtap='goBuyGoods' id='{{item.id}}' data-status="{{item.reason == ''  ? 'active': 'no' }}" data-reason="{{item.reason}}" data-rule="{{item.id}}:{{item.type}}:{{item.sendRule}}:{{item.title}}">
       <view class="circles">
         <view class="circle"></view>
         <view class="circle"></view>

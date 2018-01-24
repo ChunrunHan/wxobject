@@ -9,6 +9,7 @@ Page({
         price: 0.00,
         useCoupon: false,
         conponName: '选择优惠券',
+        conponTitle: '优惠券',
         couponId: ''
     },
     onLoad: function (options) {
@@ -54,7 +55,8 @@ Page({
             couponId: couponData[0],
             couponType: couponData[1],
             coponAmountLimit: couponData[2],
-            coponTypeValue: couponData[3]
+            coponTypeValue: couponData[3],
+            conponTitle: couponData[4]
           });
           this.showFinalMoney(couponData[1])
 
@@ -67,7 +69,7 @@ Page({
         // 满减
         console.log("满减")
         this.setData({
-          conponName: `满${_this.data.coponAmountLimit}减${_this.data.coponTypeValue}`,
+          conponName: `-￥${_this.data.coponTypeValue}`,
           useCoupon: true
         })
         
@@ -80,7 +82,7 @@ Page({
         // 折扣
         console.log("折扣")
         this.setData({
-          conponName: `满${_this.data.coponAmountLimit}打${_this.data.coponTypeValue*10}折`,
+          conponName: `打${_this.data.coponTypeValue*10}折`,
           useCoupon: true
         })
         let price = parseFloat(this.data.coponTypeValue)

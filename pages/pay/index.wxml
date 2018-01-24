@@ -54,7 +54,7 @@
  <view class="settlement-coupon flex" id="{{useConpon}}" style='justify-content:space-between;align-items:center' bindtap='selectCoupon'>
     <view class="title flex" style='align-items:center'>
       <view class="sign">券</view>
-      <view class="words">优惠券</view>
+      <view class="words">{{conponTitle}}</view>
     </view>
     <view class='flex' style='align-items:center'>
       <view class="{{useCoupon == true ? 'color-red' : 'color-gray' }}" id="couponNum" style='margin-right:3px;'>{{conponName}}</view>
