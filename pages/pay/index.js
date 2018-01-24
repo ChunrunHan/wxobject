@@ -293,8 +293,8 @@ Page({
             this.setData({
                 count
             })
-        } else if (count > this.data.goodsDetails.timeoutLimit) {
-            count = this.data.goodsDetails.timeoutLimit
+        } else if (count > this.data.goodsDetails.remaining) {
+          count = this.data.goodsDetails.remaining
             this.setData({
                 count
             })

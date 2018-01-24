@@ -165,5 +165,9 @@ Page({
             console.log(err)
         })
 
+    },
+    goGoodsDetail: function(){
+      let url = `../goods_details/index?id=${this.data.goodsId}`
+      $.jump(url)
     }
 })
