@@ -17,3 +17,12 @@ view {
 .body .item:active {
    background: #f6f6f6;
 }
+
+.body .version{
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+  border-bottom: 1p solid #f2f2f2;
+  width:100%;
+  height:100%;
+}
