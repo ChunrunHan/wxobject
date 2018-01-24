@@ -162,7 +162,7 @@ module.exports = {
             wx.showModal({
               content: '当前尚未登录，是否登录？',
               cancelText: '稍后',
-              confirmText: '登陆',
+              confirmText: '登录',
               success: function (res) {
                 if (res.confirm) {
                   console.log('用户点击确定')
@@ -199,6 +199,23 @@ module.exports = {
         } else if (res.cancel) {
           console.log('用户点击取消')
           wx.setStorageSync('orderLoginAlertShown', 'false');
+        }
+      }
+    })
+  },
+  resetToken: function(){
+    var _this = this;
+    wx.removeStorageSync('token');
+    wx.showModal({
+      content: '你的登录信息已过期，是否重新登录？',
+      cancelText: '稍后',
+      confirmText: '登录',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          _this.jump('../mobile/index')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
       }
     })

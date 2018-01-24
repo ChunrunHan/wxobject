@@ -44,9 +44,7 @@ Page({
     onLoad: function (options) {
       console.log('订单也');
         $.setTitle('订单列表')
-        // $.login(true).then(function () {
-        //   this.init()
-        // })
+       
        
     },
     onShow: function (options) {
@@ -110,6 +108,9 @@ Page({
                 _this.setData({
                     more: '上拉加载更多'
                 })
+            } else if (res.statusCode == 403) {
+              $.resetToken();
+
             } else {
                 _this.setData({
                     more: '没有更多数据'

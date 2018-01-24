@@ -76,7 +76,7 @@ Page({
             $.alert('请输入正确的手机号')
             return false
         }
-        $.showLoading('正在登陆')
+        $.showLoading('正在登录')
         wx.login({
           success: function (res) {
             if (res.code) {

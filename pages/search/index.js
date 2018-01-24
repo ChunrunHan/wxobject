@@ -42,12 +42,12 @@ Page({
             showHis: false
           })
         }
-        wx.getStorageSync('province')
-        wx.getStorageSync('city')
-        wx.getStorageSync('district')
-        wx.getStorageSync('latitude')
-        wx.getStorageSync('longitude')
-        wx.getStorageSync('zone')
+        // wx.getStorageSync('province')
+        // wx.getStorageSync('city')
+        // wx.getStorageSync('district')
+        // wx.getStorageSync('latitude')
+        // wx.getStorageSync('longitude')
+        // wx.getStorageSync('zone')
     
 
     },
@@ -85,6 +85,7 @@ Page({
 
 
     },
+    // 键盘事件
     searchGoods: function(e){
       
       var _this = this;

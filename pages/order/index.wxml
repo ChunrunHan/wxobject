@@ -33,7 +33,9 @@
             </view>
         </view>
         <view class="pay-price">
-            实付: <text style="font-size: 16px">¥ {{item.receiptAmount}}</text>
+           <view wx:if="{{item.coupon}}"><text class="sign">券</text>{{item.coupon.title}}</view>
+           <view wx:if="{{!item.coupon}}"> </view>
+           <view>实付: <text style="font-size: 16px">¥ {{item.receiptAmount}}</text></view> 
         </view>
         <view class="pd-10" style="border-bottom: 1px dotted #d2d2d2; color: #4c4c4c">
             <view class="flex" style="align-items: center">

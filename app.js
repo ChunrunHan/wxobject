@@ -34,10 +34,10 @@ App({
   bucket: 'yzb-mall',
   ossHost: 'https://dev.yezhubao.net/oss_mall',
   urlBase: 'https://dev.yezhubao.net',
-  golobalData:{
-    sendRule:''
-  }
   // bucket: 'yezhubao-mall',
   // ossHost: 'https://api.yezhubao.net/oss_mall',
   // urlBase: 'https://api.yezhubao.net',
+  golobalData: {
+    sendRule: ''
+  }
 })

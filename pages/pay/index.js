@@ -39,7 +39,15 @@ Page({
     onShow: function (options) {
         this.getAddressList();
         console.log('优惠券存储' + app.golobalData.sendRule)
+        console.log('是否使用了优惠券' + this.data.useCoupon )
         if (app.golobalData.sendRule){
+          if (this.data.useCoupon){
+            let price = parseFloat(this.data.price)
+            let payPrice = $.math.mul(this.data.count, price)
+            this.setData({
+              payPrice
+            })
+          }
           // 不为空，使用优惠券
           var couponData = app.golobalData.sendRule.split(":");
           this.setData({

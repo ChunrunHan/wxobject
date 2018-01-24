@@ -61,7 +61,7 @@ Page({
       console.log(url);
       $.get(url).then(function (res) {
         $.hideLoading()
-        
+        console.log(res)
         if (res.data.errCode == 0) {
           let couponList = res.data.dataList;
           for(var i = 0;i< couponList.length;i++){
@@ -100,7 +100,7 @@ Page({
 
 
       }).catch(function (err) {
-
+        console.log(err)
         _this.setData({
           more: '没有更多数据'
         })

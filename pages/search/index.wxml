@@ -3,7 +3,7 @@
     <view class='searchTop'>
        <view class='boxinput'>
         <image src='../../img/search.svg' class='searchIcon'></image> 
-        <input type='text' value='{{searchGoods}}' bindinput='getSearchValue' placeholder='搜索商品' class='searchText'></input>
+        <input type='text' value='{{searchGoods}}' bindinput='getSearchValue' bindconfirm="searchGoods" confirm-type='search' placeholder='搜索商品' confirm-type="go" class='searchText'></input>
         <text class='searchBtn' wx:if="{{haveValue}}" bindtap='searchGoods'>搜索</text>
        </view>
     </view>
