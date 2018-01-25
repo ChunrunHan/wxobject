@@ -75,7 +75,7 @@ Page({
             couponList: couponList = [..._this.data.couponList, ...couponList]
           })
           console.log(JSON.stringify(couponList));
-          if (couponList.length < this.data.size){
+          if (couponList.length < _this.data.size){
             _this.data.loading = true
             _this.setData({
               more: '没有更多数据'

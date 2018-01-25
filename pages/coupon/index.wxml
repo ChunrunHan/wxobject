@@ -14,8 +14,8 @@
       <view class="couponItem">
         <view class="left">
           <view class="header">
-            <!-- <image src="{{imgUrl +'/' + item.sellerId + '/'+ item.logo}}" class="img"></image> -->
-            <image src="../../img/default_goods.png" class="img"></image>
+             <image src="{{imgUrl +'/' + item.sellerId + '/'+ item.logo}}" class="img" onerror="javascript:this.src='../../img/default_goods.png'"></image> 
+          
           </view>
 
           <view class="content">
@@ -24,9 +24,8 @@
               <view class="title" wx:if="{{item.type == 3}}">满{{item.rule.amountLimit}}赠{{item.rule.giftGoodsName}}</view>
               <view class="title" wx:if="{{item.type == 4}}">新人专享</view> -->
               <view class="title">{{item.title}}</view>
-              <view class="description">适用商品：{{item.rule.includeGoodsName}}</view>
-              <view class="time">{{item.validityStartTime}} 开始</view>
-              <view class="time">{{item.validityEndTime}} 到期</view>
+              <view class="description">{{item.rule.includeGoodsName}}</view>
+              <view class="time">{{item.validityStartTime}}-{{item.validityEndTime}}</view>
           </view>
 
         </view>

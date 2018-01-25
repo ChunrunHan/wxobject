@@ -37,7 +37,7 @@ Page({
     onShow: function () {
         clearInterval(this.time)
         this.getGroupList(this.data.goodsId)
-        app.golobalData.sendRule = ''
+        app.golobalData.sendcouponId = ''
     },
     getGoodsDetails: function (id) {
         let _this = this
@@ -88,7 +88,7 @@ Page({
                 _groupList = JSON.stringify(groupList);
 
 
-                 this.time = setInterval(() => {
+                _this.time = setInterval(() => {
 
                     groupList = JSON.parse(_groupList)
                     Array.from(groupList, (obj) => {

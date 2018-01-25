@@ -167,6 +167,7 @@ Page({
 
     },
     goGoodsDetail: function(){
+      console.log('立即抢购');
       let url = `../goods_details/index?id=${this.data.goodsId}`
       $.jump(url)
     }

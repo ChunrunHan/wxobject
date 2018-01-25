@@ -38,6 +38,6 @@ App({
   // ossHost: 'https://api.yezhubao.net/oss_mall',
   // urlBase: 'https://api.yezhubao.net',
   golobalData: {
-    sendRule: ''
+    sendcouponId: ''
   }
 })

@@ -145,7 +145,7 @@ Page({
           })
         } else {
           //  选择新的优惠券
-          app.golobalData.sendRule = sendRule;
+          app.golobalData.sendcouponId = couponId;
           wx.navigateBack({
             
           })

@@ -39,87 +39,122 @@ Page({
     },
     onShow: function (options) {
         this.getAddressList();
-        console.log('优惠券存储' + app.golobalData.sendRule)
+        console.log('优惠券存储ID' + app.golobalData.sendcouponId)
         console.log('是否使用了优惠券' + this.data.useCoupon )
-        if (app.golobalData.sendRule){
-          if (this.data.useCoupon){
-            let price = parseFloat(this.data.price)
-            let payPrice = $.math.mul(this.data.count, price)
-            this.setData({
-              payPrice
-            })
-          }
+        if (app.golobalData.sendcouponId){
           // 不为空，使用优惠券
-          var couponData = app.golobalData.sendRule.split(":");
+          var couponId = app.golobalData.sendcouponId;
           this.setData({
-            couponId: couponData[0],
-            couponType: couponData[1],
-            coponAmountLimit: couponData[2],
-            coponTypeValue: couponData[3],
-            conponTitle: couponData[4]
+            couponId
           });
-          this.showFinalMoney(couponData[1])
+          this.getOneCoupon()
 
+        } else{
+          this.getOneCoupon()
         }
     },
-    showFinalMoney: function(value){
-      value = parseInt(value);
-      var _this = this;
-      if (value == 1) {
-        // 满减
-        console.log("满减")
-        this.setData({
-          conponName: `-￥${_this.data.coponTypeValue}`,
-          useCoupon: true
-        })
+    // showFinalMoney: function(value){
+    //   value = parseInt(value);
+    //   var _this = this;
+    //   if (value == 1) {
+    //     // 满减
+    //     console.log("满减")
+    //     this.setData({
+    //       conponName: `-￥${_this.data.coponTypeValue}`,
+    //       useCoupon: true
+    //     })
         
-        var payPrice = $.math.sub(_this.data.payPrice, parseFloat(_this.data.coponTypeValue))
-        this.setData({
-          payPrice
-        })
+    //     var payPrice = $.math.sub(_this.data.payPrice, parseFloat(_this.data.coponTypeValue))
+    //     this.setData({
+    //       payPrice
+    //     })
 
-      } else if (value == 2) {
-        // 折扣
-        console.log("折扣")
-        this.setData({
-          conponName: `打${_this.data.coponTypeValue*10}折`,
-          useCoupon: true
-        })
-        let price = parseFloat(this.data.coponTypeValue)
-        let payPrice = $.math.mul(_this.data.payPrice, price)
-        this.setData({
-          payPrice
-        })
+    //   } else if (value == 2) {
+    //     // 折扣
+    //     console.log("折扣")
+    //     this.setData({
+    //       conponName: `打${_this.data.coponTypeValue*10}折`,
+    //       useCoupon: true
+    //     })
+    //     let price = parseFloat(this.data.coponTypeValue)
+    //     let payPrice = $.math.mul(_this.data.payPrice, price)
+    //     this.setData({
+    //       payPrice
+    //     })
 
-      } else if (value == 3) {
-        // 满赠
-        console.log("满赠")
-        this.setData({
-          conponName: `满${_this.data.coponAmountLimit}赠${_this.data.coponTypeValue}`,
-          useCoupon: true
-        })
+    //   } else if (value == 3) {
+    //     // 满赠
+    //     console.log("满赠")
+    //     this.setData({
+    //       conponName: `满${_this.data.coponAmountLimit}赠${_this.data.coponTypeValue}`,
+    //       useCoupon: true
+    //     })
 
 
-      } else if (value == 4) {
-        // 折扣
-        console.log("新人")
-        this.setData({
-          conponName: `满${_this.data.coponAmountLimit}减${_this.data.coponTypeValue}`,
-          useCoupon: true
-        })
+    //   } else if (value == 4) {
+    //     // 折扣
+    //     console.log("新人")
+    //     this.setData({
+    //       conponName: `满${_this.data.coponAmountLimit}减${_this.data.coponTypeValue}`,
+    //       useCoupon: true
+    //     })
 
+    //   }
+    // },
+    // delCoupon: function(){
+    //   app.golobalData.sendRule = ''
+    //   this.setData({
+    //     couponId: '',
+    //     couponType: '',
+    //     coponAmountLimit: '',
+    //     coponTypeValue: '',
+    //     useCoupon: false,
+    //     conponName: '选择优惠券',
+    //   });
+    // },
+    // 订单预览（自动获取一个优惠券）
+    getOneCoupon: function(){
+      var _this = this;
+      let url = api.postGetOneCoupon(); 
+      let obj = {
+        couponId: _this.data.couponId,
+        goodsId: _this.data.goodsId,
+        goodsCount: _this.data.count,
+        buyType: _this.data.groupBuyType
       }
-    },
-    delCoupon: function(){
-      app.golobalData.sendRule = ''
-      this.setData({
-        couponId: '',
-        couponType: '',
-        coponAmountLimit: '',
-        coponTypeValue: '',
-        useCoupon: false,
-        conponName: '选择优惠券',
-      });
+      console.log('请求参数'+JSON.stringify(obj))
+      $.post(url,obj).then(function(res){
+        console.log(JSON.stringify(res));
+        if(res.data.errCode == 0){
+          // res.data.data
+          var data = res.data.data;
+          if (data.couponId && data.couponTitle && data.couponDeductedAmoun && data.receiptAmount){
+
+            console.log('有可用优惠券')
+            _this.setData({
+              couponId: data.couponId,
+              useCoupon: true,
+              conponTitle: data.couponTitle,
+              conponName: `-￥${data.couponDeductedAmoun}`,
+              payPrice: data.receiptAmount
+            });
+
+
+          }else{
+            _this.setData({
+              couponId: "",
+              useCoupon: false,
+              conponTitle: "优惠券",
+              conponName: "选择优惠券"
+            });
+          }
+        }
+
+      }).catch(function(err){
+        console.log(err)
+        
+      })
+
     },
     getGoodsDetails: function () {
         let _this = this
@@ -274,13 +309,14 @@ Page({
         let count = this.data.count
         count--
         this.setCount(count)
-        this.delCoupon();
+        this.getOneCoupon();
+        
     },
     plus: function () {
         let count = this.data.count
         count++
         this.setCount(count)
-        this.delCoupon();
+        this.getOneCoupon();
     },
     count: function (e) {
         let count = parseInt(e.detail.value)
