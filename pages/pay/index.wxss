@@ -98,6 +98,8 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  height:1.4rem;
+
 }
 
 .goods-name {

@@ -28,7 +28,7 @@ Page({
         }],
         status: '1',
         imgUrl: $.imgUrl,
-        more: '上拉加载更多',
+        more: '没有更多数据',
         returnOrder:{
           orderId:'',
           reason:'',
@@ -104,10 +104,21 @@ Page({
                 _this.setData({
                     orderList
                 })
-                loading = false
-                _this.setData({
+
+                if (orderList.length == res.data.totalRecords) {
+                  console.log('没数据了');
+                  loading = true
+                  _this.setData({
+                    more: '没有更多数据'
+                  })
+                }else{
+                  loading = false
+                  _this.setData({
                     more: '上拉加载更多'
-                })
+                  })
+                }
+
+                
             } else if (res.statusCode == 403) {
               $.resetToken();
 
@@ -130,7 +141,8 @@ Page({
       if (cToken){
           let status = e.target.dataset.status
           this.setData({
-            status
+            status,
+            more: '没有更多数据'
           })
           console.log('执行啊');
           this.init()

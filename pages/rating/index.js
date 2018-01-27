@@ -43,10 +43,10 @@ Page({
     addRating: function () {
         var _this = this;
         let url = api.postRating()
-        if(!_this.data.files.length){
-          $.alert('添加一张商品图片吧~');
-          return;
-        }
+        // if(!_this.data.files.length){
+        //   $.alert('添加一张商品图片吧~');
+        //   return;
+        // }
         var newImg = [];
         var path = _this.data.files;
         console.log(JSON.stringify(path));

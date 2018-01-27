@@ -52,22 +52,22 @@
     <!--</view>-->
 </view>
 
-<!-- 
+ 
  <view class="buy flex" style='border-top:1px solid #eaeaea;'>
-        <view class='buyLink' style='border-right:1px solid #eaeaea;' bindtap="goIndex">
+        <view class='buyLink' bindtap="goTab" id='index'>
            <view><image class='bugImg' src='../../img/sy.svg'></image></view> 
             <view class='fs-10'>首页</view>
         </view>
-        <view class='buyLink' bindtap='callSeller'>
-             <view><image class='bugImg' src='../../img/services.svg'></image></view> 
-            <view class='fs-10'>客服</view>
+        <view class='buyLink' bindtap='goTab' id='search'>
+             <view><image class='bugImg' src='../../img/s_.png'></image></view> 
+            <view class='fs-10'>搜索</view>
         </view>
-        <button form-type="submit" class="formButton alone" bindtap="pay" data-type="{{true}}">
-            <view>¥{{goodsDetails.singlePrice}}</view>
-            <view>单独购买</view>
-        </button>
-        <button form-type="submit" class="formButton group" bindtap="pay" data-type="{{false}}">
-            <view>¥{{goodsDetails.leaderPrice}}</view>
-            <view>一键开团</view>
-        </button>
-    </view> -->
+        <view class='buyLink' bindtap="goTab" id='order'>
+           <view><image class='bugImg' src='../../img/dd_.png'></image></view> 
+            <view class='fs-10'>订单</view>
+        </view>
+        <view class='buyLink' bindtap="goTab" id='my'>
+           <view><image class='bugImg' src='../../img/wd_.png'></image></view> 
+            <view class='fs-10'>我的</view>
+        </view>   
+    </view> 

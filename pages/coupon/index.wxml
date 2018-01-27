@@ -14,7 +14,8 @@
       <view class="couponItem">
         <view class="left">
           <view class="header">
-             <image src="{{imgUrl +'/' + item.sellerId + '/'+ item.logo}}" class="img" onerror="javascript:this.src='../../img/default_goods.png'"></image> 
+              <image src="{{item.logo}}" class="img" binderror="binderrorimg" data-errorimg="{{index}}"></image>  
+              <!-- <image src="../../img/default_goods.png" class="img"></image>  -->
           
           </view>
 
@@ -25,7 +26,7 @@
               <view class="title" wx:if="{{item.type == 4}}">新人专享</view> -->
               <view class="title">{{item.title}}</view>
               <view class="description">{{item.rule.includeGoodsName}}</view>
-              <view class="time">{{item.validityStartTime}}-{{item.validityEndTime}}</view>
+              <view class="time">有效期: {{item.validityStartTime}}-{{item.validityEndTime}}</view>
           </view>
 
         </view>

@@ -170,5 +170,31 @@ Page({
       console.log('立即抢购');
       let url = `../goods_details/index?id=${this.data.goodsId}`
       $.jump(url)
+    },
+    goTab: function(e){
+      console.log(e.currentTarget.id);
+      var pageText = e.currentTarget.id;
+      switch (pageText) {
+        case 'index':
+          wx.switchTab({
+            url: `../${pageText}/index`
+          })
+          break;
+        case 'search':
+          wx.switchTab({
+            url: `../${pageText}/index`
+          })
+          break;
+        case 'order':
+          wx.switchTab({
+            url: `../${pageText}/index`
+          })
+          break;
+        case 'my':
+          wx.switchTab({
+            url: `../${pageText}/index`
+          })
+          break;
+      }
     }
 })

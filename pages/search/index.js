@@ -177,6 +177,14 @@ Page({
     getGoodsList: function () {
       console.log('执行啊');
       var _this = this
+      if (_this.data.searchGoods.replace(/(^\s*)|(\s*$)/g, "") == "") {
+        wx.showToast({
+          title: '请输入你要搜索的商品',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
       var obj = {
         province: '山东省',
         city: '青岛市',

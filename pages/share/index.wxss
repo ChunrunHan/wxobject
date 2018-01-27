@@ -63,15 +63,28 @@ button {
 }
 
 
-/* .buy .bugImg{
-  width: 20px;
-  height: 20px;
+ .buy .bugImg{
+  width: 28px;
+  height: 28px;
 }
 .buy .buyLink{
-  width:15vw;
+  width:25vw;
   flex-direction:column;
   justify-content:center;
   display:flex;
   text-align:center;
   color: #696969;
-} */
+  background: #f7f7fa;
+} 
+
+.buyLink view{
+    background: transparent;
+}
+
+.buy {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 50px;
+    background: #f7f7fa;
+}

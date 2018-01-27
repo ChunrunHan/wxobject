@@ -69,7 +69,8 @@ Page({
             couponList[i].validityEndTime = $.formatDate(couponList[i].validityEndTime);
             couponList[i].startuse = couponList[i].validityStartTime;
             couponList[i].validityStartTime = $.formatDate(couponList[i].validityStartTime); 
-            couponList[i].rule.includeGoodsName = couponList[i].rule.includeGoodsName || '不限'
+            couponList[i].rule.includeGoodsName = couponList[i].rule.includeGoodsName || '不限';
+            couponList[i].logo = $.imgUrl + '/' + couponList[i].sellerId + '/' + couponList[i].logo;
           }
           _this.setData({
             couponList: couponList = [..._this.data.couponList, ...couponList]
@@ -91,7 +92,9 @@ Page({
 
           
           
-        } else {
+        } else if (res.statusCode == 403) {
+          $.resetToken();
+        }else {
           _this.setData({
             couponList: [],
             more: '没有更多数据'
@@ -131,6 +134,13 @@ Page({
 
       }
       
+    },
+    binderrorimg: function (e) {
+      var errorImgIndex = e.target.dataset.errorimg //获取循环的下标
+      var imgObject = "couponList[" + errorImgIndex + "].logo"
+      var errorImg = {}
+      errorImg[imgObject] = '../../img/default_goods.png'
+      this.setData(errorImg) //修改数据源对应的数据
     }
 
 })
