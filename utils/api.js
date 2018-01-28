@@ -1,9 +1,9 @@
-const baseUrl = `https://dev.yezhubao.net`
-const mallUrl = `https://dev.yezhubao.net/mall`
-const expressUrl = `https://dev.yezhubao.net/express`
-// const baseUrl = `https://api.yezhubao.net`
-// const mallUrl = `https://api.yezhubao.net/mall`
-// const expressUrl = `https://api.yezhubao.net/express`
+// const baseUrl = `https://dev.yezhubao.net`
+// const mallUrl = `https://dev.yezhubao.net/mall`
+// const expressUrl = `https://dev.yezhubao.net/express`
+const baseUrl = `https://api.yezhubao.net`
+const mallUrl = `https://api.yezhubao.net/mall`
+const expressUrl = `https://api.yezhubao.net/express`
 module.exports = {
     getSms: mobile => `${baseUrl}/user/sms/${mobile}/login`,
     login: obj => `${baseUrl}/user/micro_app/login/${obj.mobile || ''}/${obj.smsValidateCode || ''}/${obj.jsCode || ''}/${obj.unionId || ''}/${obj.openId || ''}`,
