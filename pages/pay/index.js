@@ -321,6 +321,7 @@ Page({
     count: function (e) {
         let count = parseInt(e.detail.value)
         this.setCount(count)
+        this.getOneCoupon();
     },
     setCount: function (count) {
         console.log(count)
