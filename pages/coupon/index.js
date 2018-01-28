@@ -71,6 +71,9 @@ Page({
             couponList[i].validityStartTime = $.formatDate(couponList[i].validityStartTime); 
             couponList[i].rule.includeGoodsName = couponList[i].rule.includeGoodsName || '不限';
             couponList[i].logo = $.imgUrl + '/' + couponList[i].sellerId + '/' + couponList[i].logo;
+            if(couponList[i].type == 2){
+              couponList[i].rule.discount = $.math.mul(couponList[i].rule.discount,10);
+            }
           }
           _this.setData({
             couponList: couponList = [..._this.data.couponList, ...couponList]

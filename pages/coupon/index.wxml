@@ -37,7 +37,7 @@
             <span class="number fs-30">{{item.rule.decrease}}</span>
           </view>
           <view class="money" wx:if="{{item.type == 2}}">
-            <span class="number fs-30">{{item.rule.discount*10}}</span>
+            <span class="number fs-30">{{item.rule.discount}}</span>
             <span class="symbol">折</span>
           </view>
           <view class="money" wx:if="{{item.type == 3}}">

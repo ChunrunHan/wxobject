@@ -83,7 +83,7 @@ Page({
               couponList[i].sendRule = `${couponList[i].rule.amountLimit}:${couponList[i].rule.decrease}`
             } else if (couponList[i].type == 2){
               couponList[i].sendRule = `${couponList[i].rule.amountLimit}:${couponList[i].rule.discount}`
-              couponList[i].rule.discount = couponList[i].rule.discount * 10
+              couponList[i].rule.discount = $.math.mul(couponList[i].rule.discount, 10);
             } else if (couponList[i].type == 3){
               couponList[i].sendRule = `${couponList[i].rule.amountLimit}:${couponList[i].rule.giftGoodsName}`
             } else if (couponList[i].type == 4){
