@@ -25,18 +25,25 @@
                 <image src="{{imgUrl + '/' + item.seller.id + '/' + item.goods.images+'!thumbnail'}}" style="width: 40px; height: 40px;"></image>
                 <view class="flex bg-all" style="justify-content: space-around; padding-left: 10px;flex-direction: column">
                     <view class="goods-name bg-all">{{item.goods.name}}</view>
-                    <view class="goods-number bg-all" >x{{item.goods.count}}</view>
+                    <view class="goods-number bg-all" > ¥ {{item.goods.price || '0.00'}} x {{item.goods.count}}</view>
                 </view>
             </view>
             <view class="price bg-all">
-                ¥ {{item.goods.price || '0.00'}}
+                ¥ {{item.totalAmount}}
             </view>
         </view>
-        <view class="pay-price">
-           <view wx:if="{{item.coupon}}"><text class="sign">券</text>{{item.coupon.title}}</view>
-           <view wx:if="{{!item.coupon}}"> </view>
-           <view>实付: <text style="font-size: 16px">¥ {{item.receiptAmount}}</text></view> 
+        <view class="">
+           <view wx:if="{{item.coupon}}" class='pay-price'>
+              <view><text class="sign">券</text>{{item.coupon.title}}</view>
+              <view class='co_red'>-￥{{item.deductedAmount}}</view>
+           </view>
+
+           <view class='pay-price'>
+            <view> </view>
+            <view>实付: <text style="font-size: 16px">¥ {{item.receiptAmount}}</text></view> 
+           </view> 
         </view>
+        
         <view class="pd-10" style="border-bottom: 1px dotted #d2d2d2; color: #4c4c4c">
             <view class="flex" style="align-items: center">
                 订单编号: {{item.id}}
