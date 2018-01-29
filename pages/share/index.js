@@ -38,16 +38,21 @@ Page({
         let _this = this
         let url = api.getGoodsDetails(this.data.goodsId)
         $.get(url).then(function (res) {
+          if (res.statusCode == 200){
             if (res.data.errCode === 0) {
-                let goodsDetails = res.data.data
-                $.setTitle(goodsDetails.name)
-                goodsDetails.images = goodsDetails.images.split(':')[0]
-                goodsDetails.description = goodsDetails.description.split(':')
-                goodsDetails.startTime = new Date(parseInt(goodsDetails.startTime)).Format('yyyy-MM-dd hh:mm:ss')
-                _this.setData({
-                    goodsDetails
-                })
+              let goodsDetails = res.data.data
+              $.setTitle(goodsDetails.name)
+              goodsDetails.images = goodsDetails.images.split(':')[0]
+              goodsDetails.description = goodsDetails.description.split(':')
+              goodsDetails.startTime = new Date(parseInt(goodsDetails.startTime)).Format('yyyy-MM-dd hh:mm:ss')
+              _this.setData({
+                goodsDetails
+              })
             }
+          } else {
+            $.statusHandler(res.statusCode)
+          }
+            
 
         }).catch(function (err) {
             console.log(err)
@@ -57,41 +62,46 @@ Page({
         let _this = this
         let url = api.getGroupsUser(this.data.groupId)
         $.get(url).then(function (res) {
+          if (res.statusCode == 200) {
             if (res.data.errCode === 0) {
-                console.log('getGroupsUserList的参数')
-                let groupNumber = JSON.parse(JSON.stringify(res.data.dataList)).length
-                let groupsUserList = res.data.dataList
+              console.log('getGroupsUserList的参数')
+              let groupNumber = JSON.parse(JSON.stringify(res.data.dataList)).length
+              let groupsUserList = res.data.dataList
 
-                for (let i = groupsUserList.length; i < 10; i++) {
-                    groupsUserList.push({
-                        avatar: null
-                    })
+              for (let i = groupsUserList.length; i < 10; i++) {
+                groupsUserList.push({
+                  avatar: null
+                })
+              }
+              let openId = wx.getStorageSync('openId')
+              console.log(`openId: ${openId}`)
+
+              let isMe = false
+              groupsUserList.forEach(obj => {
+                if (obj.openId == openId) {
+                  console.log(obj.openId)
+                  isMe = true
                 }
-                let openId = wx.getStorageSync('openId')
-                console.log(`openId: ${openId}`)
-
-                let isMe = false
-                groupsUserList.forEach(obj => {
-                    if (obj.openId == openId) {
-                        console.log(obj.openId)
-                        isMe = true
-                    }
-                })
+              })
 
 
-                console.log(`groupsUserList: `)
-                console.log(res.data.dataList)
-                console.log(`groupNumber:`)
-                console.log(groupNumber)
-                console.log(`isMe: ${isMe}`)
-                console.log('- - - - - - - - - -')
+              console.log(`groupsUserList: `)
+              console.log(res.data.dataList)
+              console.log(`groupNumber:`)
+              console.log(groupNumber)
+              console.log(`isMe: ${isMe}`)
+              console.log('- - - - - - - - - -')
 
-                _this.setData({
-                    groupsUserList,
-                    groupNumber,
-                    isMe
-                })
+              _this.setData({
+                groupsUserList,
+                groupNumber,
+                isMe
+              })
             }
+          } else {
+            $.statusHandler(res.statusCode)
+          }
+            
 
         }).catch(function (err) {
             console.log(err)
@@ -146,20 +156,24 @@ Page({
         var _this = this;
         var url = api.groupExpireTime(this.data.groupId)
         $.get(url).then(function (res) {
+          if (res.statusCode == 200){
             if (res.data.code === 0) {
-                // expireTime = new Date(res.data.additional).Format("yyyy-MM-dd hh:mm:ss")
+              // expireTime = new Date(res.data.additional).Format("yyyy-MM-dd hh:mm:ss")
+              expireTime = $.getTime(res.data.additional)
+              _this.setData({
+                expireTime
+              })
+              setInterval(() => {
                 expireTime = $.getTime(res.data.additional)
                 _this.setData({
-                    expireTime
+                  expireTime
                 })
-                setInterval(() => {
-                    expireTime = $.getTime(res.data.additional)
-                    _this.setData({
-                        expireTime
-                    })
-                }, 1000)
+              }, 1000)
             }
-
+          } else {
+            $.statusHandler(res.statusCode)
+          }
+            
 
         }).catch(function (err) {
             console.log(err)

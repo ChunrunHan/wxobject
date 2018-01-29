@@ -9,8 +9,8 @@ const qqmapwx = new QQMapWX({
   key: 'WHGBZ-5JZKO-4PMWR-SEXNN-4O54Z-SNFO5' // 必填
 });
 
-// const imgUrl = `https://dev.yezhubao.net/oss_mall`
-const imgUrl = `https://api.yezhubao.net/oss_mall`
+const imgUrl = `https://dev.yezhubao.net/oss_mall`
+// const imgUrl = `https://api.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
 var wxUploadFile = promise(wx.uploadFile);
@@ -203,9 +203,10 @@ module.exports = {
       }
     })
   },
-  resetToken: function(){
+  resetToken: function () {
     var _this = this;
-    wx.removeStorageSync('token');
+    wx.removeStorageSync('token')
+    console.log('403token:' + wx.getStorageSync('token'));
     wx.showModal({
       content: '你的登录信息已过期，是否重新登录？',
       cancelText: '稍后',
@@ -219,6 +220,15 @@ module.exports = {
         }
       }
     })
+  },
+  checkToken: function (pageUrl) {
+    var _this = this;
+    if (!wx.getStorageSync('token')) {
+      _this.jump('../mobile/index')
+      return;
+    }else{
+      _this.jump(`${pageUrl}`)
+    }
   },
   math: {
     add: function (num1, num2) {
@@ -286,6 +296,94 @@ module.exports = {
       r1 = Number(num1.toString().replace(".", ""));
       r2 = Number(num2.toString().replace(".", ""));
       return (r1 / r2) * Math.pow(10, t2 - t1);
+    }
+  },
+  statusHandler: function (status) {
+    var _this = this;
+    console.log('statusHandler(' + status + ')');
+    console.log(status);
+    wx.hideLoading();
+
+    switch (status) {
+      case 0:
+        wx.showToast({
+          title: '网络问题稍后再试',
+          image: '../../img/alert.png',
+          duration: 2000
+        })
+        break;
+      case "request:fail timeout":
+        wx.showToast({
+          title: '请求超时稍后再试',
+          image: '../../img/alert.png',
+          duration: 2000
+        })
+        break;
+
+      case 204:
+        wx.showToast({
+          title: '没有内容稍后再试',
+          image: '../../img/alert.png',
+          duration: 2000
+        })
+        break;
+      case 401:
+        _this.resetToken()
+        // wx.showToast({
+        //   title: '无权限重新登录',
+        //   image: '../../img/alert.png',
+        //   duration: 2000,
+        //   success: function (res) {
+        //     setTimeout(function () {
+
+        //     }, 2000);
+        //   }
+        // })
+        break;
+      case 403:
+        _this.resetToken()
+        // wx.showToast({
+        //   title: '越权重新登录',
+        //   image: '../../img/alert.png',
+        //   duration: 2000,
+        //   success: function (res) {
+        //     setTimeout(function () {
+        //       _this.resetToken()
+        //     }, 2000);
+
+        //   }
+        // })
+        break;
+      case 404:
+        // mui.toast('请求地址错误，请联系客服');
+        wx.showToast({
+          title: '请求地址错误',
+          image: '../../img/alert.png',
+          duration: 2000
+        })
+        break;
+      case 500:
+        // mui.toast('服务器出错啦，请稍候再试');
+        wx.showToast({
+          title: '请稍候再试',
+          image: '../../img/alert.png',
+          duration: 2000
+        })
+        break;
+      case 502:
+        // mui.toast('服务器出错啦，请稍候再试');
+        wx.showToast({
+          title: '请稍后再试',
+          image: '../../img/alert.png',
+          duration: 2000
+        })
+        break;
+      default:
+        wx.showToast({
+          title: '未知错误',
+          image: '../../img/alert.png',
+          duration: 2000
+        })
     }
   },
   qqmapwx: qqmapwx,
@@ -467,3 +565,6 @@ function uuid() {
     lut[d2 & 0x3f | 0x80] + lut[d2 >> 8 & 0xff] + lut[d2 >> 16 & 0xff] + lut[d2 >> 24 & 0xff] +
     lut[d3 & 0xff] + lut[d3 >> 8 & 0xff] + lut[d3 >> 16 & 0xff] + lut[d3 >> 24 & 0xff];
 }
+
+
+

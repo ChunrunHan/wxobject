@@ -53,65 +53,6 @@ Page({
           this.getOneCoupon()
         }
     },
-    // showFinalMoney: function(value){
-    //   value = parseInt(value);
-    //   var _this = this;
-    //   if (value == 1) {
-    //     // 满减
-    //     console.log("满减")
-    //     this.setData({
-    //       conponName: `-￥${_this.data.coponTypeValue}`,
-    //       useCoupon: true
-    //     })
-        
-    //     var payPrice = $.math.sub(_this.data.payPrice, parseFloat(_this.data.coponTypeValue))
-    //     this.setData({
-    //       payPrice
-    //     })
-
-    //   } else if (value == 2) {
-    //     // 折扣
-    //     console.log("折扣")
-    //     this.setData({
-    //       conponName: `打${_this.data.coponTypeValue*10}折`,
-    //       useCoupon: true
-    //     })
-    //     let price = parseFloat(this.data.coponTypeValue)
-    //     let payPrice = $.math.mul(_this.data.payPrice, price)
-    //     this.setData({
-    //       payPrice
-    //     })
-
-    //   } else if (value == 3) {
-    //     // 满赠
-    //     console.log("满赠")
-    //     this.setData({
-    //       conponName: `满${_this.data.coponAmountLimit}赠${_this.data.coponTypeValue}`,
-    //       useCoupon: true
-    //     })
-
-
-    //   } else if (value == 4) {
-    //     // 折扣
-    //     console.log("新人")
-    //     this.setData({
-    //       conponName: `满${_this.data.coponAmountLimit}减${_this.data.coponTypeValue}`,
-    //       useCoupon: true
-    //     })
-
-    //   }
-    // },
-    // delCoupon: function(){
-    //   app.golobalData.sendRule = ''
-    //   this.setData({
-    //     couponId: '',
-    //     couponType: '',
-    //     coponAmountLimit: '',
-    //     coponTypeValue: '',
-    //     useCoupon: false,
-    //     conponName: '选择优惠券',
-    //   });
-    // },
     // 订单预览（自动获取一个优惠券）
     getOneCoupon: function(){
       var _this = this;
@@ -225,19 +166,24 @@ Page({
         $.showLoading('支付中')
         console.log(obj)
         $.post(url, obj).then(function (res) {
+          if (res.statusCode == 200){
             if (res.data.code == 0) {
-                if (res.data.additional) {
-                    console.log(JSON.parse(res.data.additional))
-                    let payObj = JSON.parse(res.data.additional)
-                    return $.wxRequestPayment(payObj)
-                } else {
-                    _this.getGroupId()
-                    throw '支付金额为0'
-                }
+              if (res.data.additional) {
+                console.log(JSON.parse(res.data.additional))
+                let payObj = JSON.parse(res.data.additional)
+                return $.wxRequestPayment(payObj)
+              } else {
+                _this.getGroupId()
+                throw '支付金额为0'
+              }
             } else {
-                $.alert(res.data.message || '支付失败')
-                throw res
+              $.alert(res.data.message || '支付失败')
+              throw res
             }
+          } else {
+            $.statusHandler(res.statusCode)
+          }
+            
         }).then(function (res) {
             console.log('支付成功')
             _this.getGroupId()

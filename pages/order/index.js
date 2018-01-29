@@ -87,22 +87,23 @@ Page({
           console.log(res);
             wx.stopPullDownRefresh()
             $.hideLoading()
-            if (res.data.errCode == 0) {
+            if (res.statusCode == 200){
+              if (res.data.errCode == 0) {
                 var orderList = res.data.dataList
                 orderList.forEach(function (obj) {
-                    // obj.images = obj.images.split(':')[0]
-                    obj.status = _this.statusCode[obj.status]
-                    obj.orderTime = new Date(obj.orderTime).Format('yyyy-MM-dd hh:mm:ss')
-                    obj.expireTime = new Date(obj.expireTime).Format('yyyy-MM-dd hh:mm:ss')
-                    if(obj.goods){
-                        obj.goods.images = obj.goods.images.split(':')[0]
-                    }
+                  // obj.images = obj.images.split(':')[0]
+                  obj.status = _this.statusCode[obj.status]
+                  obj.orderTime = new Date(obj.orderTime).Format('yyyy-MM-dd hh:mm:ss')
+                  obj.expireTime = new Date(obj.expireTime).Format('yyyy-MM-dd hh:mm:ss')
+                  if (obj.goods) {
+                    obj.goods.images = obj.goods.images.split(':')[0]
+                  }
                 })
-                if(_this.data.page > 0){
-                    orderList = [..._this.data.orderList, ...orderList]
+                if (_this.data.page > 0) {
+                  orderList = [..._this.data.orderList, ...orderList]
                 }
                 _this.setData({
-                    orderList
+                  orderList
                 })
 
                 if (orderList.length == res.data.totalRecords) {
@@ -111,22 +112,21 @@ Page({
                   _this.setData({
                     more: '没有更多数据'
                   })
-                }else{
+                } else {
                   loading = false
                   _this.setData({
                     more: '上拉加载更多'
                   })
                 }
-
-                
-            } else if (res.statusCode == 403) {
-              $.resetToken();
-
-            } else {
+              } else {
                 _this.setData({
-                    more: '没有更多数据'
+                  more: '没有更多数据'
                 })
+              }
+            } else{
+              $.statusHandler(res.statusCode)
             }
+           
 
         }).catch(function (err) {
             console.log(err)

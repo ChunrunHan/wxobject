@@ -62,47 +62,48 @@ Page({
       $.get(url).then(function (res) {
         $.hideLoading()
         console.log(res)
-        if (res.data.errCode == 0) {
-          let couponList = res.data.dataList;
-          for(var i = 0;i< couponList.length;i++){
-            console.log(couponList[i].validityEndTime);
-            couponList[i].validityEndTime = $.formatDate(couponList[i].validityEndTime);
-            couponList[i].startuse = couponList[i].validityStartTime;
-            couponList[i].validityStartTime = $.formatDate(couponList[i].validityStartTime); 
-            couponList[i].rule.includeGoodsName = couponList[i].rule.includeGoodsName || '不限';
-            couponList[i].logo = $.imgUrl + '/' + couponList[i].sellerId + '/' + couponList[i].logo;
-            if(couponList[i].type == 2){
-              couponList[i].rule.discount = $.math.mul(couponList[i].rule.discount,10);
+        if (res.statusCode == 200) {
+          if (res.data.errCode == 0) {
+            let couponList = res.data.dataList;
+            for (var i = 0; i < couponList.length; i++) {
+              console.log(couponList[i].validityEndTime);
+              couponList[i].validityEndTime = $.formatDate(couponList[i].validityEndTime);
+              couponList[i].startuse = couponList[i].validityStartTime;
+              couponList[i].validityStartTime = $.formatDate(couponList[i].validityStartTime);
+              couponList[i].rule.includeGoodsName = couponList[i].rule.includeGoodsName || '不限';
+              couponList[i].logo = $.imgUrl + '/' + couponList[i].sellerId + '/' + couponList[i].logo;
+              if (couponList[i].type == 2) {
+                couponList[i].rule.discount = $.math.mul(couponList[i].rule.discount, 10);
+              }
             }
-          }
-          _this.setData({
-            couponList: couponList = [..._this.data.couponList, ...couponList]
-          })
-          console.log(JSON.stringify(couponList));
-          if (couponList.length < _this.data.size){
-            _this.data.loading = true
             _this.setData({
+              couponList: couponList = [..._this.data.couponList, ...couponList]
+            })
+            console.log(JSON.stringify(couponList));
+            if (couponList.length < _this.data.size) {
+              _this.data.loading = true
+              _this.setData({
+                more: '没有更多数据'
+              })
+
+            } else {
+              _this.data.loading = false
+              _this.setData({
+                more: '上拉加载更多'
+              })
+
+            }
+
+          } else {
+            _this.setData({
+              couponList: [],
               more: '没有更多数据'
             })
-
-          }else{
-            _this.data.loading = false
-            _this.setData({
-              more: '上拉加载更多'
-            })
-
           }
-
-          
-          
-        } else if (res.statusCode == 403) {
-          $.resetToken();
-        }else {
-          _this.setData({
-            couponList: [],
-            more: '没有更多数据'
-          })
+        } else{
+          $.statusHandler(res.statusCode)
         }
+        
 
 
       }).catch(function (err) {

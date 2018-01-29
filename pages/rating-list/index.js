@@ -32,42 +32,47 @@ Page({
         $.get(url).then(function (res) {
           $.showLoading();
           console.log(res.data)
+          if (res.statusCode == 200){
             if (res.data.errCode === 0) {
               wx.hideLoading();
-                let ratingList = res.data.dataList
-                // console.log(JSON.stringify(ratingList));
-                ratingList.forEach(obj => {
-                    obj.createTime = new Date(obj.createTime).Format("yyyy.MM.dd")
-                    if(obj.images){
-                      obj.images = obj.images.split(":")
-                    }
-                   
-                })
-                if(_this.data.page > 0){
-                    ratingList = [..._this.data.ratingList, ...ratingList]
+              let ratingList = res.data.dataList
+              // console.log(JSON.stringify(ratingList));
+              ratingList.forEach(obj => {
+                obj.createTime = new Date(obj.createTime).Format("yyyy.MM.dd")
+                if (obj.images) {
+                  obj.images = obj.images.split(":")
                 }
 
+              })
+              if (_this.data.page > 0) {
+                ratingList = [..._this.data.ratingList, ...ratingList]
+              }
 
+
+              _this.setData({
+                ratingList
+              })
+
+              loading = false
+              // console.log(JSON.stringify(ratingList));
+
+              if (ratingList.length == ratingList.totalRecords) {
+                console.log('没数据了');
+                loading = true
                 _this.setData({
-                    ratingList
+                  more: '没有更多数据'
                 })
-
-                loading = false
-                // console.log(JSON.stringify(ratingList));
-                
-                if (ratingList.length == ratingList.totalRecords){
-                  console.log('没数据了');
-                    loading = true
-                    _this.setData({
-                        more: '没有更多数据'
-                    })
-                }
-            }else {
+              }
+            } else {
               wx.hideLoading();
-                _this.setData({
-                    more: '没有更多数据'
-                })
+              _this.setData({
+                more: '没有更多数据'
+              })
             }
+          } else {
+            $.statusHandler(res.statusCode)
+          }
+            
 
         }).catch(function (err) {
           wx.hideLoading();

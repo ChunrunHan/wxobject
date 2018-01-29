@@ -73,19 +73,24 @@ Page({
         };
 
         $.post(url, obj).then(function (res) {
-            if(res.data.code == 0){
-                $.confirm('评价完成', function () {
-                    wx.navigateBack({
-                        delta: 1
-                    })
-                }, function () {
-                    wx.navigateBack({
-                        delta: 1
-                    })
+          if (res.statusCode == 200){
+            if (res.data.code == 0) {
+              $.confirm('评价完成', function () {
+                wx.navigateBack({
+                  delta: 1
                 })
-            }else {
-                $.alert(res.data.message || '评价失败')
+              }, function () {
+                wx.navigateBack({
+                  delta: 1
+                })
+              })
+            } else {
+              $.alert(res.data.message || '评价失败')
             }
+          } else {
+            $.statusHandler(res.statusCode)
+          }
+           
             console.log(res)
         }).catch(function (err) {
             $.alert('评价失败')
@@ -139,6 +144,8 @@ Page({
                 _this.setData({
                   files: _this.data.files.concat(img)
                 })
+              } else {
+                $.statusHandler(res.statusCode)
               }
             }).catch(function () {
               wx.hideLoading()

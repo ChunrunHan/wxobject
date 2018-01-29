@@ -26,6 +26,7 @@ Page({
             wx.removeStorageSync('unionId')
             wx.removeStorageSync('openId')
             wx.removeStorageSync('token')
+            console.log('403token:' + wx.getStorageSync('token'));
             $.alert('已退出!')
             _this.setData({
               islogin: ''
@@ -33,14 +34,14 @@ Page({
         })
     },
     order: function () {
-        $.login().then(function () {
-           $.jump('../order/index')
-        })
+      $.checkToken('../order/index')
+        
     },
     address: function () {
-        $.login().then(function () {
-            $.jump('../address/index')
-        })
+        // $.checkToken().then(function () {
+        //     $.jump('../address/index')
+        // })
+      $.checkToken('../address/index')
     },
     coupon: function(){
         $.jump('../coupon/index')

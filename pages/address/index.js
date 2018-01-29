@@ -174,27 +174,31 @@ Page({
   },
   getAddressList: function () {
     $.showLoading()
-
     let _this = this
     let url = api.getAddressList({})
     $.get(url).then(function (res) {
       wx.stopPullDownRefresh()
       $.hideLoading()
-      if (res.data.errCode == 0) {
-        let addressList = res.data.dataList
-        _this.setData({
-          addressList
-        })
-        loading = false
-        _this.setData({
-          more: '上拉加载更多'
-        })
-      } else {
-        _this.setData({
-          addressList: [],
-          more: '没有更多数据'
-        })
+      if (res.statusCode == 200){
+        if (res.data.errCode == 0) {
+          let addressList = res.data.dataList
+          _this.setData({
+            addressList
+          })
+          loading = false
+          _this.setData({
+            more: '上拉加载更多'
+          })
+        } else {
+          _this.setData({
+            addressList: [],
+            more: '没有更多数据'
+          })
+        }
+      }else{
+        $.statusHandler(res.statusCode)
       }
+      
 
 
     }).catch(function (err) {
