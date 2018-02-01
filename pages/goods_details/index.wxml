@@ -15,7 +15,7 @@
 
             <view class="flex" style="align-items: flex-end">
                 <view class="price co_red">
-                    ¥{{goodsDetails.price}}
+                    ¥{{goodsDetails.leaderPrice}}
                 </view>
                 <view class="old-price co_ash">
                     ¥{{goodsDetails.oldPrice}}
@@ -101,6 +101,14 @@
     <view style="padding: 15px; border-bottom: 1px solid #e8e8e8;padding-left:10px;">
         商品详情
     </view>
+
+    <view style='background:white;padding:10px;' hidden='{{!goodsDetails.textDescription}}'>
+      <view style='margin-bottom:5px;background:#fafafa;padding:10px'>
+        <view style='color:#212121;background:transparent;margin-bottom:5px;'>商品描述</view>
+        <view style='background:transparent;color:#565656;letter-spacing:1px;font-size:12px;line-height:20px;'>{{goodsDetails.textDescription}}</view>
+      </view>
+    </view>
+
     <view style="display: flex;flex-direction: column; padding-bottom: 50px">
         <image wx:for="{{goodsDetails.description}}" src="{{imgUrl + '/' + goodsDetails.sellerId + '/' + item}}"
                mode="widthFix"/>

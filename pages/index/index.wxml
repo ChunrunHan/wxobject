@@ -55,7 +55,7 @@
 
                     <view class="flex" style="align-items: flex-end;align-items:baseline;">
                         <view class="price co_red">
-                            ￥{{item.price}}
+                            ￥{{item.leaderPrice}}
                         </view>
                         <view class="dec co_ash" style="padding-left: 10px;">
                             {{item.buyerLimit}}人团
