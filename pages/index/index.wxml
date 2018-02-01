@@ -46,7 +46,8 @@
         <button class="formButton item" wx:for="{{recommendList}}" bindtap="openDetail" data-id="{{item.id}}"
                 form-type="submit">
             <view class="img">
-                <image src="{{imgUrl + '/' + item.sellerId + '/' + item.images +'!thumbnail'}}" mode='aspectFill'></image>
+                <!-- <image src="{{imgUrl + '/' + item.sellerId + '/' + item.images +'!thumbnail'}}" mode='aspectFill'></image> -->
+                <image src="{{item.images}}" ></image>
             </view>
 
             <view class="pd-10">

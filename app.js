@@ -25,19 +25,22 @@ Array.prototype.contains = function (needle) {
     return false;
 }
 
+var systemInfo = wx.getSystemInfoSync();
 
 App({
   onLaunch: function () {
     wx.setStorageSync('orderLoginAlertShown', 'false')
   },
   formIds: [],
-  bucket: 'yzb-mall',
-  ossHost: 'https://dev.yezhubao.net/oss_mall',
-  urlBase: 'https://dev.yezhubao.net',
-  // bucket: 'yezhubao-mall',
-  // ossHost: 'https://api.yezhubao.net/oss_mall',
-  // urlBase: 'https://api.yezhubao.net',
+  // bucket: 'yzb-mall',
+  // ossHost: 'https://dev.yezhubao.net/oss_mall',
+  // urlBase: 'https://dev.yezhubao.net',
+  bucket: 'yezhubao-mall',
+  ossHost: 'https://api.yezhubao.net/oss_mall',
+  urlBase: 'https://api.yezhubao.net',
   golobalData: {
     sendcouponId: ''
-  }
+  },
+  screenWidth: systemInfo.windowWidth,
+  screenHeight: systemInfo.windowHeight
 })
