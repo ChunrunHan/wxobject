@@ -50,28 +50,30 @@
                 <image src="{{item.images}}" ></image>
             </view>
 
-            <view class="pd-10">
-                <view class='fs-18'>{{item.name}}</view>
-                <view class="flex" style="justify-content: space-between; padding-top: 10px;">
+            <view class="pd-10 goods-bot">
+                <view class='goods-name'>{{item.name}}</view>
+                <view class="flex" style="justify-content: space-between; padding-top: 5px;align-items:center;">
 
                     <view class="flex" style="align-items: flex-end;align-items:baseline;">
                         <view class="price co_red">
-                            ￥{{item.leaderPrice}}
+                            <text class='fs-10'>￥</text> <text class='fs-15'>{{item.leaderPrice}}</text>
                         </view>
                         <view class="dec co_ash" style="padding-left: 10px;">
-                            {{item.buyerLimit}}人团
+                            <!-- {{item.buyerLimit}}人团 -->
                             <!-- ·单买价{{item.singlePrice}}元 -->
                         </view>
                     </view>
-                    <view class="btn bc_red">
-                        去开团 <image src="../../img/white_row.png" style="width: 14px; height: 14px;position:relative;top:2px;color:white"></image>
+                    <view class='dec co_ash'  style="align-items: center;">
+                      已团{{item.totalSell || 0}}件             
                     </view>
+                    <!-- <view class="btn bc_red">
+                        去开团 <image src="../../img/white_row.png" style="width: 14px; height: 14px;position:relative;top:2px;color:white"></image>
+                    </view> -->
                 </view>
             </view>
         </button>
-
     </view>
-    <view class="more">
+    <view class="more clearfloat">
         {{more}}
     </view>
 </form>

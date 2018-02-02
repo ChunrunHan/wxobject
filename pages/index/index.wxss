@@ -19,8 +19,32 @@ swiper, swiper image {
 
 .goods-list .item {
     /* border-top: 5px solid #e8e8e8; */
-     border-top: 5px solid #f2f2f2;
+     border-top: 4px solid #f2f2f2;
+     width: calc(100vw / 2 - 2px);
+     float: left;
 }
+.goods-list .item:nth-child(2n){
+  margin-left:2px; 
+}
+
+.goods-list .item:nth-child(2n-1){
+  margin-right:2px; 
+}
+
+.goods-list .goods-bot{
+  height: 70px;
+}
+
+.goods-list .goods-name{
+  height:40px;
+  overflow:hidden;
+  text-indent:5px;
+  word-spacing: 2px;
+  color: #151516;
+  font-size: 12px;
+}
+
+.clearfloat{clear:both} 
 
 .goods-list .item .img {
     display: flex;
@@ -28,10 +52,9 @@ swiper, swiper image {
     /* padding-top: 10px; */
 }
 
-/* .goods-list .item .img image {
-    width: 150px;
-    height: 150px;
-} */
+ .goods-list .item .img image {
+    height: calc(100vw / 2 + 5px);
+} 
 
 .nav {
     text-align: center;

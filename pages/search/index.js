@@ -209,8 +209,11 @@ Page({
         if (res.data.errCode == 0) {
           var recommendList = res.data.dataList
           recommendList.forEach(function (obj) {
-            obj.images = obj.images.split(':')[0]
+            obj.images = $.imgUrl + obj.sellerId + "/" + obj.images.split(':')[0] + "?x-oss-process=image/resize,w_" + Math.floor(app.screenWidth * 1 / 2) + ",h_" + Math.floor(app.screenWidth * 1 / 2 + 10) + ",m_fill,limit_0/sharpen,100/format,jpg/interlace,1"
           })
+          // recommendList.forEach(function (obj) {
+          //   obj.images = obj.images.split(':')[0]
+          // })
           if (_this.data.page > 0) {
             recommendList = [..._this.data.recommendList, ...recommendList]
           }

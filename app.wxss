@@ -55,7 +55,8 @@ image {
 }
 
 .co_red {
-    color: #e02e24;
+    /* color: #e02e24; */
+    color:#ee2e3a;
 }
 
 button[type="warn"] {
@@ -64,7 +65,7 @@ button[type="warn"] {
 }
 
 .co_ash {
-    color: #727274;
+    color: #9c9c9c;
 }
 
 .btn {
@@ -163,8 +164,14 @@ button[type="warn"] {
     display:none;
 }
 /* 字体大少 */
+.fs-10{
+  font-size: 10px;
+}
+.fs-15{
+  font-size: 15px;
+}
 .fs-18{
-  font-size: 14px;
+  font-size: 18px;
 }
 .fs-30{
   font-size: 30px;
