@@ -61,7 +61,9 @@ Page({
       if (res.data.errCode == 0) {
         var recommendList = res.data.dataList
         recommendList.forEach(function (obj) {
-          obj.images = $.imgUrl + obj.sellerId + "/" + obj.images.split(':')[0] + "?x-oss-process=image/resize,w_" + Math.floor(app.screenWidth * 1 / 2) + ",h_" + Math.floor(app.screenWidth * 1 / 2 + 10) + ",m_fill,limit_0/sharpen,100/format,jpg/interlace,1"
+          obj.images = $.imgUrl +'/' +obj.sellerId + "/" + obj.images.split(':')[0] + "?x-oss-process=image/format,jpg/interlace,1/quality,Q_40"
+          // obj.images = $.imgUrl + obj.sellerId + "/" + obj.images.split(':')[0] + "?x-oss-process=image/resize,w_" + Math.floor(app.screenWidth-100) + ",h_" + Math.floor(app.screenWidth-100) + ",quality,Q_100/format,jpg/interlace,1/bright,10/sharpen,150"
+          // obj.images = $.imgUrl + obj.sellerId + "/" + obj.images.split(':')[0]
         })
         if (_this.data.page > 0) {
           recommendList = [..._this.data.recommendList, ...recommendList]

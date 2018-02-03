@@ -48,7 +48,8 @@ Page({
                 let goodsDetails = res.data.data
                 goodsDetails.images = goodsDetails.images.split(':')
                 for(var i = 0;i<goodsDetails.images.length;i++){
-                  goodsDetails.images[i] = $.imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[i] + "?x-oss-process=image/resize,w_" + Math.floor(app.screenWidth * 1) + ",h_" + Math.floor(app.screenWidth * 1) + ",m_fill,limit_0/sharpen,100/format,jpg/interlace,1"
+                  // goodsDetails.images[i] = $.imgUrl + '/' + goodsDetails.sellerId + '/' + goodsDetails.images[i] + "?x-oss-process=image/resize,w_" + Math.floor(app.screenWidth * 1) + ",h_" + Math.floor(app.screenWidth * 1) + ",m_fill,limit_0/sharpen,100/format,jpg/interlace,1"
+                  goodsDetails.images[i] = $.imgUrl +'/'+ goodsDetails.sellerId + "/" + goodsDetails.images[i] + "?x-oss-process=image/format,jpg/interlace,1/quality,Q_80"
                   // console.log(goodsDetails.images[i]);
                   _this.setData({
                     files: _this.data.files.concat(goodsDetails.images[i]),
@@ -183,6 +184,7 @@ Page({
     },
     callSeller: function(e){
       console.log("联系客服");
+      console.log(this.data.servicePhone);
       wx.makePhoneCall({
         phoneNumber: this.data.servicePhone
       })
