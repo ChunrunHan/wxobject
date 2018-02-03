@@ -9,8 +9,8 @@ const qqmapwx = new QQMapWX({
   key: 'WHGBZ-5JZKO-4PMWR-SEXNN-4O54Z-SNFO5' // 必填
 });
 
-// const imgUrl = `https://dev.yezhubao.net/oss_mall`
-const imgUrl = `https://api.yezhubao.net/oss_mall`
+const imgUrl = `https://dev.yezhubao.net/oss_mall`
+// const imgUrl = `https://api.yezhubao.net/oss_mall`
 const promise = require('promise').wxPromisify;
 const ajax = require('ajax');
 var wxUploadFile = promise(wx.uploadFile);
